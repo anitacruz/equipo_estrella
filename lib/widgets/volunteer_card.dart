@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/presentation/widgets/volunteer_card_description.dart';
+import 'package:equipo_estrella/widgets/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
 
 class VolunteerCard extends StatelessWidget {
@@ -15,6 +15,7 @@ class VolunteerCard extends StatelessWidget {
                 color: Colors.lightBlue,
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 boxShadow: [
+                  // TODO: implement the shadow widgets
                   BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
@@ -25,7 +26,7 @@ class VolunteerCard extends StatelessWidget {
               child: Column(children: [
                 Expanded(
                   child: Image.asset(
-                    "assets/malata.jpg",
+                    "assets/placeholder.png",
                     fit: BoxFit.fitWidth,
                     width: double.infinity,
                   ),
