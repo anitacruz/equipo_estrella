@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'presentation/widgets/volunteer_card.dart';
+import 'widgets/volunteer_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +40,11 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: const Center(child: VolunteerCard()),
+      body: const Column(children: [
+        VolunteerCard(),
+        VolunteerCard(),
+        VolunteerCard()
+      ]),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/presentation/widgets/volunteer_card_description.dart';
+import 'package:equipo_estrella/widgets/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
 
 class VolunteerCard extends StatelessWidget {
@@ -25,7 +25,7 @@ class VolunteerCard extends StatelessWidget {
               child: Column(children: [
                 Expanded(
                   child: Image.asset(
-                    "assets/malata.jpg",
+                    "assets/placeholder.png",
                     fit: BoxFit.fitWidth,
                     width: double.infinity,
                   ),
