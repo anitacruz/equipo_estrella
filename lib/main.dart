@@ -1,5 +1,7 @@
+import 'package:equipo_estrella/presentation/views/home.dart';
 import 'package:flutter/material.dart';
 import 'widgets/volunteer_card.dart';
+import 'presentation/views/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,9 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(
-        title: 'Flutter Demo Home Page',
-      ),
+      home: const Profile(),
     );
   }
 }
