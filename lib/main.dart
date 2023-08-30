@@ -36,15 +36,36 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: const Column(children: [
-        VolunteerCard(),
-        VolunteerCard(),
-        VolunteerCard()
-      ]),
-    );
+        appBar: AppBar(
+          title: Text(widget.title),
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        ),
+        body: Column(children: [
+          const SizedBox(
+              width: 250,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Email',
+                  
+                ),
+              )),
+          Expanded(
+            child: ListView.separated(
+              padding: const EdgeInsets.all(8),
+              itemCount: 6,
+              itemBuilder: (BuildContext context, int index) {
+                return const SizedBox(
+                  child: VolunteerCard(),
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(
+                color: Colors.transparent,
+                height: 24,
+              ),
+            ),
+          )
+        ]));
   }
 }
