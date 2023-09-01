@@ -4,6 +4,7 @@ import 'volunteer_card_acction.dart';
 class VolunteerCardDescription extends StatelessWidget {
   const VolunteerCardDescription({super.key});
 
+  //TODO: add color enum/class
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -11,6 +12,8 @@ class VolunteerCardDescription extends StatelessWidget {
             color: Colors.grey[100],
             width: 1000,
             padding: const EdgeInsets.all(6),
+            margin:
+                const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
             child: const Column(children: [
               Align(
                   alignment: Alignment.topLeft,

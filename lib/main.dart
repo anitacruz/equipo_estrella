@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/presentation/views/home.dart';
+import 'package:equipo_estrella/widgets/scrollable_card_list.dart';
 import 'package:flutter/material.dart';
 import 'widgets/volunteer_card.dart';
 import 'presentation/views/profile.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Profile(),
+      home: const MyHomePage(title: "Equipo Estrella"),
     );
   }
 }
@@ -40,32 +40,24 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         ),
-        body: Column(children: [
-          const SizedBox(
-              width: 250,
-              child: TextField(
+        body: Container(
+            margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
+            child: const Column(children: [
+              TextField(
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Email',
-                  
-                ),
-              )),
-          Expanded(
-            child: ListView.separated(
-              padding: const EdgeInsets.all(8),
-              itemCount: 6,
-              itemBuilder: (BuildContext context, int index) {
-                return const SizedBox(
-                  child: VolunteerCard(),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) =>
-                  const Divider(
-                color: Colors.transparent,
-                height: 24,
+                    // border: OutlineInputBorder(),
+                    labelText: 'Buscar',
+                    prefixIcon: Icon(Icons.search, size: 24),
+                    suffixIcon: Icon(Icons.map,
+                        size: 24, color: Color.fromARGB(255, 20, 144, 63))),
               ),
-            ),
-          )
-        ]));
+              Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
+                    "Voluntariados",
+                    style: TextStyle(fontSize: 24),
+                  )),
+              ScrollableCardList(),
+            ])));
   }
 }

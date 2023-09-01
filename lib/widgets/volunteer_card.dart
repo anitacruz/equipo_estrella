@@ -9,10 +9,11 @@ class VolunteerCard extends StatelessWidget {
     return Center(
         child: Container(
             alignment: Alignment.center,
-            width: 328,
+            // width: 328,
             height: 234,
+            margin: const EdgeInsets.only(bottom: 24, top: 24),
             decoration: BoxDecoration(
-                color: Colors.lightBlue,
+                color: Colors.grey[100],
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 boxShadow: [
                   // TODO: implement the shadow widgets
