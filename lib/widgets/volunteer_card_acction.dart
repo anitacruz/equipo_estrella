@@ -1,4 +1,5 @@
 import 'package:equipo_estrella/colors.dart';
+import 'package:equipo_estrella/widgets/atoms/card_chip.dart';
 import 'package:flutter/material.dart';
 
 class VolunteerCardAction extends StatelessWidget {
@@ -12,20 +13,7 @@ class VolunteerCardAction extends StatelessWidget {
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Chip(
-                backgroundColor: ManosColors.secondary25,
-                // selectedColor: Color.fromARGB(255, 202, 229, 251),
-                // selected: true,
-                labelStyle: TextStyle(color: ManosColors.secondary200),
-                label: Row(
-                  children: [
-                    Text("Vacantes:"),
-                    SizedBox(width: 15),
-                    Icon(Icons.person,
-                        color: ManosColors.secondary200, size: 24),
-                    Text("10")
-                  ],
-                )),
+            CardChip(amount: 10, isAvailable: false),
             Row(
               children: [
                 Icon(
