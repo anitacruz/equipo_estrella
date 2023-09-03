@@ -9,7 +9,6 @@ class VolunteerCardDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-            color: Colors.grey[100],
             width: 1000,
             padding: const EdgeInsets.all(6),
             margin:

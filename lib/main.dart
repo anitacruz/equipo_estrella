@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/colors.dart';
 import 'package:equipo_estrella/widgets/scrollable_card_list.dart';
 import 'package:flutter/material.dart';
 import 'widgets/volunteer_card.dart';
@@ -36,9 +37,10 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: ManosColors.secondary10,
         appBar: AppBar(
           title: Text(widget.title),
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: ManosColors.secondary100,
         ),
         body: Container(
             margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
@@ -49,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     labelText: 'Buscar',
                     prefixIcon: Icon(Icons.search, size: 24),
                     suffixIcon: Icon(Icons.map,
-                        size: 24, color: Color.fromARGB(255, 20, 144, 63))),
+                        size: 24, color: ManosColors.primary100)),
               ),
               Align(
                   alignment: AlignmentDirectional.centerStart,
