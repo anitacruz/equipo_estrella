@@ -4,6 +4,7 @@ import 'volunteer_card.dart';
 class ScrollableCardList extends StatelessWidget {
   const ScrollableCardList({super.key});
 
+  //TODO: fix the list divider. Im not sure its actually 24 pixels tall
   @override
   Widget build(BuildContext context) {
     return Expanded(

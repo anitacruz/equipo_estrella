@@ -9,10 +9,9 @@ class VolunteerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-            alignment: Alignment.center,
-            // width: 328,
             height: 234,
-            margin: const EdgeInsets.only(bottom: 24, top: 24),
+            alignment: Alignment.center,
+            margin: const EdgeInsets.only(bottom: 24),
             decoration: BoxDecoration(
                 color: ManosColors.neutral100,
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
@@ -31,6 +30,7 @@ class VolunteerCard extends StatelessWidget {
                     "assets/placeholder.png",
                     fit: BoxFit.fitWidth,
                     width: double.infinity,
+                    height: 138,
                   ),
                 ),
                 const Expanded(
