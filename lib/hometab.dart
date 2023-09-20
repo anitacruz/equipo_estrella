@@ -9,7 +9,7 @@ class HomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
-        child: Column(children: [
+        child: const Column(children: [
           TextField(
             decoration: InputDecoration(
                 // border: OutlineInputBorder(),
@@ -18,12 +18,15 @@ class HomeTab extends StatelessWidget {
                 suffixIcon:
                     Icon(Icons.map, size: 24, color: ManosColors.primary100)),
           ),
-          Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Text(
-                "Voluntariados",
-                style: TextStyle(fontSize: 24),
-              )),
+          Padding(
+              padding: EdgeInsets.only(top: 32, bottom: 24),
+              child: Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
+                    "Voluntariados",
+                    style: TextStyle(fontSize: 24),
+                  ))),
+          // Expanded(child: NoVolunteerCard())
           ScrollableCardList(),
         ]));
   }

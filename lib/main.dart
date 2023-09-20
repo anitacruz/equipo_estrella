@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             appBar: AppBar(
               title: Text(widget.title),
               backgroundColor: ManosColors.secondary100,
-              bottom: TabBar(
+              bottom: const TabBar(
                 tabs: [
                   Tab(text: "Postularse"),
                   Tab(
