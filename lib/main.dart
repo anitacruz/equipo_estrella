@@ -1,8 +1,7 @@
 import 'package:equipo_estrella/colors.dart';
-import 'package:equipo_estrella/widgets/scrollable_card_list.dart';
+import 'package:equipo_estrella/hometab.dart';
 import 'package:flutter/material.dart';
 import 'widgets/volunteer_card.dart';
-import 'presentation/views/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.primaryColor),
+        primaryColor: const Color.fromARGB(20, 144, 63, 1),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: "Equipo Estrella"),
@@ -36,30 +36,24 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: ManosColors.secondary10,
-        appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: ManosColors.secondary100,
-        ),
-        body: Container(
-            margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
-            child: const Column(children: [
-              TextField(
-                decoration: InputDecoration(
-                    // border: OutlineInputBorder(),
-                    labelText: 'Buscar',
-                    prefixIcon: Icon(Icons.search, size: 24),
-                    suffixIcon: Icon(Icons.map,
-                        size: 24, color: ManosColors.primary100)),
+    return DefaultTabController(
+        length: 3,
+        child: Scaffold(
+            backgroundColor: ManosColors.secondary10,
+            appBar: AppBar(
+              title: Text(widget.title),
+              backgroundColor: ManosColors.secondary100,
+              bottom: TabBar(
+                tabs: [
+                  Tab(text: "Postularse"),
+                  Tab(
+                    text: "Mi Perfil",
+                  ),
+                  Tab(text: "Novedades")
+                ],
               ),
-              Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text(
-                    "Voluntariados",
-                    style: TextStyle(fontSize: 24),
-                  )),
-              ScrollableCardList(),
-            ])));
+            ),
+            body: const TabBarView(
+                children: [HomeTab(), VolunteerCard(), VolunteerCard()])));
   }
 }
