@@ -1,8 +1,7 @@
-import 'package:equipo_estrella/fonts.dart';
 import 'package:flutter/material.dart';
-import '../colors.dart';
-import 'atoms/card_chip.dart';
-import 'volunteer_card_acction.dart';
+import '../commons/colors.dart';
+import '../commons/fonts.dart';
+import 'card_chip.dart';
 
 class VolunteerCardDescription extends StatelessWidget {
   const VolunteerCardDescription({super.key});
@@ -21,26 +20,26 @@ class VolunteerCardDescription extends StatelessWidget {
             // margin:
             //     const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 4),
             child: Column(children: [
-              const Align(
+              Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    style: ManosFonts.overline,
+                    style: ManosFonts.overline(),
                     "ACCIÓN SOCIAL",
                   )),
-              const Padding(
-                  padding: EdgeInsets.only(bottom: 4),
+              Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
                         "Un Techo para mi País",
-                        style: ManosFonts.sub1,
+                        style: ManosFonts.sub1(),
                       ))),
               Container(
                   margin: const EdgeInsets.only(top: 4),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CardChip(amount: 10, isAvailable: false),
+                      CardChip(amount: 10, isAvailable: true),
                       Row(
                         children: [
                           Icon(

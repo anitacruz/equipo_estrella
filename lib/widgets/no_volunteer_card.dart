@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/colors.dart';
+import 'package:equipo_estrella/commons/colors.dart';
 import 'package:flutter/material.dart';
 
 class NoVolunteerCard extends StatelessWidget {
