@@ -3,11 +3,10 @@ import 'colors.dart';
 
 //TODO: try to modularize
 class ManosShadows {
-  static BoxDecoration shadow1 = BoxDecoration(
-    borderRadius: BorderRadius.circular(16.0),
+  static const BoxDecoration shadow1 = BoxDecoration(
     color: ManosColors
         .neutral10, // You can use the specific color code or a variable if defined.
-    boxShadow: const [
+    boxShadow: [
       BoxShadow(
         offset: Offset(0, 1),
         blurRadius: 3,
@@ -24,11 +23,10 @@ class ManosShadows {
   );
   // Your widget content here
 
-  static BoxDecoration shadow2 = BoxDecoration(
-    borderRadius: BorderRadius.circular(16.0),
+  static const BoxDecoration shadow2 = BoxDecoration(
     color: ManosColors
         .neutral10, // You can use the specific color code or a variable if defined.
-    boxShadow: const [
+    boxShadow: [
       BoxShadow(
         offset: Offset(0, 2),
         blurRadius: 6,
@@ -44,11 +42,10 @@ class ManosShadows {
     ],
   );
 
-  static BoxDecoration shadow3 = BoxDecoration(
-    borderRadius: BorderRadius.circular(16.0),
+  static const BoxDecoration shadow3 = BoxDecoration(
     color: ManosColors
         .neutral10, // You can use the specific color code or a variable if defined.
-    boxShadow: const [
+    boxShadow: [
       BoxShadow(
         offset: Offset(0, 4),
         blurRadius: 4,
@@ -63,5 +60,4 @@ class ManosShadows {
       ),
     ],
   );
-
 }
