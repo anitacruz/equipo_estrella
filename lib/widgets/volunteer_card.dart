@@ -1,4 +1,5 @@
 import 'package:equipo_estrella/colors.dart';
+import 'package:equipo_estrella/shadows.dart';
 import 'package:equipo_estrella/widgets/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
 
@@ -12,17 +13,7 @@ class VolunteerCard extends StatelessWidget {
             height: 234,
             alignment: Alignment.center,
             margin: const EdgeInsets.only(bottom: 24),
-            decoration: BoxDecoration(
-                color: ManosColors.neutral100,
-                borderRadius: const BorderRadius.all(Radius.circular(5)),
-                boxShadow: [
-                  // TODO: implement the shadow widgets
-                  BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3))
-                ]),
+            decoration: ManosShadows.shadow1,
             child: Expanded(
               child: Column(children: [
                 Expanded(
