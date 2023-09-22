@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import '../commons/shadows.dart';
 
 class VolunteerCard extends StatelessWidget {
-  const VolunteerCard({super.key});
+  const VolunteerCard({Key? key, required this.category, required this.title})
+      : super(key: key);
+
+  final String category;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +27,9 @@ class VolunteerCard extends StatelessWidget {
                       fit: BoxFit.fitWidth,
                       width: double.infinity,
                     )),
-                const Expanded(
-                  child: VolunteerCardDescription(),
+                Expanded(
+                  child: VolunteerCardDescription(
+                      category: category, title: title),
                 )
               ]),
             )));

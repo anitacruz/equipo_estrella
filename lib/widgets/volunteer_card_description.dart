@@ -4,7 +4,12 @@ import '../commons/fonts.dart';
 import 'card_chip.dart';
 
 class VolunteerCardDescription extends StatelessWidget {
-  const VolunteerCardDescription({super.key});
+  const VolunteerCardDescription(
+      {Key? key, required this.category, required this.title})
+      : super(key: key);
+
+  final String category;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +28,14 @@ class VolunteerCardDescription extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     style: ManosFonts.overline(),
-                    "ACCIÓN SOCIAL",
+                    category.toUpperCase(),
                   )),
               Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        "Un Techo para mi País",
+                        title,
                         style: ManosFonts.sub1(),
                       ))),
               Container(

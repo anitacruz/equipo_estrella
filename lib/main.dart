@@ -1,5 +1,6 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/hometab.dart';
+import 'package:equipo_estrella/widgets/no_volunteer_card.dart';
 import 'package:flutter/material.dart';
 import 'widgets/volunteer_card.dart';
 
@@ -54,6 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             body: const TabBarView(
-                children: [HomeTab(), VolunteerCard(), VolunteerCard()])));
+                children: [HomeTab(), NoVolunteerCard(), NoVolunteerCard()])));
   }
 }

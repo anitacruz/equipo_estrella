@@ -1,4 +1,5 @@
 import 'package:equipo_estrella/commons/colors.dart';
+import 'package:equipo_estrella/widgets/activity_card.dart';
 import 'package:equipo_estrella/widgets/scrollable_card_list.dart';
 import 'package:flutter/material.dart';
 
@@ -23,10 +24,20 @@ class HomeTab extends StatelessWidget {
               child: Align(
                   alignment: AlignmentDirectional.centerStart,
                   child: Text(
+                    "Tu actividad",
+                    style: TextStyle(fontSize: 24),
+                  ))),
+          ActivityCard(
+              category: "acción social", title: "un techo para mi país"),
+          // Expanded(child: NoVolunteerCard())
+          Padding(
+              padding: EdgeInsets.only(top: 32, bottom: 24),
+              child: Align(
+                  alignment: AlignmentDirectional.centerStart,
+                  child: Text(
                     "Voluntariados",
                     style: TextStyle(fontSize: 24),
                   ))),
-          // Expanded(child: NoVolunteerCard())
           ScrollableCardList(),
         ]));
   }
