@@ -6,7 +6,6 @@ import 'card_chip.dart';
 class VolunteerCardDescription extends StatelessWidget {
   const VolunteerCardDescription({super.key});
 
-  //TODO: add color enum/class
   @override
   Widget build(BuildContext context) {
     return Center(

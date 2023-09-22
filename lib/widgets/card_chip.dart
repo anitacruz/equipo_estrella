@@ -11,31 +11,6 @@ class CardChip extends StatelessWidget {
   final bool isAvailable;
   @override
   Widget build(BuildContext context) {
-    // return Chip(
-    //     backgroundColor:
-    //         isAvailable ? ManosColors.secondary80 : ManosColors.neutral25,
-    //     // labelStyle: TextStyle(color: ManosColors.secondary200),
-    //     label: Row(
-    //       children: [
-    //         Text("Vacantes:",
-    //             style: ManosFonts.sub1(
-    //                 color: isAvailable
-    //                     ? ManosColors.secondary200
-    //                     : ManosColors.neutral0)),
-    //         const SizedBox(width: 15),
-    //         Icon(Icons.person,
-    //             color: isAvailable
-    //                 ? ManosColors.secondary200
-    //                 : ManosColors.secondary80,
-    //             size: 24),
-    //         Text('$amount',
-    //             style: ManosFonts.b1(
-    //                 color: isAvailable
-    //                     ? ManosColors.secondary200
-    //                     : ManosColors.secondary80)),
-    //       ],
-    //     ));
-
     return Center(
         child: Container(
             height: 28,
@@ -51,7 +26,8 @@ class CardChip extends StatelessWidget {
             // color:
             //     isAvailable ? ManosColors.secondary80 : ManosColors.neutral25,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text("Vacantes:",
                     style: ManosFonts.sub1(color: ManosColors.neutral0)),
@@ -59,8 +35,7 @@ class CardChip extends StatelessWidget {
                 Icon(Icons.person,
                     color: isAvailable
                         ? ManosColors.secondary200
-                        : ManosColors.secondary80,
-                    size: 24),
+                        : ManosColors.secondary80),
                 Text('$amount',
                     style: ManosFonts.b1(
                         color: isAvailable
