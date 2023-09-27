@@ -1,10 +1,16 @@
+import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/hometab.dart';
 import 'package:equipo_estrella/widgets/no_volunteer_card.dart';
 import 'package:flutter/material.dart';
 import 'widgets/volunteer_card.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -38,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
             backgroundColor: ManosColors.secondary10,
             appBar: AppBar(
@@ -50,11 +56,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   Tab(
                     text: "Mi Perfil",
                   ),
-                  Tab(text: "Novedades")
+                  Tab(text: "Novedades"),
+                  Tab(text: "Admin")
                 ],
               ),
             ),
-            body: const TabBarView(
-                children: [HomeTab(), NoVolunteerCard(), NoVolunteerCard()])));
+            body: const TabBarView(children: [
+              HomeTab(),
+              NoVolunteerCard(),
+              NoVolunteerCard(),
+              AdminTab()
+            ])));
   }
 }
