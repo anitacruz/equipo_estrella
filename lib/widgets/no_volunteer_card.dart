@@ -14,7 +14,7 @@ class NoVolunteerCard extends StatelessWidget {
             alignment: Alignment.center,
             decoration: ManosShadows.shadow1,
             child: Text(
-              'Actualmente no hay voluntariados vigentes. Pronto se irán ircorporando nuevos',
+              'Actualmente no hay voluntariados vigentes. Pronto se irán incorporando nuevos',
               style: ManosFonts.sub1(),
               textAlign: TextAlign.center,
             )));

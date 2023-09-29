@@ -27,3 +27,5 @@ class ScrollableCardList extends StatelessWidget {
     );
   }
 }
+
+//TODO: sliver -> sirve para tener distintos scrolleables
