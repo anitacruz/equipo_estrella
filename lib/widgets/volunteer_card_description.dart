@@ -3,13 +3,29 @@ import '../commons/colors.dart';
 import '../commons/fonts.dart';
 import 'card_chip.dart';
 
-class VolunteerCardDescription extends StatelessWidget {
+class VolunteerCardDescription extends StatefulWidget {
   const VolunteerCardDescription(
       {Key? key, required this.category, required this.title})
       : super(key: key);
 
   final String category;
   final String title;
+
+  @override
+  State<StatefulWidget> createState() => _VolunteerCardDescriptionState();
+}
+
+@override
+State<StatefulWidget> createState() => _VolunteerCardDescriptionState();
+
+class _VolunteerCardDescriptionState extends State<VolunteerCardDescription> {
+  bool _isFav = false;
+
+  void fav() {
+    setState(() {
+      _isFav = !_isFav;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,30 +44,36 @@ class VolunteerCardDescription extends StatelessWidget {
                   alignment: Alignment.topLeft,
                   child: Text(
                     style: ManosFonts.overline(),
-                    category.toUpperCase(),
+                    widget.category.toUpperCase(),
                   )),
               Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        title,
+                        widget.title,
                         style: ManosFonts.sub1(),
                       ))),
               Container(
                   margin: const EdgeInsets.only(top: 4),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CardChip(amount: 10, isAvailable: true),
+                      const CardChip(amount: 10, isAvailable: true),
                       Row(
                         children: [
-                          Icon(
-                            Icons.favorite_border,
+                          IconButton(
+                            icon: Icon(_isFav
+                                ? Icons.favorite
+                                : Icons.favorite_border),
                             color: ManosColors.primary100,
+                            iconSize: 24,
+                            onPressed: () => setState(() {
+                              _isFav = !_isFav;
+                            }),
                           ),
-                          SizedBox(width: 16),
-                          Icon(Icons.location_on,
+                          const SizedBox(width: 16),
+                          const Icon(Icons.location_on,
                               color: ManosColors.primary100, size: 24)
                         ],
                       )
