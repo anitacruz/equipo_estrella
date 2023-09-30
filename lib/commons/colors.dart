@@ -18,4 +18,5 @@ class ManosColors {
   static const Color secondary100 = Color.fromARGB(255, 44, 152, 240);
   static const Color secondary200 = Color.fromARGB(255, 13, 71, 161);
   static const Color error = Color.fromARGB(255, 179, 38, 30);
+  static const Color labelGrey = Color.fromARGB(255, 224, 224, 224);
 }
