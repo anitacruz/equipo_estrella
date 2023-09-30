@@ -1,5 +1,6 @@
 import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
+import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/hometab.dart';
 import 'package:equipo_estrella/widgets/no_volunteer_card.dart';
 import 'package:flutter/material.dart';
@@ -48,10 +49,37 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Scaffold(
             backgroundColor: ManosColors.secondary10,
             appBar: AppBar(
-              title: Text(widget.title),
+              title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                Image.asset(
+                  "assets/logo_rectangular.png",
+                  // fit: BoxFit.fitWidth,
+                  fit: BoxFit.fitHeight,
+                )
+              ]),
+              // title: Text(widget.title),
               backgroundColor: ManosColors.secondary100,
-              bottom: const TabBar(
-                tabs: [
+              bottom: TabBar(
+                unselectedLabelColor: ManosColors.labelGrey,
+                labelColor: ManosColors.neutral100,
+                labelStyle: ManosFonts.b1(color: ManosColors.neutral100),
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicatorColor: ManosColors.neutral100,
+                indicator: const BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: ManosColors.neutral100,
+                        width: 2.0,
+                      ),
+                    ),
+                    color: ManosColors.secondary200),
+
+                // indicator: const UnderlineTabIndicator(
+                //   borderSide: BorderSide(
+                //       color: ManosColors.neutral100,
+                //       width: 2,
+                //       style: BorderStyle.solid),
+                // ),
+                tabs: const [
                   Tab(text: "Postularse"),
                   Tab(
                     text: "Mi Perfil",
