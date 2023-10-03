@@ -1,6 +1,5 @@
 import 'package:equipo_estrella/widgets/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
-
 import '../commons/shadows.dart';
 
 class VolunteerCard extends StatelessWidget {
@@ -14,7 +13,7 @@ class VolunteerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-            height: 235,
+            height: 235, //247,
             alignment: Alignment.center,
             margin: const EdgeInsets.only(bottom: 24),
             decoration: ManosShadows.shadow1,

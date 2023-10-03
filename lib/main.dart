@@ -4,7 +4,6 @@ import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/hometab.dart';
 import 'package:equipo_estrella/widgets/no_volunteer_card.dart';
 import 'package:flutter/material.dart';
-import 'widgets/volunteer_card.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
