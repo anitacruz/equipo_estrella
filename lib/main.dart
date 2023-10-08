@@ -2,6 +2,7 @@ import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/hometab.dart';
+import 'package:equipo_estrella/newstab.dart';
 import 'package:equipo_estrella/widgets/no_volunteer_card.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -91,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
             body: const TabBarView(children: [
               HomeTab(),
               NoVolunteerCard(),
-              NoVolunteerCard(),
+              NewsTab(),
               AdminTab()
             ])));
   }
