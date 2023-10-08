@@ -1,5 +1,4 @@
 import 'package:equipo_estrella/commons/colors.dart';
-import 'package:equipo_estrella/widgets/card_chip.dart';
 import 'package:flutter/material.dart';
 
 import '../../commons/fonts.dart';
