@@ -1,6 +1,7 @@
-import 'package:equipo_estrella/widgets/volunteer_card_description.dart';
+import 'package:equipo_estrella/widgets/cards/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
-import '../commons/shadows.dart';
+
+import '../../commons/shadows.dart';
 
 class VolunteerCard extends StatelessWidget {
   const VolunteerCard({Key? key, required this.category, required this.title})

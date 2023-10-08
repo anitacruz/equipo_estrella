@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/widgets/news_card.dart';
+import 'package:equipo_estrella/widgets/cards/news_card.dart';
 import 'package:equipo_estrella/widgets/scrollable_card_list.dart';
 import 'package:flutter/material.dart';
 

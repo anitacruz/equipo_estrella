@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../commons/colors.dart';
-import '../commons/fonts.dart';
-import 'card_chip.dart';
+import 'package:equipo_estrella/commons/colors.dart';
+import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/widgets/card_chip.dart';
 
 class VolunteerCardDescription extends StatefulWidget {
   const VolunteerCardDescription(
