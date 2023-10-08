@@ -72,13 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                     color: ManosColors.secondary200),
-
-                // indicator: const UnderlineTabIndicator(
-                //   borderSide: BorderSide(
-                //       color: ManosColors.neutral100,
-                //       width: 2,
-                //       style: BorderStyle.solid),
-                // ),
                 tabs: const [
                   Tab(text: "Postularse"),
                   Tab(

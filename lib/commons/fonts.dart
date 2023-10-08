@@ -8,7 +8,7 @@ class ManosFonts {
       fontWeight: FontWeight.w400,
       letterSpacing: 0.18);
 
-  static TextStyle h2(Color neutral0, {Color color = Colors.black}) => TextStyle(
+  static TextStyle h2({Color color = Colors.black}) => TextStyle(
       fontFamily: 'Roboto',
       color: color,
       fontSize: 20,
