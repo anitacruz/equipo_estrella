@@ -7,6 +7,16 @@ import 'package:equipo_estrella/widgets/views/home_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:go_router/go_router.dart';
+
+final _router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const MyHomePage(title: "Equipo Estrella"),
+    ),
+  ],
+);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,17 +28,14 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp.router(
+      title: "Flutter Demo",
       theme: ThemeData(
-        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.primaryColor),
-        primaryColor: const Color.fromARGB(20, 144, 63, 1),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: "Equipo Estrella"),
+          primaryColor: const Color.fromARGB(20, 144, 63, 1), useMaterial3: true),
+      routerConfig: _router,
     );
   }
 }

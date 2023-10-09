@@ -15,9 +15,6 @@ class VolunteerCardDescription extends StatefulWidget {
   State<StatefulWidget> createState() => _VolunteerCardDescriptionState();
 }
 
-@override
-State<StatefulWidget> createState() => _VolunteerCardDescriptionState();
-
 class _VolunteerCardDescriptionState extends State<VolunteerCardDescription> {
   bool _isFav = false;
 

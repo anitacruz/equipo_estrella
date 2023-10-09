@@ -14,7 +14,7 @@ class CardChip extends StatelessWidget {
     return Container(
         height: 28,
         // alignment: Alignment.center,
-        padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           color:

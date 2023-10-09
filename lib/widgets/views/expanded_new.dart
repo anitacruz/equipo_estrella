@@ -1,5 +1,6 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/widgets/primaryButton.dart';
 import 'package:flutter/material.dart';
 
 class ExpandedNew extends StatelessWidget {
@@ -69,19 +70,7 @@ class ExpandedNew extends StatelessWidget {
                         child:
                             Text("Comparte esta nota", style: ManosFonts.h2())),
                     const SizedBox(height: 16),
-                    Container(
-                        width: 1000,
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: ManosColors.primary100),
-                        child: TextButton(
-                            onPressed: () => {},
-                            child: Text(
-                              "Compartir",
-                              style: ManosFonts.button(
-                                  color: ManosColors.neutral100),
-                            )))
+                    PrimaryButton(text: "Compartir", onPressedMethod: () => {})
                   ],
                 ))));
   }
