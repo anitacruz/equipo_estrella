@@ -29,24 +29,19 @@ class VolunteerCard extends StatelessWidget {
                               location: "Buenos aires")))
                 },
             child: Container(
-                height: 235, //247,
+                // height: 235, //247,
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(bottom: 24),
                 decoration: ManosShadows.shadow1,
-                child: Expanded(
-                  child: Column(children: [
-                    SizedBox(
-                        height: 138,
-                        child: Image.asset(
-                          "assets/placeholder.png",
-                          fit: BoxFit.fitWidth,
-                          width: double.infinity,
-                        )),
-                    Expanded(
-                      child: VolunteerCardDescription(
-                          category: category, title: title),
-                    )
-                  ]),
-                ))));
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Image.asset("assets/placeholder.png",
+                          height: 138, fit: BoxFit.cover),
+                      VolunteerCardDescription(category: category, title: title)
+                    ]))));
   }
 }
+
+
+//TODO: intrinsinc height

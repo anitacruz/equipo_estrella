@@ -26,56 +26,51 @@ class _VolunteerCardDescriptionState extends State<VolunteerCardDescription> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
-            width: 1000,
-            padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: 16,
-                top: 8), //const EdgeInsets.all(6),
-            // margin:
-            //     const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 4),
-            child: Column(children: [
-              Align(
+    return Container(
+        // width: 1000,
+        padding: const EdgeInsets.only(
+            left: 16, right: 16, bottom: 16, top: 8), //const EdgeInsets.all(6),
+        // margin:
+        //     const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 4),
+        child: Column(children: [
+          Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                style: ManosFonts.overline(),
+                widget.category.toUpperCase(),
+              )),
+          Padding(
+              padding: const EdgeInsets.only(bottom: 4),
+              child: Align(
                   alignment: Alignment.topLeft,
                   child: Text(
-                    style: ManosFonts.overline(),
-                    widget.category.toUpperCase(),
-                  )),
-              Padding(
-                  padding: const EdgeInsets.only(bottom: 4),
-                  child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        widget.title,
-                        style: ManosFonts.sub1(),
-                      ))),
-              Container(
-                  margin: const EdgeInsets.only(top: 4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    widget.title,
+                    style: ManosFonts.sub1(),
+                  ))),
+          Container(
+              margin: const EdgeInsets.only(top: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const CardChip(amount: 10, isAvailable: true),
+                  Row(
                     children: [
-                      const CardChip(amount: 10, isAvailable: true),
-                      Row(
-                        children: [
-                          IconButton(
-                            icon: Icon(_isFav
-                                ? Icons.favorite
-                                : Icons.favorite_border),
-                            color: ManosColors.primary100,
-                            iconSize: 24,
-                            onPressed: () => setState(() {
-                              _isFav = !_isFav;
-                            }),
-                          ),
-                          const SizedBox(width: 16),
-                          const Icon(Icons.location_on,
-                              color: ManosColors.primary100, size: 24)
-                        ],
-                      )
+                      IconButton(
+                        icon: Icon(
+                            _isFav ? Icons.favorite : Icons.favorite_border),
+                        color: ManosColors.primary100,
+                        iconSize: 24,
+                        onPressed: () => setState(() {
+                          _isFav = !_isFav;
+                        }),
+                      ),
+                      const SizedBox(width: 16),
+                      const Icon(Icons.location_on,
+                          color: ManosColors.primary100, size: 24)
                     ],
-                  ))
-            ])));
+                  )
+                ],
+              ))
+        ]));
   }
 }
