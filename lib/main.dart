@@ -4,8 +4,6 @@ import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/views/news_tab.dart';
 import 'package:equipo_estrella/widgets/cards/no_volunteer_card.dart';
 import 'package:equipo_estrella/widgets/views/home_tab.dart';
-import 'package:equipo_estrella/starting.dart';
-import 'package:equipo_estrella/hometab.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -30,27 +28,27 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: "Flutter Demo",
       theme: ThemeData(
-          primaryColor: const Color.fromARGB(20, 144, 63, 1), useMaterial3: true),
+          primaryColor: const Color.fromARGB(20, 144, 63, 1),
+          useMaterial3: true),
       routerConfig: _router,
-        useMaterial3: true,
     );
   }
 }
 
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
 
-//   final String title;
+  final String title;
 
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
