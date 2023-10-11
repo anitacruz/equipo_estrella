@@ -10,6 +10,7 @@ class ManosColors {
   static const Color primary5 = Color.fromARGB(255, 243, 249, 245);
   static const Color primary10 = Color.fromARGB(255, 231, 244, 236);
   static const Color primary100 = Color.fromARGB(255, 20, 144, 63);
+  static const Color primary200 = Color.fromARGB(255, 20, 144, 63);
   static const Color secondary10 = Color.fromARGB(255, 234, 245, 253);
   static const Color secondary25 = Color.fromARGB(255, 202, 229, 251);
   static const Color secondary50 = Color.fromARGB(255, 144, 202, 249);

@@ -1,8 +1,14 @@
+
+//TODO: sliver -> sirve para tener distintos scrolleables
 import 'package:flutter/material.dart';
-import 'volunteer_card.dart';
 
 class ScrollableCardList extends StatelessWidget {
-  const ScrollableCardList({super.key});
+  final Widget widgetChild;
+
+  const ScrollableCardList({
+    Key? key,
+    required this.widgetChild,
+  }) : super(key: key);
 
   //TODO: fix the list divider. Im not sure its actually 24 pixels tall
   //TODO: change it so that it receives a list of cards to display
@@ -13,11 +19,9 @@ class ScrollableCardList extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         itemCount: 4,
         itemBuilder: (BuildContext context, int index) {
-          return const SizedBox(
-              child: VolunteerCard(
-            category: "Acción social",
-            title: "Un techo para mi país",
-          ));
+          return SizedBox(
+            child: widgetChild,
+          );
         },
         separatorBuilder: (BuildContext context, int index) => const Divider(
           color: Colors.transparent,
