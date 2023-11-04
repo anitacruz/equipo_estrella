@@ -22,7 +22,7 @@ class SecondaryButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4),
                 color: Colors.transparent),
             child: Text(
-              "Cancelar postulación",
+              text,
               style: ManosFonts.button(color: ManosColors.primary100),
             )));
   }
