@@ -2,6 +2,7 @@ import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/views/expanded_volunteering.dart';
+import 'package:equipo_estrella/widgets/views/log_in.dart';
 import 'package:equipo_estrella/widgets/views/news_tab.dart';
 import 'package:equipo_estrella/widgets/cards/no_volunteer_card.dart';
 import 'package:equipo_estrella/widgets/views/home_tab.dart';
@@ -20,7 +21,7 @@ final _router = GoRouter(
     ),
     GoRoute(
       path: '/starting',
-      builder: (context, state) => StartingPage(),
+      builder: (context, state) => const StartingPage(),
     ),
     GoRoute(
       path: '/volunteerings/:id',
@@ -36,6 +37,10 @@ final _router = GoRouter(
           location: "Ubicación",
         );
       },
+    ),
+    GoRoute(
+      path: "/login",
+      builder: (context, state) => const LogIn(),
     ),
   ],
 );
