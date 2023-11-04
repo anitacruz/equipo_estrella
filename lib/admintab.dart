@@ -29,8 +29,8 @@ class _AdminTabState extends State<AdminTab> {
               }),
           ButtonBar(
             children: [
-              TextButton(onPressed: incrementCounter, child: Text("Increment")),
-              TextButton(onPressed: reduceCounter, child: Text("Reduce"))
+              TextButton(onPressed: incrementCounter, child: const Text("Increment")),
+              TextButton(onPressed: reduceCounter, child: const Text("Reduce"))
             ],
           )
         ],

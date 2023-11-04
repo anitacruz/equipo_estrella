@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/models/volunteering_model.dart';
 import 'package:equipo_estrella/widgets/cards/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
 
@@ -5,11 +6,9 @@ import '../../commons/shadows.dart';
 import '../views/expanded_volunteering.dart';
 
 class VolunteerCard extends StatelessWidget {
-  const VolunteerCard({Key? key, required this.category, required this.title})
-      : super(key: key);
+  const VolunteerCard({Key? key, required this.vModel}) : super(key: key);
 
-  final String category;
-  final String title;
+  final VolunteeringModel vModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +19,15 @@ class VolunteerCard extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ExpandedVolunteer(
-                              category: category,
-                              title: title,
-                              imageUrl: "assets/news_image.png",
-                              subtitle: "Esto es un subtitulo",
-                              body: "esto es un body",
-                              requirements: "requirements ?",
-                              location: "Buenos aires")))
+                              category: vModel.category,
+                              title: vModel.title,
+                              imageUrl: vModel.imageUrl,
+                              subtitle: vModel.subtitle,
+                              body: vModel.body,
+                              requirements: vModel.requirements,
+                              location: vModel.location,
+                              vacancies: vModel.vacancies,
+                              availability: vModel.availability)))
                 },
             child: Container(
                 // height: 235, //247,
@@ -36,9 +37,12 @@ class VolunteerCard extends StatelessWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Image.asset("assets/placeholder.png",
+                      Image.network(vModel.imageUrl,
                           height: 138, fit: BoxFit.cover),
-                      VolunteerCardDescription(category: category, title: title)
+                      VolunteerCardDescription(
+                          category: vModel.category,
+                          title: vModel.title,
+                          vacancies: vModel.vacancies)
                     ]))));
   }
 }

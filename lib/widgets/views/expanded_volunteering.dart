@@ -8,16 +8,18 @@ import '../card_chip.dart';
 import '../cards/location_card.dart';
 
 class ExpandedVolunteer extends StatefulWidget {
-  const ExpandedVolunteer({
-    Key? key,
-    required this.category,
-    required this.title,
-    required this.imageUrl,
-    required this.subtitle,
-    required this.body,
-    required this.requirements,
-    required this.location,
-  }) : super(key: key);
+  const ExpandedVolunteer(
+      {Key? key,
+      required this.category,
+      required this.title,
+      required this.imageUrl,
+      required this.subtitle,
+      required this.body,
+      required this.requirements,
+      required this.location,
+      required this.vacancies,
+      required this.availability})
+      : super(key: key);
 
   final String category;
   final String title;
@@ -26,6 +28,8 @@ class ExpandedVolunteer extends StatefulWidget {
   final String body;
   final String requirements;
   final String location;
+  final String availability;
+  final int vacancies;
 
   @override
   State<StatefulWidget> createState() => _ExpandedVolunteerState();
@@ -70,7 +74,7 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
+                image: NetworkImage(
                   widget.imageUrl,
                 ),
                 fit: BoxFit.cover,
@@ -111,9 +115,9 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
                     const SizedBox(height: 16),
                     LocationCard(location: widget.location),
                     const SizedBox(height: 16),
-                    Text(widget.location,
-                        style: ManosFonts.b1(color: ManosColors.neutral0)),
-                    const SizedBox(height: 16),
+                    // Text(widget.location,
+                    //     style: ManosFonts.b1(color: ManosColors.neutral0)),
+                    // const SizedBox(height: 16),
                     Text(
                       "Participar del voluntariado",
                       style: ManosFonts.h2(),
@@ -122,9 +126,12 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
                     Text(widget.requirements,
                         style: ManosFonts.b1(color: ManosColors.neutral0)),
                     const SizedBox(height: 16),
-                    const Row(children: [
-                      CardChip(amount: 10, isAvailable: true),
-                      SizedBox(width: 119),
+                    Text(widget.availability,
+                        style: ManosFonts.b1(color: ManosColors.neutral0)),
+                    const SizedBox(height: 16),
+                    Row(children: [
+                      CardChip(amount: widget.vacancies, isAvailable: true),
+                      const SizedBox(width: 119),
                     ]),
                     const SizedBox(height: 16),
                     if (_volunteerState == VolunteerState.outState)

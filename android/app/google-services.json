@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "778498971446",
-    "project_id": "equipo-estrella",
-    "storage_bucket": "equipo-estrella.appspot.com"
+    "project_number": "98588469717",
+    "project_id": "equipo-estrella-damm",
+    "storage_bucket": "equipo-estrella-damm.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:778498971446:android:87050251092fb7fddc8597",
+        "mobilesdk_app_id": "1:98588469717:android:b9aa7a8c534dd184e7355c",
         "android_client_info": {
           "package_name": "com.example.equipo_estrella"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB2sh2pNd-P6gi1T1S19jE-HLfjWyOBml4"
+          "current_key": "AIzaSyCUrvLUHSc2iSgXHpQE6uROveq60c6YJP8"
         }
       ],
       "services": {

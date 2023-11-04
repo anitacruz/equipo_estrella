@@ -1,4 +1,3 @@
-
 //TODO: sliver -> sirve para tener distintos scrolleables
 import 'package:flutter/material.dart';
 
@@ -32,4 +31,4 @@ class ScrollableCardList extends StatelessWidget {
   }
 }
 
-//TODO: sliver -> sirve para tener distintos scrolleables
+//TODO: sliver -> sirve para tener distintos scrolleable

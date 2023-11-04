@@ -47,29 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBLfqTTKtzqL6J7I3AAnrO0mxZEMi-q9Ps',
-    appId: '1:778498971446:web:ff23b9937e6a2132dc8597',
-    messagingSenderId: '778498971446',
-    projectId: 'equipo-estrella',
-    authDomain: 'equipo-estrella.firebaseapp.com',
-    storageBucket: 'equipo-estrella.appspot.com',
-    measurementId: 'G-Z1F8670Q25',
+    apiKey: 'AIzaSyDF0Ruc1p0jgmnnYz1bBblaYz120YaijB8',
+    appId: '1:98588469717:web:6d870fc624f39fdfe7355c',
+    messagingSenderId: '98588469717',
+    projectId: 'equipo-estrella-damm',
+    authDomain: 'equipo-estrella-damm.firebaseapp.com',
+    storageBucket: 'equipo-estrella-damm.appspot.com',
+    measurementId: 'G-28BBS78EWE',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB2sh2pNd-P6gi1T1S19jE-HLfjWyOBml4',
-    appId: '1:778498971446:android:87050251092fb7fddc8597',
-    messagingSenderId: '778498971446',
-    projectId: 'equipo-estrella',
-    storageBucket: 'equipo-estrella.appspot.com',
+    apiKey: 'AIzaSyCUrvLUHSc2iSgXHpQE6uROveq60c6YJP8',
+    appId: '1:98588469717:android:b9aa7a8c534dd184e7355c',
+    messagingSenderId: '98588469717',
+    projectId: 'equipo-estrella-damm',
+    storageBucket: 'equipo-estrella-damm.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCkAFDcyck42KxIJ4AbsR1rLLzIw_7Bh7I',
-    appId: '1:778498971446:ios:83303f15939bd380dc8597',
-    messagingSenderId: '778498971446',
-    projectId: 'equipo-estrella',
-    storageBucket: 'equipo-estrella.appspot.com',
+    apiKey: 'AIzaSyAVaFEwW8a9igRo8xBPZ0PjOfdvzU8AbD4',
+    appId: '1:98588469717:ios:550ee1b7a0904271e7355c',
+    messagingSenderId: '98588469717',
+    projectId: 'equipo-estrella-damm',
+    storageBucket: 'equipo-estrella-damm.appspot.com',
     iosBundleId: 'com.example.equipoEstrella',
   );
 }

@@ -5,11 +5,15 @@ import 'package:equipo_estrella/widgets/card_chip.dart';
 
 class VolunteerCardDescription extends StatefulWidget {
   const VolunteerCardDescription(
-      {Key? key, required this.category, required this.title})
+      {Key? key,
+      required this.category,
+      required this.title,
+      required this.vacancies})
       : super(key: key);
 
   final String category;
   final String title;
+  final int vacancies;
 
   @override
   State<StatefulWidget> createState() => _VolunteerCardDescriptionState();
@@ -52,7 +56,7 @@ class _VolunteerCardDescriptionState extends State<VolunteerCardDescription> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const CardChip(amount: 10, isAvailable: true),
+                  CardChip(amount: widget.vacancies, isAvailable: true),
                   Row(
                     children: [
                       IconButton(

@@ -9,6 +9,7 @@ import 'package:equipo_estrella/widgets/views/home_tab.dart';
 import 'package:equipo_estrella/widgets/views/starting.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'firebase_options.dart';
 import 'package:go_router/go_router.dart';
 
@@ -35,6 +36,8 @@ final _router = GoRouter(
           body: "Cuerpo",
           requirements: "Requisitos",
           location: "Ubicación",
+          availability: "Disponibilidad",
+          vacancies: 50,
         );
       },
     ),
@@ -50,7 +53,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp())); // ProviderScope for Riverpod
 }
 
 class MyApp extends StatelessWidget {
