@@ -1,5 +1,7 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/widgets/primaryButton.dart';
+import 'package:equipo_estrella/widgets/secondaryButton.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -38,60 +40,17 @@ class StartingPage extends StatelessWidget {
               ),
             ),
             const Spacer(), // Espaciador para centrar verticalmente los botones
-            Container( //TODO: Hacer que el boton sea un widget aparte y no que esté este codigo duplicado. 
-              margin: const EdgeInsets.symmetric(horizontal: 16), //TODO: Los margenes parecen ser mas grandes que 16 pixeles
-              child: ElevatedButton(
-                onPressed: () {
-                  // Acción al hacer clic en el botón de iniciar sesión
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ManosColors.primary100,
-                  minimumSize: const Size(312, 20), // Dimensiones del botón
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(4), // Bordes redondeados
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 8,
-                  ),
-                  child: Text(
-                    'Iniciar Sesión',
-                    style: ManosFonts.button(color: ManosColors.neutral100), //TODO: Este color no está siendo blanco de verdad
-                  ),
-                ),
-              ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child:
+                  PrimaryButton(text: "Iniciar Sesión", onPressedMethod: () {}),
             ),
+
             const SizedBox(height: 16), // Espacio entre los botones
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
-              child: ElevatedButton(
-                onPressed: () {
-                  // Acción al hacer clic en el botón de iniciar sesión
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ManosColors.neutral100,
-                  minimumSize: const Size(312, 20), // Dimensiones del botón
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(4), // Bordes redondeados
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 8,
-                  ),
-                  child: Text(
-                    'Registrarse',
-                    style: ManosFonts.button(
-                        color: ManosColors
-                            .primary100), //TODO: Esto no está en bold!! en el figma se ve medio bold.
-                  ),
-                ),
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child:
+                  SecondaryButton(text: "Registrarse", onPressedMethod: () {}),
             ),
             const SizedBox(height: 32), // Espacio entre los botones
           ],
