@@ -1,6 +1,6 @@
-//TODO: sliver -> sirve para tener distintos scrolleables
 import 'package:flutter/material.dart';
 
+//TODO: sliver -> sirve para tener distintos scrolleables
 class ScrollableCardList extends StatelessWidget {
   final Widget widgetChild;
 
@@ -10,7 +10,6 @@ class ScrollableCardList extends StatelessWidget {
   }) : super(key: key);
 
   //TODO: fix the list divider. Im not sure its actually 24 pixels tall
-  //TODO: change it so that it receives a list of cards to display
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -30,5 +29,3 @@ class ScrollableCardList extends StatelessWidget {
     );
   }
 }
-
-//TODO: sliver -> sirve para tener distintos scrolleable

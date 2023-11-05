@@ -1,8 +1,6 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/widgets/cards/activity_card.dart';
-import 'package:equipo_estrella/widgets/scrollable_card_list.dart';
-import 'package:equipo_estrella/widgets/cards/volunteer_card.dart';
-import 'package:equipo_estrella/widgets/volunteering_scrollable_list.dart';
+import 'package:equipo_estrella/widgets/scrollable_volunteering_card_list.dart';
 import 'package:flutter/material.dart';
 
 class HomeTab extends StatelessWidget {

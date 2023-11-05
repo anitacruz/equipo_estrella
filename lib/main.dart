@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: "Mi Perfil",
                   ),
                   Tab(text: "Novedades"),
-                  Tab(text: "Admin")
+                  // Tab(text: "Admin")
                 ],
               ),
             ),
@@ -125,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               HomeTab(),
               NoVolunteerCard(),
               NewsTab(),
-              AdminTab()
+              // AdminTab()
             ])));
   }
 }
