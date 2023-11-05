@@ -1,6 +1,6 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/widgets/primaryButton.dart';
+import 'package:equipo_estrella/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
 class ExpandedNew extends StatelessWidget {
@@ -50,7 +50,7 @@ class ExpandedNew extends StatelessWidget {
                       style: ManosFonts.h2(),
                     ),
                     const SizedBox(height: 16),
-                    Image.asset(
+                    Image.network(
                       imageUrl,
                       height: 160,
                       width: 1000,
