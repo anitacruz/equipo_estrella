@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class CustomFormField extends StatelessWidget {
   final String fieldName;
-  const CustomFormField({Key? key, required this.fieldName}) : super(key: key);
+  final bool alwaysFloatingLabel;
+  const CustomFormField({Key? key, required this.fieldName, this.alwaysFloatingLabel=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class CustomFormField extends StatelessWidget {
       children: [
         TextField(
           decoration: InputDecoration(
+              floatingLabelBehavior: alwaysFloatingLabel ? FloatingLabelBehavior.always : FloatingLabelBehavior.auto,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(4.0),
                 borderSide: const BorderSide(color: ManosColors.neutral75),
