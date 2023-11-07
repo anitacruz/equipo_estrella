@@ -1,53 +1,19 @@
 import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/widgets/views/expanded_volunteering.dart';
-import 'package:equipo_estrella/widgets/views/log_in.dart';
 import 'package:equipo_estrella/widgets/views/news_tab.dart';
 import 'package:equipo_estrella/widgets/cards/no_volunteer_card.dart';
 import 'package:equipo_estrella/widgets/views/home_tab.dart';
-import 'package:equipo_estrella/widgets/views/register.dart';
-import 'package:equipo_estrella/widgets/views/starting.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:go_router/go_router.dart';
 
+import 'routes.dart';
+
 final _router = GoRouter(
   initialLocation: '/',
-  routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const MyHomePage(title: "Equipo Estrella"),
-    ),
-    GoRoute(
-      path: '/starting',
-      builder: (context, state) => const StartingPage(),
-    ),
-    GoRoute(
-      path: '/volunteerings/:id',
-      builder: (context, state) {
-        final id = state.pathParameters['id'];
-        return ExpandedVolunteer(
-          category: "Categoría",
-          title: "Título",
-          imageUrl: "https://picsum.photos/200/300",
-          subtitle: id.toString(),
-          body: "Cuerpo",
-          requirements: "Requisitos",
-          location: "Ubicación",
-        );
-      },
-    ),
-    GoRoute(
-      path: "/login",
-      builder: (context, state) => const LogIn(),
-    ),
-    GoRoute(
-      path: "/register",
-      builder: (context, state) => const Register(),
-    ),
-  ],
+  routes: routes, //Uso las rutas importadas del archivo routes
 );
 
 Future<void> main() async {

@@ -1,17 +1,20 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
-import 'package:equipo_estrella/widgets/custom_form_field_label_on_top.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/primaryButton.dart';
 import 'package:equipo_estrella/widgets/secondaryButton.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Register extends StatelessWidget {
   const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter router =
+        GoRouter.of(context); // Obtiene el router de GoRouter
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -70,7 +73,10 @@ class Register extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SecondaryButton(
-                  text: "Ya tengo cuenta", onPressedMethod: () {}),
+                  text: "Ya tengo cuenta",
+                  onPressedMethod: () {
+                    router.go('/login');
+                  }),
             ),
             const SizedBox(height: 32), // Espacio entre los botones
           ],

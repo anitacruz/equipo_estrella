@@ -5,12 +5,16 @@ import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/primaryButton.dart';
 import 'package:equipo_estrella/widgets/secondaryButton.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter router =
+        GoRouter.of(context); // Obtiene el router de GoRouter
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -48,7 +52,10 @@ class LogIn extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SecondaryButton(
-                  text: "No tengo cuenta", onPressedMethod: () {}),
+                  text: "No tengo cuenta",
+                  onPressedMethod: () {
+                    router.go('/register');
+                  }),
             ),
             const SizedBox(height: 32), // Espacio entre los botones
           ],
