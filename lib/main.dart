@@ -6,6 +6,7 @@ import 'package:equipo_estrella/widgets/views/log_in.dart';
 import 'package:equipo_estrella/widgets/views/news_tab.dart';
 import 'package:equipo_estrella/widgets/cards/no_volunteer_card.dart';
 import 'package:equipo_estrella/widgets/views/home_tab.dart';
+import 'package:equipo_estrella/widgets/views/register.dart';
 import 'package:equipo_estrella/widgets/views/starting.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,6 +42,10 @@ final _router = GoRouter(
     GoRoute(
       path: "/login",
       builder: (context, state) => const LogIn(),
+    ),
+    GoRoute(
+      path: "/register",
+      builder: (context, state) => const Register(),
     ),
   ],
 );
