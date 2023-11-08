@@ -12,7 +12,8 @@ class LogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GoRouter router = GoRouter.of(context); // Obtiene el router de GoRouter
+    final GoRouter router =
+        GoRouter.of(context); // Obtiene el router de GoRouter
 
     return Scaffold(
       body: Center(
@@ -43,8 +44,11 @@ class LogIn extends StatelessWidget {
             const Spacer(), // Espaciador para centrar verticalmente los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-                  PrimaryButton(text: "Iniciar Sesión", onPressedMethod: () {}),
+              child: PrimaryButton(
+                text: "Iniciar Sesión",
+                onPressedMethod: () {},
+                disabled: true,
+              ),
             ),
 
             const SizedBox(height: 16), // Espacio entre los botones
