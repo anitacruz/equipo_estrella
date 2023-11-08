@@ -19,7 +19,7 @@ class ShortButton extends StatelessWidget {
           }
         },
         child: Container(
-            width: 123, //A confirmar el width...
+            width: 127, //A confirmar el width...
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             decoration: BoxDecoration(

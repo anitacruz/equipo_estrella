@@ -1,6 +1,5 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/widgets/primaryButton.dart';
 import 'package:equipo_estrella/widgets/short_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
