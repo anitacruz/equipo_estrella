@@ -2,11 +2,10 @@ import 'package:equipo_estrella/widgets/views/expanded_volunteering.dart';
 import 'package:equipo_estrella/widgets/views/log_in.dart';
 import 'package:equipo_estrella/widgets/views/register.dart';
 import 'package:equipo_estrella/widgets/views/starting.dart';
+import 'package:equipo_estrella/widgets/views/welcome.dart';
 import 'package:go_router/go_router.dart';
 
 import 'main.dart';
-
-
 
 final List<GoRoute> routes = [
   GoRoute(
@@ -39,5 +38,9 @@ final List<GoRoute> routes = [
   GoRoute(
     path: "/register",
     builder: (context, state) => const Register(),
+  ),
+  GoRoute(
+    path: "/welcome",
+    builder: (context, state) => const WelcomePage(),
   ),
 ];

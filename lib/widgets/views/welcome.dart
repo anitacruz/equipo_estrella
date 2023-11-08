@@ -1,18 +1,17 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/widgets/custom_form_field.dart';
-import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/primaryButton.dart';
 import 'package:equipo_estrella/widgets/secondaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LogIn extends StatelessWidget {
-  const LogIn({super.key});
+class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final GoRouter router = GoRouter.of(context); // Obtiene el router de GoRouter
+    final GoRouter router =
+        GoRouter.of(context); // Obtiene el router de GoRouter
 
     return Scaffold(
       body: Center(
@@ -21,42 +20,41 @@ class LogIn extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: const EdgeInsets.only(
-                  top: 199), // Establece el margen superior en 229 píxeles
+                  top: 218), // Establece el margen superior en 229 píxeles
               child: Image.asset(
                 "assets/Ser_manos_logo.png",
                 width: 150,
                 height: 150,
               ),
             ),
-            const SizedBox(height: 32), // Espacio entre la imagen y campos
+            const SizedBox(height: 30), // Espacio entre la imagen y el titulo
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
-              child: const CustomFormField(
-                  fieldName: "Email", hintText: "mimail@gmail.com"),
+              child: Text(
+                '¡Bienvenido!',
+                style: ManosFonts.h1(),
+                textAlign: TextAlign.center,
+              ),
             ),
-            const SizedBox(height: 24), //Espacio entre email y password
+            const SizedBox(height: 48), // Espacio entre titulo y texto
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
-              child: const PasswordFormField(),
+              child: Text(
+                'Nunca subestimes tu habilidad para mejorar la vida de alguien.',
+                style: ManosFonts.sub1(),
+                textAlign: TextAlign.center,
+              ),
             ),
-
             const Spacer(), // Espaciador para centrar verticalmente los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-                  PrimaryButton(text: "Iniciar Sesión", onPressedMethod: () {}),
-            ),
-
-            const SizedBox(height: 16), // Espacio entre los botones
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: SecondaryButton(
-                  text: "No tengo cuenta",
+              child: PrimaryButton(
+                  text: "Comenzar",
                   onPressedMethod: () {
-                    router.go('/register');
+                    router.go('/');
                   }),
             ),
-            const SizedBox(height: 32), // Espacio entre los botones
+            const SizedBox(height: 92), // Espacio entre los botones
           ],
         ),
       ),
