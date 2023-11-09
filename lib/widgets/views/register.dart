@@ -1,12 +1,14 @@
+import 'package:equipo_estrella/commons/colors.dart';
+import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
-import 'package:equipo_estrella/widgets/primary_button.dart';
-import 'package:equipo_estrella/widgets/secondary_button.dart';
+import 'package:equipo_estrella/widgets/primaryButton.dart';
+import 'package:equipo_estrella/widgets/secondaryButton.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class LogIn extends StatelessWidget {
-  const LogIn({super.key});
+class Register extends StatelessWidget {
+  const Register({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class LogIn extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: const EdgeInsets.only(
-                  top: 199), // Establece el margen superior en 229 píxeles
+                  top: 83), // Establece el margen superior en 83 píxeles
               child: Image.asset(
                 "assets/Ser_manos_logo.png",
                 width: 150,
@@ -28,34 +30,52 @@ class LogIn extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 32), // Espacio entre la imagen y campos
+            //Nombre
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               child: const CustomFormField(
-                  fieldName: "Email", hintText: "mimail@gmail.com"),
+                  fieldName: "Nombre",
+                  hintText: "Ej: Juan",
+                  alwaysFloatingLabel: true),
             ),
-            const SizedBox(height: 24), //Espacio entre email y password
+            const SizedBox(height: 24), //Espacio
+            //Apellido
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
-              child: const PasswordFormField(),
+              child: const CustomFormField(
+                  fieldName: "Apellido",
+                  hintText: "Ej: Barcena",
+                  alwaysFloatingLabel: true),
+            ),
+            const SizedBox(height: 24), //Espacio
+            //Email
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: const CustomFormField(
+                  fieldName: "Email",
+                  hintText: "Ej: juanbarcena@mail.com",
+                  alwaysFloatingLabel: true),
+            ),
+            const SizedBox(height: 24), //Espacio
+
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: const PasswordFormField(alwaysFloatingLabel: true),
             ),
 
             const Spacer(), // Espaciador para centrar verticalmente los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: PrimaryButton(
-                text: "Iniciar Sesión",
-                onPressedMethod: () {},
-                disabled: true,
-              ),
+              child: PrimaryButton(text: "Registrarse", onPressedMethod: () {}),
             ),
 
             const SizedBox(height: 16), // Espacio entre los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: SecondaryButton(
-                  text: "No tengo cuenta",
+                  text: "Ya tengo cuenta",
                   onPressedMethod: () {
-                    router.go('/register');
+                    router.go('/login');
                   }),
             ),
             const SizedBox(height: 32), // Espacio entre los botones

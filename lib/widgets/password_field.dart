@@ -3,7 +3,8 @@ import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:flutter/material.dart';
 
 class PasswordFormField extends StatefulWidget {
-  const PasswordFormField({super.key});
+  final bool alwaysFloatingLabel;
+  const PasswordFormField({super.key, this.alwaysFloatingLabel = false});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
@@ -22,6 +23,9 @@ class _PasswordFieldState extends State<PasswordFormField> {
         TextField(
           controller: _passwordController,
           decoration: InputDecoration(
+            floatingLabelBehavior: widget.alwaysFloatingLabel
+                ? FloatingLabelBehavior.always
+                : FloatingLabelBehavior.auto,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4.0),
               borderSide: const BorderSide(color: ManosColors.neutral75),
