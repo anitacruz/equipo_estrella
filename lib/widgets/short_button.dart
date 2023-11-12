@@ -18,33 +18,37 @@ class ShortButton extends StatelessWidget {
             onPressedMethod();
           }
         },
-        child: Container(
-            width: 127, //A confirmar el width...
-            alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color:
-                    disabled ? ManosColors.neutral25 : ManosColors.primary100),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 24,
-                  height: 24,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/plus_logo.png"),
-                      fit: BoxFit.cover,
+        child: IntrinsicWidth(
+            child: Container(
+                alignment: Alignment.center,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: disabled
+                        ? ManosColors.neutral25
+                        : ManosColors.primary100),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize:
+                      MainAxisSize.min, // Establece el ancho mínimo necesario
+                  children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/plus_logo.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Text(
-                  "Completar",
-                  style: ManosFonts.button(color: ManosColors.neutral100),
-                )
-              ],
-            )));
+                    const SizedBox(width: 8),
+                    Text(
+                      "Completar",
+                      style: ManosFonts.button(color: ManosColors.neutral100),
+                    )
+                  ],
+                ))));
   }
 }
