@@ -5,6 +5,7 @@ import 'package:equipo_estrella/widgets/views/incomplete_profile.dart';
 import 'package:equipo_estrella/widgets/views/news_tab.dart';
 import 'package:equipo_estrella/widgets/cards/no_volunteer_card.dart';
 import 'package:equipo_estrella/widgets/views/home_tab.dart';
+import 'package:equipo_estrella/widgets/views/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -90,11 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            body: const TabBarView(children: [
-              HomeTab(),
-              IncompleteProfileTab(),
-              NewsTab(),
-              AdminTab()
-            ])));
+            body: const TabBarView(
+                children: [ProfileTab(), HomeTab(), NewsTab(), AdminTab()])));
   }
 }
