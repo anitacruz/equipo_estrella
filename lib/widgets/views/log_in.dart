@@ -1,5 +1,3 @@
-import 'package:equipo_estrella/commons/colors.dart';
-import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/primaryButton.dart';

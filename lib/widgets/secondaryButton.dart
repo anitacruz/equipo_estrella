@@ -5,9 +5,13 @@ import 'package:flutter/material.dart';
 class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressedMethod;
+  final Color textColor;
 
   const SecondaryButton(
-      {Key? key, required this.text, required this.onPressedMethod})
+      {Key? key,
+      required this.text,
+      required this.onPressedMethod,
+      this.textColor = ManosColors.primary100})
       : super(key: key);
 
   @override
@@ -23,7 +27,7 @@ class SecondaryButton extends StatelessWidget {
                 color: Colors.transparent),
             child: Text(
               text,
-              style: ManosFonts.button(color: ManosColors.primary100),
+              style: ManosFonts.button(color: textColor),
             )));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/presentation/views/profile.dart';
 import 'package:equipo_estrella/widgets/views/incomplete_profile.dart';
 import 'package:equipo_estrella/widgets/views/news_tab.dart';
 import 'package:equipo_estrella/widgets/cards/no_volunteer_card.dart';
@@ -92,6 +93,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             body: const TabBarView(
-                children: [ProfileTab(), HomeTab(), NewsTab(), AdminTab()])));
+                children: [HomeTab(), ProfileTab(), NewsTab(), AdminTab()])));
   }
 }

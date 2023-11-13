@@ -1,4 +1,6 @@
 import 'package:equipo_estrella/widgets/information_card.dart';
+import 'package:equipo_estrella/widgets/primaryButton.dart';
+import 'package:equipo_estrella/widgets/secondaryButton.dart';
 import 'package:flutter/material.dart';
 
 import '../../commons/colors.dart';
@@ -57,6 +59,21 @@ class ProfileTab extends StatelessWidget {
             subtitle2: "E-MAIL",
             value1: "+5491165863216",
             value2: "mimail@gmail.com"),
+        const SizedBox(height: 32),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child:
+              PrimaryButton(text: "Editar perfil", onPressedMethod: () => {}),
+        ),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SecondaryButton(
+            text: "Cerrar sesión",
+            onPressedMethod: () => {},
+            textColor: ManosColors.error,
+          ),
+        )
       ],
     ));
   }

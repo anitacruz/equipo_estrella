@@ -56,7 +56,9 @@ class IncompleteProfileTab extends StatelessWidget {
             const Spacer(), // Espaciador para centrar verticalmente los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ShortButton(onPressedMethod: () => {},),
+              child: ShortButton(
+                onPressedMethod: () => {},
+              ),
             ),
             const SizedBox(height: 92), // Espacio entre los botones
           ],
