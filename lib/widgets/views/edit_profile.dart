@@ -1,5 +1,6 @@
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/edit_information_card.dart';
+import 'package:equipo_estrella/widgets/edit_profile_picture.dart';
 import 'package:equipo_estrella/widgets/information_card.dart';
 import 'package:equipo_estrella/widgets/primaryButton.dart';
 import 'package:equipo_estrella/widgets/secondaryButton.dart';
@@ -33,6 +34,42 @@ class EditProfile extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           const EditInformationCard(title: "Información de perfil"),
+          const SizedBox(height: 24),
+          const EditProfilePicture(hasProfilePic: false),
+          const SizedBox(height: 32),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Datos de contacto",
+              style: ManosFonts.h1(),
+            ),
+          ),
+          const SizedBox(height: 24),
+          Container(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              "Estos datos serán compartidos con la organización para ponerse en contacto contigo",
+              style: ManosFonts.sub1(),
+            ),
+          ),
+          const SizedBox(height: 24),
+          const CustomFormField(
+            fieldName: "Teléfono",
+            hintText: "Ej: +541178445459",
+            alwaysFloatingLabel: true,
+          ),
+          const SizedBox(height: 24),
+          const CustomFormField(
+            fieldName: "Mail",
+            hintText: "Ej: mimail@mail.com",
+            alwaysFloatingLabel: true,
+          ),
+          const SizedBox(height: 24),
+          PrimaryButton(
+            text: "Guardar datos",
+            onPressedMethod: () => {},
+            disabled: true,
+          )
         ],
       ),
     ));

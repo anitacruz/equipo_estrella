@@ -1,6 +1,6 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/widgets/short_button.dart';
+import 'package:equipo_estrella/widgets/short_button_with_plus_sign.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -56,9 +56,8 @@ class IncompleteProfileTab extends StatelessWidget {
             const Spacer(), // Espaciador para centrar verticalmente los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: ShortButton(
-                onPressedMethod: () => {},
-              ),
+              child: ShortButtonWithPlusSign(
+                  onPressedMethod: () => {}, text: "Completar"),
             ),
             const SizedBox(height: 92), // Espacio entre los botones
           ],
