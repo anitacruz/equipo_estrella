@@ -15,7 +15,8 @@ class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body: SingleChildScrollView(
+            child: Container(
       margin: const EdgeInsets.all(16),
       child: Column(
         children: [
@@ -35,7 +36,7 @@ class EditProfile extends StatelessWidget {
           const SizedBox(height: 24),
           const EditInformationCard(title: "Información de perfil"),
           const SizedBox(height: 24),
-          const EditProfilePicture(hasProfilePic: false),
+          const EditProfilePicture(hasProfilePic: true),
           const SizedBox(height: 32),
           Container(
             alignment: Alignment.centerLeft,
@@ -72,6 +73,6 @@ class EditProfile extends StatelessWidget {
           )
         ],
       ),
-    ));
+    )));
   }
 }

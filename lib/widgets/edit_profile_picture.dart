@@ -33,16 +33,43 @@ class EditProfilePicture extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(4)),
               color: ManosColors.secondary25,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Foto de perfil",
-                  style: ManosFonts.sub1(),
-                ),
-                ShortButton(onPressedMethod: () => {}, text: "Subir foto")
-              ],
-            ),
+            child: !hasProfilePic
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Foto de perfil",
+                        style: ManosFonts.sub1(),
+                      ),
+                      ShortButton(onPressedMethod: () => {}, text: "Subir foto")
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "Foto de perfil",
+                                style: ManosFonts.sub1(),
+                              )),
+                          const SizedBox(height: 8),
+                          ShortButton(
+                              onPressedMethod: () => {}, text: "Cambiar foto")
+                        ],
+                      ),
+                      ClipOval(
+                        child: Image.asset(
+                          "assets/profile_pic.jpg",
+                          width: 84,
+                          height: 84,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    ],
+                  ),
           ),
         ],
       ),
