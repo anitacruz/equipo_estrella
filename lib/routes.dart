@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/widgets/views/edit_profile.dart';
 import 'package:equipo_estrella/widgets/views/expanded_volunteering.dart';
 import 'package:equipo_estrella/widgets/views/log_in.dart';
 import 'package:equipo_estrella/widgets/views/register.dart';
@@ -42,5 +43,9 @@ final List<GoRoute> routes = [
   GoRoute(
     path: "/welcome",
     builder: (context, state) => const WelcomePage(),
+  ),
+  GoRoute(
+    path: "/editProfile",
+    builder: (context, state) => const EditProfile(),
   ),
 ];

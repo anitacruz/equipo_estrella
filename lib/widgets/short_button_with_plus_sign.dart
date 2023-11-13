@@ -2,12 +2,12 @@ import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:flutter/material.dart';
 
-class ShortButton extends StatelessWidget {
+class ShortButtonWithPlusSign extends StatelessWidget {
   final VoidCallback onPressedMethod;
   final bool disabled;
   final String text;
 
-  const ShortButton(
+  const ShortButtonWithPlusSign(
       {Key? key,
       required this.onPressedMethod,
       this.disabled = false,
@@ -26,7 +26,7 @@ class ShortButton extends StatelessWidget {
             child: Container(
                 alignment: Alignment.center,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     color: disabled
@@ -37,6 +37,17 @@ class ShortButton extends StatelessWidget {
                   mainAxisSize:
                       MainAxisSize.min, // Establece el ancho mínimo necesario
                   children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      decoration: const BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/plus_logo.png"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
                     Text(
                       text,
                       style: ManosFonts.button(color: ManosColors.neutral100),
