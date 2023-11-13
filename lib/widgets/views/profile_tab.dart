@@ -1,6 +1,6 @@
 import 'package:equipo_estrella/widgets/information_card.dart';
-import 'package:equipo_estrella/widgets/primaryButton.dart';
-import 'package:equipo_estrella/widgets/secondaryButton.dart';
+import 'package:equipo_estrella/widgets/primary_button.dart';
+import 'package:equipo_estrella/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../commons/colors.dart';

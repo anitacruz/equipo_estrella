@@ -28,7 +28,7 @@ final List<GoRoute> routes = [
         subtitle: id.toString(),
         body: "Cuerpo",
         requirements: "Requisitos",
-        location: "Ubicación",
+        location: "Ubicación", vacancies: 10, availability: '', 
       );
     },
   ),
