@@ -27,7 +27,9 @@ class VolunteerCard extends StatelessWidget {
                               body: vModel.body,
                               requirements: vModel.requirements,
                               location: vModel.location,
-                              vacancies: vModel.vacancies,
+                              vacancies: vModel.vacancies -
+                                  vModel.pending
+                                      .length, //TODO: its subscribed not pending
                               availability: vModel.availability)))
                 },
             child: Container(
