@@ -2,7 +2,7 @@ import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
 import 'package:equipo_estrella/models/news_model.dart';
-import 'package:equipo_estrella/widgets/views/expanded_new.dart';
+import 'package:equipo_estrella/views/expanded_new.dart';
 import 'package:flutter/material.dart';
 
 class NewsCard extends StatelessWidget {

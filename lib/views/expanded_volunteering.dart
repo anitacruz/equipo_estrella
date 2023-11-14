@@ -1,12 +1,12 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
-import 'package:equipo_estrella/widgets/primary_button.dart';
-import 'package:equipo_estrella/widgets/secondary_button.dart';
+import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
+import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 
-import '../card_chip.dart';
-import '../cards/location_card.dart';
+import '../widgets/card_chip.dart';
+import '../widgets/cards/location_card.dart';
 
 class ExpandedVolunteer extends StatefulWidget {
   const ExpandedVolunteer(
@@ -54,7 +54,7 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
   }
 
   void cancelApplication() {
-    //TODO: fix to display in the middle of the
+    //TODO: fix to display in the middle of the screen
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {

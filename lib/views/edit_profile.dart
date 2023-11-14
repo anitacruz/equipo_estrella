@@ -1,10 +1,10 @@
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
-import 'package:equipo_estrella/widgets/edit_information_card.dart';
+import 'package:equipo_estrella/widgets/cards/edit_information_card.dart';
 import 'package:equipo_estrella/widgets/edit_profile_picture.dart';
-import 'package:equipo_estrella/widgets/primary_button.dart';
+import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../commons/fonts.dart';
+import '../commons/fonts.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({Key? key}) : super(key: key);

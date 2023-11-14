@@ -1,9 +1,9 @@
 import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/widgets/views/news_tab.dart';
-import 'package:equipo_estrella/widgets/views/home_tab.dart';
-import 'package:equipo_estrella/widgets/views/profile_tab.dart';
+import 'package:equipo_estrella/views/news_tab.dart';
+import 'package:equipo_estrella/views/home_tab.dart';
+import 'package:equipo_estrella/views/profile_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -86,11 +86,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: "Mi Perfil",
                   ),
                   Tab(text: "Novedades"),
-                  // Tab(text: "Admin")
+                  
                 ],
               ),
             ),
             body: const TabBarView(
-                children: [HomeTab(), ProfileTab(), NewsTab(), AdminTab()])));
+                children: [HomeTab(), ProfileTab(), NewsTab()])));
   }
 }

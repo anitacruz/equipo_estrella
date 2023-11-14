@@ -1,8 +1,8 @@
 import 'package:equipo_estrella/providers/auth_provider.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
-import 'package:equipo_estrella/widgets/primary_button.dart';
-import 'package:equipo_estrella/widgets/secondary_button.dart';
+import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
+import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

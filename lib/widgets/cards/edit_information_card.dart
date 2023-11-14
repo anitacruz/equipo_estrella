@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../commons/colors.dart';
-import '../commons/fonts.dart';
+import '../../commons/colors.dart';
+import '../../commons/fonts.dart';
 
 class EditInformationCard extends StatefulWidget {
   final String title;

@@ -1,7 +1,7 @@
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:flutter/material.dart';
 
-import '../commons/colors.dart';
+import '../../commons/colors.dart';
 
 class InformationCard extends StatelessWidget {
   final String title;

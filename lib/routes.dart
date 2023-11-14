@@ -1,9 +1,9 @@
-import 'package:equipo_estrella/widgets/views/edit_profile.dart';
-import 'package:equipo_estrella/widgets/views/expanded_volunteering.dart';
-import 'package:equipo_estrella/widgets/views/log_in.dart';
-import 'package:equipo_estrella/widgets/views/register.dart';
-import 'package:equipo_estrella/widgets/views/starting.dart';
-import 'package:equipo_estrella/widgets/views/welcome.dart';
+import 'package:equipo_estrella/views/edit_profile.dart';
+import 'package:equipo_estrella/views/expanded_volunteering.dart';
+import 'package:equipo_estrella/views/log_in.dart';
+import 'package:equipo_estrella/views/register.dart';
+import 'package:equipo_estrella/views/starting.dart';
+import 'package:equipo_estrella/views/welcome.dart';
 import 'package:go_router/go_router.dart';
 
 import 'main.dart';

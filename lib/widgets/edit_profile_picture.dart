@@ -1,5 +1,5 @@
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/widgets/short_button.dart';
+import 'package:equipo_estrella/widgets/buttons/short_button.dart';
 import 'package:flutter/material.dart';
 
 import '../commons/colors.dart';

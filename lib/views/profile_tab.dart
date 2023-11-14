@@ -1,10 +1,10 @@
-import 'package:equipo_estrella/widgets/information_card.dart';
-import 'package:equipo_estrella/widgets/primary_button.dart';
-import 'package:equipo_estrella/widgets/secondary_button.dart';
+import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
+import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
+import 'package:equipo_estrella/widgets/cards/information_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../commons/colors.dart';
-import '../../commons/fonts.dart';
+import '../commons/colors.dart';
+import '../commons/fonts.dart';
 
 class ProfileTab extends StatelessWidget {
   const ProfileTab({Key? key}) : super(key: key);

@@ -3,7 +3,7 @@ import 'package:equipo_estrella/widgets/cards/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
 
 import '../../commons/shadows.dart';
-import '../views/expanded_volunteering.dart';
+import '../../views/expanded_volunteering.dart';
 
 class VolunteerCard extends StatelessWidget {
   const VolunteerCard({Key? key, required this.vModel}) : super(key: key);
