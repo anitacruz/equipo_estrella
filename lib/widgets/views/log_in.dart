@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/controllers/auth_provider.dart';
+import 'package:equipo_estrella/providers/auth_provider.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/primary_button.dart';

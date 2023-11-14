@@ -22,6 +22,7 @@ final List<GoRoute> routes = [
     builder: (context, state) {
       final id = state.pathParameters['id'];
       return ExpandedVolunteer(
+        id: id!,
         category: "Categoría",
         title: "Título",
         imageUrl: "https://picsum.photos/200/300",

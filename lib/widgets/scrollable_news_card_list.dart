@@ -1,14 +1,7 @@
-import 'package:equipo_estrella/controllers/news_controller.dart';
-import 'package:equipo_estrella/models/news_model.dart';
+import 'package:equipo_estrella/providers/news_provider.dart';
 import 'package:equipo_estrella/widgets/cards/news_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final newsControllerProvider = Provider((ref) => NewsController());
-
-final newsListProvider = FutureProvider<List<NewsModel>>(
-  (ref) => ref.read(newsControllerProvider).getNewsList(),
-);
 
 class ScrollableNewsCardList extends ConsumerWidget {
   const ScrollableNewsCardList({

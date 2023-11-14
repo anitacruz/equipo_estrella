@@ -1,9 +1,11 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
+import 'package:equipo_estrella/providers/volunteering_provider.dart';
 import 'package:equipo_estrella/widgets/primary_button.dart';
 import 'package:equipo_estrella/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../card_chip.dart';
 import '../cards/location_card.dart';
@@ -11,6 +13,7 @@ import '../cards/location_card.dart';
 class ExpandedVolunteer extends StatefulWidget {
   const ExpandedVolunteer(
       {Key? key,
+      required this.id,
       required this.category,
       required this.title,
       required this.imageUrl,
@@ -22,6 +25,7 @@ class ExpandedVolunteer extends StatefulWidget {
       required this.availability})
       : super(key: key);
 
+  final String id;
   final String category;
   final String title;
   final String imageUrl;
@@ -45,53 +49,11 @@ enum VolunteerState {
 class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
   VolunteerState _volunteerState = VolunteerState.outState;
 
-  void applyToVolunteer() {
+  void applyToVolunteer(BuildContext context) {
     setState(() {
       _volunteerState = VolunteerState.pendingState;
     });
   }
-
-  // void cancelApplication() {
-  //   showDialog(
-  //       context: context,
-  //       builder: (BuildContext context) {
-  //         return SizedBox(
-  //           width: 218, // Set the fixed width here
-  //           child: AlertDialog(
-  //             title: Text(
-  //               "¿Estás seguro de que quieres cancelar tu postulación?",
-  //               style: ManosFonts.sub1(),
-  //             ),
-  //             content: Text(widget.title, style: ManosFonts.h2()),
-  //             contentPadding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-  //             backgroundColor: Colors.white,
-  //             shape: RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(4.0),
-  //             ),
-  //             actions: [
-  //               Row(
-  //                 mainAxisAlignment: MainAxisAlignment.start,
-  //                 children: [
-  //                   SecondaryButton(
-  //                     text: "Confirmar",
-  //                     onPressedMethod: () {
-  //                       Navigator.of(context).pop();
-  //                       setState(() {
-  //                         _volunteerState = VolunteerState.outState;
-  //                       });
-  //                     },
-  //                   ),
-  //                   SecondaryButton(
-  //                     text: "Cancelar",
-  //                     onPressedMethod: () => Navigator.of(context).pop(),
-  //                   ),
-  //                 ],
-  //               ),
-  //             ],
-  //           ),
-  //         );
-  //       });
-  // }
 
   void cancelApplication() {
     //TODO: fix to display in the middle of the
@@ -139,6 +101,7 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
   void acceptApplication() {
     setState(() {
       _volunteerState = VolunteerState.inState;
+      //call volunteering controller subscribe method through volunteering provider
     });
   }
 
@@ -214,7 +177,7 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
                     if (_volunteerState == VolunteerState.outState)
                       PrimaryButton(
                           text: "Postularme",
-                          onPressedMethod: () => applyToVolunteer())
+                          onPressedMethod: () => applyToVolunteer(context))
                     else if (_volunteerState == VolunteerState.pendingState)
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,

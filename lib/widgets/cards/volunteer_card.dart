@@ -19,6 +19,7 @@ class VolunteerCard extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ExpandedVolunteer(
+                              id: vModel.id,
                               category: vModel.category,
                               title: vModel.title,
                               imageUrl: vModel.imageUrl,
