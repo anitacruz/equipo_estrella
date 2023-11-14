@@ -3,16 +3,24 @@ import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:flutter/material.dart';
 
 class PasswordFormField extends StatefulWidget {
-  const PasswordFormField({super.key});
+  final TextEditingController? controller;
+
+  const PasswordFormField({super.key, this.controller});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
 }
 
 class _PasswordFieldState extends State<PasswordFormField> {
+  late TextEditingController _controller;
   bool _obscureText = true; //para ocultar o mostrar la contraseña
 
-  final TextEditingController _passwordController = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    // Usa el controlador proporcionado o crea uno nuevo si es null
+    _controller = widget.controller ?? TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +28,7 @@ class _PasswordFieldState extends State<PasswordFormField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
-          controller: _passwordController,
+          controller: _controller,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4.0),
@@ -49,5 +57,14 @@ class _PasswordFieldState extends State<PasswordFormField> {
         // Puedes agregar más campos aquí
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    // Solo disponemos el controlador si fue creado internamente
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
   }
 }

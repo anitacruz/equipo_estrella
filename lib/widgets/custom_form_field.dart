@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 
 class CustomFormField extends StatelessWidget {
   final String fieldName;
-  const CustomFormField({Key? key, required this.fieldName}) : super(key: key);
+  final TextEditingController? controller;
+  const CustomFormField({Key? key, required this.fieldName, this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
