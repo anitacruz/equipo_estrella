@@ -1,15 +1,22 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
+import 'package:equipo_estrella/providers/volunteering_provider.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/card_chip.dart';
 import '../widgets/cards/location_card.dart';
 
-class ExpandedVolunteer extends StatefulWidget {
+enum VolunteerState {
+  inState,
+  outState,
+  pendingState,
+}
+
+class ExpandedVolunteer extends ConsumerStatefulWidget {
   const ExpandedVolunteer(
       {Key? key,
       required this.id,
@@ -36,24 +43,30 @@ class ExpandedVolunteer extends StatefulWidget {
   final int vacancies;
 
   @override
-  State<StatefulWidget> createState() => _ExpandedVolunteerState();
-}
-
-enum VolunteerState {
-  inState,
-  outState,
-  pendingState,
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _ExpandedVolunteerState();
 }
 
 var logger = Logger();
 
-class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
+class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
   VolunteerState _volunteerState = VolunteerState.outState;
 
   void applyToVolunteer(BuildContext context) {
     logger.i("Applying to volunteer");
-    setState(() {
-      _volunteerState = VolunteerState.pendingState;
+
+    final applyToVolunteering =
+        context.read(applyVolunteeringProvider(widget.id));
+
+    applyToVolunteering.when(data: (volunteering) {
+      logger.i("Applied to volunteer");
+      setState(() {
+        _volunteerState = VolunteerState.pendingState;
+      });
+    }, loading: () {
+      logger.i("Loading");
+    }, error: (error, stackTrace) {
+      logger.e("Error");
     });
   }
 

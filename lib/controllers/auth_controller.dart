@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo_estrella/models/users_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 class AuthenticationController {
   // For Authentication related functions you need an instance of FirebaseAuth
@@ -69,9 +72,9 @@ class AuthenticationController {
                   ]));
     } catch (e) {
       if (e == 'email-already-in-use') {
-        print('Email already in use.');
+        logger.i('Email already in use.');
       } else {
-        print('Error: $e');
+        logger.i('Error: $e');
       }
     }
   }

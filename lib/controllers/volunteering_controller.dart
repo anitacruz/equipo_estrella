@@ -16,35 +16,26 @@ class VolunteeringController {
       return VolunteeringModel.fromMap(data, id);
     }).toList();
 
-    for (var volunteering in volunteeringsList) {
-      logger.i(volunteering.toJson());
-    }
-
     return volunteeringsList;
   }
 
-  Future<void> subscribe(String volunteeringId, String userId) async {
-    logger.i("Subscribing user $userId to volunteering $volunteeringId");
+  Future<VolunteeringModel> apply(String volId, String userId) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
+    final volunteering = await db.collection("volunteerings").doc(volId).get();
+    final map = volunteering.data() as Map<String, dynamic>;
+    final volunteeringUpdate = VolunteeringModel.fromMap(map, volId);
 
-    DocumentReference volunteeringRef =
-        db.collection("volunteering").doc(volunteeringId);
-    await db.runTransaction((transaction) async {
-      DocumentSnapshot volunteeringSnapshot =
-          await transaction.get(volunteeringRef);
+    if (volunteeringUpdate.pending.contains(userId)) {
+      volunteeringUpdate.pending.remove(userId);
+    } else {
+      volunteeringUpdate.pending.add(userId);
+    }
 
-      logger.i(volunteeringSnapshot.data());
+    await db
+        .collection("volunteerings")
+        .doc(volId)
+        .update(volunteeringUpdate.toJson());
 
-      if (volunteeringSnapshot.exists && volunteeringSnapshot.data() != null) {
-        List<dynamic>? currentSubscribed =
-            volunteeringSnapshot.data() as List<dynamic>?;
-        if (!currentSubscribed!.contains(userId)) {
-          currentSubscribed.add(userId);
-          logger.i(currentSubscribed);
-          transaction
-              .update(volunteeringRef, {'subscribed': currentSubscribed});
-        }
-      }
-    });
+    return volunteeringUpdate;
   }
 }

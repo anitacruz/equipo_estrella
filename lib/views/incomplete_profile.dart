@@ -2,15 +2,13 @@ import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/buttons/short_button_with_plus_sign.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class IncompleteProfileTab extends StatelessWidget {
   const IncompleteProfileTab({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final GoRouter router =
-        GoRouter.of(context); // Obtiene el router de GoRouter
+// Obtiene el router de GoRouter
 
     return Scaffold(
       body: Center(
