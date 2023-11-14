@@ -22,13 +22,16 @@ final List<GoRoute> routes = [
     builder: (context, state) {
       final id = state.pathParameters['id'];
       return ExpandedVolunteer(
+        id: id!,
         category: "Categoría",
         title: "Título",
         imageUrl: "https://picsum.photos/200/300",
         subtitle: id.toString(),
         body: "Cuerpo",
         requirements: "Requisitos",
-        location: "Ubicación", vacancies: 10, availability: '', 
+        location: "Ubicación",
+        vacancies: 10,
+        availability: '',
       );
     },
   ),

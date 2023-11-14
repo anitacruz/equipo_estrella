@@ -36,9 +36,9 @@ class VolunteeringModel {
         'vacancies': vacancies,
       };
 
-  factory VolunteeringModel.fromMap(Map<String, dynamic> map) {
+  factory VolunteeringModel.fromMap(Map<String, dynamic> map, String ?id) {
     return VolunteeringModel(
-      id: map['id'] ?? '',
+      id: id ?? '',
       category: map['category'] ?? '',
       title: map['title'] ?? '',
       imageUrl: map['imageUrl'] ?? '',
