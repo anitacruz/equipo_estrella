@@ -6,11 +6,13 @@ class CustomFormField extends StatelessWidget {
   final String fieldName;
   final bool alwaysFloatingLabel;
   final String hintText;
+  final TextEditingController? controller;
   const CustomFormField(
       {Key? key,
       required this.fieldName,
       required this.hintText,
-      this.alwaysFloatingLabel = false})
+      this.alwaysFloatingLabel = false,
+      this.controller})
       : super(key: key);
 
   @override
