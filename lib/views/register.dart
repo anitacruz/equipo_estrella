@@ -1,4 +1,3 @@
-import 'package:equipo_estrella/providers/auth_provider.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
@@ -6,6 +5,7 @@ import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:equipo_estrella/controllers/auth_controller.dart';
 
 import 'package:logger/logger.dart';
 
@@ -28,7 +28,7 @@ class Register extends StatelessWidget {
 
     return Scaffold(
       body: Consumer(builder: (context, ref, _) {
-        final _auth = ref.watch(authenticationProvider);
+        final _auth = ref.read(authControllerProvider.notifier);
 
         Future<void> _onPressedFunction() async {
           logger.i("Name: ${_name.text}, Lastname: ${_lastname.text}");

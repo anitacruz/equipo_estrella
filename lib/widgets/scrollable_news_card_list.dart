@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/providers/news_provider.dart';
+import 'package:equipo_estrella/controllers/news_controller.dart';
 import 'package:equipo_estrella/widgets/cards/news_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,7 +10,7 @@ class ScrollableNewsCardList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final newsList = ref.watch(newsListProvider);
+    final newsList = ref.watch(newsControllerProvider);
 
     return newsList.when(
       loading: () => const Center(

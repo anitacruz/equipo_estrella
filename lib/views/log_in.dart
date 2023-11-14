@@ -1,4 +1,4 @@
-import 'package:equipo_estrella/providers/auth_provider.dart';
+import 'package:equipo_estrella/controllers/auth_controller.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
@@ -25,7 +25,7 @@ class LogIn extends StatelessWidget {
         //  Consuming a provider using watch method and storing it in a variable
         //  Now we will use this variable to access all the functions of the
         //  authentication
-        final _auth = ref.watch(authenticationProvider);
+        final _auth = ref.watch(authControllerProvider.notifier);
 
         //  Instead of creating a clutter on the onPressed Function
         //  I have decided to create a seperate function and pass them into the

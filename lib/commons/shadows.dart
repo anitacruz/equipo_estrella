@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'colors.dart';
 
-//TODO: try to modularize
 class ManosShadows {
   static const BoxDecoration shadow1 = BoxDecoration(
     color: ManosColors

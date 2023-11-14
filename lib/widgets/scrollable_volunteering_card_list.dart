@@ -1,9 +1,7 @@
-import 'package:equipo_estrella/providers/volunteering_provider.dart';
+import 'package:equipo_estrella/controllers/volunteering_controller.dart';
 import 'package:equipo_estrella/widgets/cards/volunteer_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-
 
 class ScrollableVolunteeringCardList extends ConsumerWidget {
   const ScrollableVolunteeringCardList({
@@ -12,7 +10,7 @@ class ScrollableVolunteeringCardList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final volunteeringList = ref.watch(volunteeringListProvider);
+    final volunteeringList = ref.watch(volunteeringControllerProvider);
 
     return volunteeringList.when(
       loading: () => const CircularProgressIndicator(),

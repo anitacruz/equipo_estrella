@@ -3,10 +3,18 @@ import 'package:equipo_estrella/models/volunteering_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:logger/logger.dart';
 
+part 'volunteering_controller.g.dart';
+
 var logger = Logger();
 
 @riverpod
-class VolunteeringController {
+class VolunteeringController extends _$VolunteeringController {
+  @override
+  Future<List<VolunteeringModel>> build() {
+    logger.i("Building VolunteeringController");
+    return getVolunteeringList();
+  }
+
   Future<List<VolunteeringModel>> getVolunteeringList() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     final volunteerings = await db.collection("volunteering").get();
@@ -17,25 +25,5 @@ class VolunteeringController {
     }).toList();
 
     return volunteeringsList;
-  }
-
-  Future<VolunteeringModel> apply(String volId, String userId) async {
-    FirebaseFirestore db = FirebaseFirestore.instance;
-    final volunteering = await db.collection("volunteerings").doc(volId).get();
-    final map = volunteering.data() as Map<String, dynamic>;
-    final volunteeringUpdate = VolunteeringModel.fromMap(map, volId);
-
-    if (volunteeringUpdate.pending.contains(userId)) {
-      volunteeringUpdate.pending.remove(userId);
-    } else {
-      volunteeringUpdate.pending.add(userId);
-    }
-
-    await db
-        .collection("volunteerings")
-        .doc(volId)
-        .update(volunteeringUpdate.toJson());
-
-    return volunteeringUpdate;
   }
 }

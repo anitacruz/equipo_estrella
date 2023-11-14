@@ -1,7 +1,7 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
-import 'package:equipo_estrella/providers/volunteering_provider.dart';
+import 'package:equipo_estrella/controllers/apply_to_volunteering_controller.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -52,11 +52,8 @@ var logger = Logger();
 class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
   VolunteerState _volunteerState = VolunteerState.outState;
 
-  void applyToVolunteer(BuildContext context) {
-    logger.i("Applying to volunteer");
-
-    final applyToVolunteering =
-        context.read(applyVolunteeringProvider(widget.id));
+  void applyToVolunteer(BuildContext context, WidgetRef ref, String id) {
+    final applyToVolunteering = ref.read(applyToVolunteeringControllerProvider);
 
     applyToVolunteering.when(data: (volunteering) {
       logger.i("Applied to volunteer");
@@ -192,7 +189,8 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                     if (_volunteerState == VolunteerState.outState)
                       PrimaryButton(
                           text: "Postularme",
-                          onPressedMethod: () => applyToVolunteer(context))
+                          onPressedMethod: () =>
+                              applyToVolunteer(context, ref, widget.id)) //TODO
                     else if (_volunteerState == VolunteerState.pendingState)
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,

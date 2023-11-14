@@ -3,10 +3,17 @@ import 'package:equipo_estrella/models/users_model.dart';
 import 'package:logger/logger.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'user_controller.g.dart';
+
 var logger = Logger();
 
 @riverpod
-class UserController {
+class UserController extends _$UserController {
+  @override
+  void build() {
+    logger.i("Building UserController");
+  }
+
   Future<UsersModel> favoriteVolunteering(
       String volunteeringId, String userId) async {
     logger.i("User $userId favoriting volunteering $volunteeringId");

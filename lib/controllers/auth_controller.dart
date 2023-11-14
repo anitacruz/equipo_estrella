@@ -3,10 +3,20 @@ import 'package:equipo_estrella/models/users_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'auth_controller.g.dart';
 
 var logger = Logger();
 
-class AuthenticationController {
+@riverpod
+class AuthController extends _$AuthController {
+  @override
+  Future<void> build() {
+    logger.i("Building AuthController");
+    return Future.value();
+  }
+
   // For Authentication related functions you need an instance of FirebaseAuth
   FirebaseAuth _auth = FirebaseAuth.instance;
 
