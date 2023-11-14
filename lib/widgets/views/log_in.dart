@@ -6,6 +6,9 @@ import 'package:equipo_estrella/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
@@ -30,26 +33,26 @@ class LogIn extends StatelessWidget {
         //  if you want you can write the exact code in the onPressed function
         //  it all depends on personal preference and code readability
         Future<void> _onPressedFunction() async {
-          // print(_email.text); // This are your best friend for debugging things
+          // logger.i(_email.text); // This are your best friend for debugging things
           //  not to mention the debugging tools
-          // print(_password.text);
+          // logger.i(_password.text);
 
           //loading();
-          print("Email: ${_email.text}, Password: ${_password.text}");
+          logger.i("Email: ${_email.text}, Password: ${_password.text}");
           // Check email and password are not null
 
           if (_email.text.isEmpty || _password.text.isEmpty) {
             await showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: Text('Error Occured'),
-                content: Text("Email o contraseña vacíos"),
+                title: const Text('Error Occured'),
+                content: const Text("Email o contraseña vacíos"),
                 actions: [
                   TextButton(
                       onPressed: () {
                         Navigator.of(ctx).pop();
                       },
-                      child: Text("OK"))
+                      child: const Text("OK"))
                 ],
               ),
             );

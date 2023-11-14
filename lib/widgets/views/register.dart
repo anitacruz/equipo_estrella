@@ -7,6 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:logger/logger.dart';
+
+var logger = Logger();
+
 class Register extends StatelessWidget {
   Register({super.key});
   final _name = TextEditingController();
@@ -19,29 +23,29 @@ class Register extends StatelessWidget {
     final GoRouter router =
         GoRouter.of(context); // Obtiene el router de GoRouter
 
-    print("Name: ${_name.text}, Lastname: ${_lastname.text}");
-    print("Email: ${_email.text}, Password: ${_password.text}");
+    logger.i("Name: ${_name.text}, Lastname: ${_lastname.text}");
+    logger.i("Email: ${_email.text}, Password: ${_password.text}");
 
     return Scaffold(
       body: Consumer(builder: (context, ref, _) {
         final _auth = ref.watch(authenticationProvider);
 
         Future<void> _onPressedFunction() async {
-          print("Name: ${_name.text}, Lastname: ${_lastname.text}");
-          print("Email: ${_email.text}, Password: ${_password.text}");
+          logger.i("Name: ${_name.text}, Lastname: ${_lastname.text}");
+          logger.i("Email: ${_email.text}, Password: ${_password.text}");
           // Check email and password are not null
           if (_name.text.isEmpty || _lastname.text.isEmpty) {
             await showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: Text('Error Occured'),
-                content: Text("Nombre o apellido vacíos"),
+                title: const Text('Error Occured'),
+                content: const Text("Nombre o apellido vacíos"),
                 actions: [
                   TextButton(
                       onPressed: () {
                         Navigator.of(ctx).pop();
                       },
-                      child: Text("OK"))
+                      child: const Text("OK"))
                 ],
               ),
             );
@@ -51,14 +55,14 @@ class Register extends StatelessWidget {
             await showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: Text('Error Occured'),
-                content: Text("Email o contraseña vacíos"),
+                title: const Text('Error Occured'),
+                content: const Text("Email o contraseña vacíos"),
                 actions: [
                   TextButton(
                       onPressed: () {
                         Navigator.of(ctx).pop();
                       },
-                      child: Text("OK"))
+                      child: const Text("OK"))
                 ],
               ),
             );

@@ -1,11 +1,9 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
-import 'package:equipo_estrella/providers/volunteering_provider.dart';
 import 'package:equipo_estrella/widgets/primary_button.dart';
 import 'package:equipo_estrella/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../card_chip.dart';
 import '../cards/location_card.dart';

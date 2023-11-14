@@ -2,6 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo_estrella/models/users_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 class AuthenticationController {
   // For Authentication related functions you need an instance of FirebaseAuth
@@ -58,20 +61,20 @@ class AuthenticationController {
       await showDialog(
           context: context,
           builder: (ctx) => AlertDialog(
-                  title: Text('Error Occured'),
+                  title: const Text('Error Occured'),
                   content: Text(e.toString()),
                   actions: [
                     TextButton(
                         onPressed: () {
                           Navigator.of(ctx).pop();
                         },
-                        child: Text("OK"))
+                        child: const Text("OK"))
                   ]));
     } catch (e) {
       if (e == 'email-already-in-use') {
-        print('Email already in use.');
+        logger.i('Email already in use.');
       } else {
-        print('Error: $e');
+        logger.i('Error: $e');
       }
     }
   }

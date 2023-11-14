@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 class AdminTab extends StatefulWidget {
   const AdminTab({super.key});
@@ -29,7 +32,8 @@ class _AdminTabState extends State<AdminTab> {
               }),
           ButtonBar(
             children: [
-              TextButton(onPressed: incrementCounter, child: const Text("Increment")),
+              TextButton(
+                  onPressed: incrementCounter, child: const Text("Increment")),
               TextButton(onPressed: reduceCounter, child: const Text("Reduce"))
             ],
           )
@@ -39,7 +43,7 @@ class _AdminTabState extends State<AdminTab> {
   }
 
   void incrementCounter() {
-    print("Admin Increment Counter");
+    logger.i("Admin Increment Counter");
     final user = <String, dynamic>{
       "first": "Alan",
       "middle": "Mathison",
@@ -52,7 +56,7 @@ class _AdminTabState extends State<AdminTab> {
         .collection("users")
         .doc("gYikLsuzorQwAoZCKcLo")
         .update({"born": FieldValue.increment(1)}).then(
-            (value) => print("incremented counter"));
+            (value) => logger.i("incremented counter"));
   }
 
   void reduceCounter() {
@@ -60,6 +64,6 @@ class _AdminTabState extends State<AdminTab> {
         .collection("users")
         .doc("gYikLsuzorQwAoZCKcLo")
         .update({"born": FieldValue.increment(-1)}).then(
-            (value) => print("reduced counter"));
+            (value) => logger.i("reduced counter"));
   }
 }
