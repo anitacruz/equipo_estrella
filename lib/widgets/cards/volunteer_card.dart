@@ -1,9 +1,12 @@
 import 'package:equipo_estrella/models/volunteering_model.dart';
 import 'package:equipo_estrella/widgets/cards/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import '../../commons/shadows.dart';
 import '../../views/expanded_volunteering.dart';
+
+var logger = Logger();
 
 class VolunteerCard extends StatelessWidget {
   const VolunteerCard({Key? key, required this.vModel}) : super(key: key);
@@ -12,6 +15,7 @@ class VolunteerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Center(
         child: InkWell(
             onTap: () => {
@@ -27,9 +31,9 @@ class VolunteerCard extends StatelessWidget {
                               body: vModel.body,
                               requirements: vModel.requirements,
                               location: vModel.location,
-                              vacancies: vModel.vacancies -
+                              vacancies: (vModel.vacancies -
                                   vModel.pending
-                                      .length, //TODO: its subscribed not pending
+                                      .length), //TODO: its subscribed not pending
                               availability: vModel.availability)))
                 },
             child: Container(
@@ -44,7 +48,7 @@ class VolunteerCard extends StatelessWidget {
                       VolunteerCardDescription(
                           category: vModel.category,
                           title: vModel.title,
-                          vacancies: vModel.vacancies)
+                          vacancies: (vModel.vacancies - vModel.pending.length))
                     ]))));
   }
 }

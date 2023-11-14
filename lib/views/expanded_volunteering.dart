@@ -3,6 +3,7 @@ import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
 import 'package:equipo_estrella/controllers/subscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/unsubscribe_to_volunteering_controller.dart';
+import 'package:equipo_estrella/controllers/volunteering_controller.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -141,6 +142,24 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
 
   @override
   Widget build(BuildContext context) {
+    final volunteeringProvider =
+        ref.watch(volunteeringControllerProvider.notifier);
+
+    volunteeringProvider.getVolunteering(widget.id).then((value) => {
+          if (value.pending.contains("userId"))
+            {
+              setState(() {
+                _volunteerState = VolunteerState.pendingState;
+              })
+            }
+          else if (value.subscribed.contains("userId"))
+            {
+              setState(() {
+                _volunteerState = VolunteerState.inState;
+              })
+            }
+        });
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

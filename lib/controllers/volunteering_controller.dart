@@ -26,4 +26,11 @@ class VolunteeringController extends _$VolunteeringController {
 
     return volunteeringsList;
   }
+
+  Future<VolunteeringModel> getVolunteering(String id) async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final volunteering = db.collection("volunteering").doc(id);
+    final data = (await volunteering.get()).data();
+    return VolunteeringModel.fromMap(data!, id);
+  }
 }
