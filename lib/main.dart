@@ -1,4 +1,3 @@
-import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/views/news_tab.dart';
@@ -53,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 4,
+        length: 3,
         child: Scaffold(
             backgroundColor: ManosColors.secondary10,
             appBar: AppBar(
@@ -86,7 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     text: "Mi Perfil",
                   ),
                   Tab(text: "Novedades"),
-                  
                 ],
               ),
             ),

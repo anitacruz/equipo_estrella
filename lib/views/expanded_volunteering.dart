@@ -4,6 +4,7 @@ import 'package:equipo_estrella/commons/shadows.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 
 import '../widgets/card_chip.dart';
 import '../widgets/cards/location_card.dart';
@@ -44,10 +45,13 @@ enum VolunteerState {
   pendingState,
 }
 
+var logger = Logger();
+
 class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
   VolunteerState _volunteerState = VolunteerState.outState;
 
   void applyToVolunteer(BuildContext context) {
+    logger.i("Applying to volunteer");
     setState(() {
       _volunteerState = VolunteerState.pendingState;
     });

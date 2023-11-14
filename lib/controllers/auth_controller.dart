@@ -90,8 +90,11 @@ class AuthenticationController {
   // }
 
   Future<void> createUserProfile(String name, String lastname, String email) {
-    UsersModel newUser =
-        UsersModel(name: name, lastname: lastname, email: email);
+    UsersModel newUser = UsersModel(
+        name: name,
+        lastname: lastname,
+        email: email,
+        favoriteVolunteerings: []);
     FirebaseFirestore db = FirebaseFirestore.instance;
     return db.collection("user").add(newUser.toJson());
   }

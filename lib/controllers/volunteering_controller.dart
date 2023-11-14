@@ -15,6 +15,11 @@ class VolunteeringController {
       final data = doc.data();
       return VolunteeringModel.fromMap(data, id);
     }).toList();
+
+    for (var volunteering in volunteeringsList) {
+      logger.i(volunteering.toJson());
+    }
+
     return volunteeringsList;
   }
 
@@ -22,31 +27,20 @@ class VolunteeringController {
     logger.i("Subscribing user $userId to volunteering $volunteeringId");
     FirebaseFirestore db = FirebaseFirestore.instance;
 
-    // Get the volunteering document by ID
     DocumentReference volunteeringRef =
         db.collection("volunteering").doc(volunteeringId);
-
-    // Use a transaction to update the "subscribed" array
     await db.runTransaction((transaction) async {
       DocumentSnapshot volunteeringSnapshot =
           await transaction.get(volunteeringRef);
 
       logger.i(volunteeringSnapshot.data());
 
-      // Check if the volunteering document exists and has data
       if (volunteeringSnapshot.exists && volunteeringSnapshot.data() != null) {
-        // Get the current subscribed array
         List<dynamic>? currentSubscribed =
             volunteeringSnapshot.data() as List<dynamic>?;
-
-        // Check if the userId is not already in the subscribed array
         if (!currentSubscribed!.contains(userId)) {
-          // Append the userId to the subscribed array
           currentSubscribed.add(userId);
-
           logger.i(currentSubscribed);
-
-          // Update the "subscribed" array in the volunteering document
           transaction
               .update(volunteeringRef, {'subscribed': currentSubscribed});
         }

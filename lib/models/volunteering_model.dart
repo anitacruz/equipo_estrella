@@ -9,6 +9,8 @@ class VolunteeringModel {
   final String location;
   final String availability;
   final int vacancies;
+  final List<dynamic> subscribed;
+  final List<dynamic> pending;
 
   VolunteeringModel({
     required this.id,
@@ -21,6 +23,8 @@ class VolunteeringModel {
     required this.location,
     required this.availability,
     required this.vacancies,
+    required this.subscribed,
+    required this.pending,
   });
 
   toJson() => {
@@ -34,9 +38,11 @@ class VolunteeringModel {
         'location': location,
         'availability': availability,
         'vacancies': vacancies,
+        'subscribed': subscribed,
+        'pending': pending,
       };
 
-  factory VolunteeringModel.fromMap(Map<String, dynamic> map, String ?id) {
+  factory VolunteeringModel.fromMap(Map<String, dynamic> map, String? id) {
     return VolunteeringModel(
       id: id ?? '',
       category: map['category'] ?? '',
@@ -48,6 +54,8 @@ class VolunteeringModel {
       location: map['location'] ?? '',
       availability: map['availability'] ?? '',
       vacancies: map['vacancies'] ?? 0,
+      subscribed: map['subscribed'] ?? [],
+      pending: map['pending'] ?? [],
     );
   }
 }
