@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 class PasswordFormField extends StatefulWidget {
   final TextEditingController? controller;
 
-  const PasswordFormField({super.key, this.controller});
+  final bool alwaysFloatingLabel;
+  const PasswordFormField(
+      {super.key, this.alwaysFloatingLabel = false, this.controller});
 
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
@@ -30,6 +32,9 @@ class _PasswordFieldState extends State<PasswordFormField> {
         TextField(
           controller: _controller,
           decoration: InputDecoration(
+            floatingLabelBehavior: widget.alwaysFloatingLabel
+                ? FloatingLabelBehavior.always
+                : FloatingLabelBehavior.auto,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(4.0),
               borderSide: const BorderSide(color: ManosColors.neutral75),

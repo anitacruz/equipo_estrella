@@ -5,6 +5,7 @@ import 'package:equipo_estrella/widgets/primary_button.dart';
 import 'package:equipo_estrella/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
@@ -13,6 +14,8 @@ class LogIn extends StatelessWidget {
   Widget build(BuildContext context) {
     final _email = TextEditingController();
     final _password = TextEditingController();
+
+    final GoRouter router = GoRouter.of(context);
 
     return Scaffold(
       body: Consumer(builder: (context, ref, _) {
@@ -77,7 +80,10 @@ class LogIn extends StatelessWidget {
               const SizedBox(height: 32), // Espacio entre la imagen y campos
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
-                child: CustomFormField(fieldName: "Email", controller: _email),
+                child: CustomFormField(
+                    fieldName: "Email",
+                    hintText: "anacruz@yahoo.com",
+                    controller: _email),
               ),
               const SizedBox(height: 24), //Espacio entre email y password
               Container(
@@ -97,7 +103,10 @@ class LogIn extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: SecondaryButton(
-                    text: "No tengo cuenta", onPressedMethod: () {}),
+                    text: "No tengo cuenta",
+                    onPressedMethod: () {
+                      router.go('/register');
+                    }),
               ),
               const SizedBox(height: 32), // Espacio entre los botones
             ],
