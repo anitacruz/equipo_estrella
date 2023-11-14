@@ -6,11 +6,13 @@ class SecondaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressedMethod;
   final Color textColor;
+  final bool? block;
 
   const SecondaryButton(
       {Key? key,
       required this.text,
       required this.onPressedMethod,
+      this.block,
       this.textColor = ManosColors.primary100})
       : super(key: key);
 
@@ -19,7 +21,7 @@ class SecondaryButton extends StatelessWidget {
     return InkWell(
         onTap: () => onPressedMethod(),
         child: Container(
-            width: 1000,
+            width: block == null ? 1000 : 100,
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             decoration: BoxDecoration(

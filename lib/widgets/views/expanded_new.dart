@@ -2,6 +2,7 @@ import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class ExpandedNew extends StatelessWidget {
   final String category;
@@ -70,8 +71,15 @@ class ExpandedNew extends StatelessWidget {
                         child:
                             Text("Comparte esta nota", style: ManosFonts.h2())),
                     const SizedBox(height: 16),
-                    PrimaryButton(text: "Compartir", onPressedMethod: () => {})
+                    PrimaryButton(
+                        text: "Compartir",
+                        onPressedMethod: () => _shareDeepLink(context))
                   ],
                 ))));
+  }
+
+  _shareDeepLink(BuildContext context) {
+    var currentLink = ModalRoute.of(context)?.settings.name;
+    Share.share(currentLink!);
   }
 }

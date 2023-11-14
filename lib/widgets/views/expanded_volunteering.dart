@@ -1,5 +1,6 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/commons/shadows.dart';
 import 'package:equipo_estrella/widgets/primary_button.dart';
 import 'package:equipo_estrella/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -50,10 +51,89 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
     });
   }
 
+  // void cancelApplication() {
+  //   showDialog(
+  //       context: context,
+  //       builder: (BuildContext context) {
+  //         return SizedBox(
+  //           width: 218, // Set the fixed width here
+  //           child: AlertDialog(
+  //             title: Text(
+  //               "¿Estás seguro de que quieres cancelar tu postulación?",
+  //               style: ManosFonts.sub1(),
+  //             ),
+  //             content: Text(widget.title, style: ManosFonts.h2()),
+  //             contentPadding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+  //             backgroundColor: Colors.white,
+  //             shape: RoundedRectangleBorder(
+  //               borderRadius: BorderRadius.circular(4.0),
+  //             ),
+  //             actions: [
+  //               Row(
+  //                 mainAxisAlignment: MainAxisAlignment.start,
+  //                 children: [
+  //                   SecondaryButton(
+  //                     text: "Confirmar",
+  //                     onPressedMethod: () {
+  //                       Navigator.of(context).pop();
+  //                       setState(() {
+  //                         _volunteerState = VolunteerState.outState;
+  //                       });
+  //                     },
+  //                   ),
+  //                   SecondaryButton(
+  //                     text: "Cancelar",
+  //                     onPressedMethod: () => Navigator.of(context).pop(),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ],
+  //           ),
+  //         );
+  //       });
+  // }
+
   void cancelApplication() {
-    setState(() {
-      _volunteerState = VolunteerState.outState;
-    });
+    //TODO: fix to display in the middle of the
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+              // width: 218, // Set the fixed width here
+              alignment: Alignment.topCenter,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              decoration: ManosShadows.shadow2.copyWith(
+                  borderRadius: const BorderRadius.all(Radius.circular(4))),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "¿Estás seguro de que quieres cancelar tu postulación?",
+                      style: ManosFonts.sub1(),
+                    ),
+                    Text(widget.title, style: ManosFonts.h2()),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SecondaryButton(
+                          text: "Cancelar",
+                          onPressedMethod: () => Navigator.of(context).pop(),
+                          block: false,
+                        ),
+                        SecondaryButton(
+                          text: "Confirmar",
+                          block: false,
+                          onPressedMethod: () {
+                            Navigator.of(context).pop();
+                            setState(() {
+                              _volunteerState = VolunteerState.outState;
+                            });
+                          },
+                        ),
+                      ],
+                    )
+                  ]));
+        });
   }
 
   void acceptApplication() {
@@ -115,9 +195,6 @@ class _ExpandedVolunteerState extends State<ExpandedVolunteer> {
                     const SizedBox(height: 16),
                     LocationCard(location: widget.location),
                     const SizedBox(height: 16),
-                    // Text(widget.location,
-                    //     style: ManosFonts.b1(color: ManosColors.neutral0)),
-                    // const SizedBox(height: 16),
                     Text(
                       "Participar del voluntariado",
                       style: ManosFonts.h2(),

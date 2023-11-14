@@ -30,7 +30,6 @@ class VolunteerCard extends StatelessWidget {
                               availability: vModel.availability)))
                 },
             child: Container(
-                // height: 235, //247,
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(bottom: 24),
                 decoration: ManosShadows.shadow1,

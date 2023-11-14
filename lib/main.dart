@@ -1,10 +1,7 @@
 import 'package:equipo_estrella/admintab.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/presentation/views/profile.dart';
-import 'package:equipo_estrella/widgets/views/incomplete_profile.dart';
 import 'package:equipo_estrella/widgets/views/news_tab.dart';
-import 'package:equipo_estrella/widgets/cards/no_volunteer_card.dart';
 import 'package:equipo_estrella/widgets/views/home_tab.dart';
 import 'package:equipo_estrella/widgets/views/profile_tab.dart';
 import 'package:flutter/material.dart';

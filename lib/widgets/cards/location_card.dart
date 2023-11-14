@@ -25,15 +25,20 @@ class LocationCard extends StatelessWidget {
         ),
       ),
       Container(
-          alignment: Alignment.topLeft,
-          color: ManosColors.neutral10,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Column(
-            children: [
-              Text("Dirección", style: ManosFonts.overline()),
-              Text(location, style: ManosFonts.b1()),
-            ],
-          )),
+        alignment: Alignment.topLeft,
+        color: ManosColors.neutral10,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.start, // Align children at the start
+          crossAxisAlignment: CrossAxisAlignment
+              .start, // Align children to the start horizontally
+          children: [
+            Text("Dirección", style: ManosFonts.overline()),
+            Text(location, style: ManosFonts.b1()),
+          ],
+        ),
+      ),
     ]);
   }
 }

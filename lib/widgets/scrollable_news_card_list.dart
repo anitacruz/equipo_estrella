@@ -20,7 +20,13 @@ class ScrollableNewsCardList extends ConsumerWidget {
     final newsList = ref.watch(newsListProvider);
 
     return newsList.when(
-      loading: () => const CircularProgressIndicator(),
+      loading: () => const Center(
+        child: SizedBox(
+          width: 24.0, // Adjust the size as needed
+          height: 24.0, // Adjust the size as needed
+          child: CircularProgressIndicator(),
+        ),
+      ),
       error: (error, stackTrace) => Text('Error: $error'),
       data: (data) {
         return SingleChildScrollView(

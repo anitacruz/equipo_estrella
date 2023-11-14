@@ -2,13 +2,15 @@ import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/primary_button.dart';
 import 'package:equipo_estrella/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
 
 class StartingPage extends StatelessWidget {
   const StartingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final GoRouter router =
+        GoRouter.of(context); // Obtiene el router de GoRouter
     return Scaffold(
       body: Center(
         child: Column(
@@ -35,15 +37,17 @@ class StartingPage extends StatelessWidget {
             const Spacer(), // Espaciador para centrar verticalmente los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-                  PrimaryButton(text: "Iniciar Sesión", onPressedMethod: () {}),
+              child: PrimaryButton(
+                  text: "Iniciar Sesión",
+                  onPressedMethod: () => {router.go('/login')}),
             ),
 
             const SizedBox(height: 16), // Espacio entre los botones
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-                  SecondaryButton(text: "Registrarse", onPressedMethod: () {}),
+              child: SecondaryButton(
+                  text: "Registrarse",
+                  onPressedMethod: () => {router.go('/register')}),
             ),
             const SizedBox(height: 32), // Espacio entre los botones
           ],

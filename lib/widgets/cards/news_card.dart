@@ -13,7 +13,7 @@ class NewsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 328,
+        width: 1000,
         decoration: ManosShadows.shadow1,
         alignment: Alignment.center,
         margin: const EdgeInsets.only(bottom: 24),

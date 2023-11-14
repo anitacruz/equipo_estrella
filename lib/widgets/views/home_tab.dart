@@ -1,4 +1,3 @@
-import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/widgets/cards/activity_card.dart';
 import 'package:equipo_estrella/widgets/scrollable_volunteering_card_list.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +11,11 @@ class HomeTab extends StatelessWidget {
         margin: const EdgeInsets.only(top: 24, left: 16, right: 16),
         child: const Column(children: [
           TextField(
-            decoration: InputDecoration(
-                // border: OutlineInputBorder(),
-                labelText: 'Buscar',
-                prefixIcon: Icon(Icons.search, size: 24),
-                suffixIcon:
-                    Icon(Icons.map, size: 24, color: ManosColors.primary100)),
-          ),
+              decoration: InputDecoration(
+            // border: OutlineInputBorder(),
+            labelText: 'Buscar',
+            prefixIcon: Icon(Icons.search, size: 24),
+          )),
           Padding(
               padding: EdgeInsets.only(top: 32, bottom: 24),
               child: Align(
