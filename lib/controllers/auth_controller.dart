@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equipo_estrella/models/users_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -77,5 +79,20 @@ class AuthenticationController {
   //  SignOut the current user
   Future<void> signOut() async {
     await _auth.signOut();
+  }
+
+  // Future<UsersModel> getUserProfile(email) async {
+  //   FirebaseFirestore db = FirebaseFirestore.instance;
+  //   final user = await db.collection("user").get(email);
+  //   final userInfo = user
+  //   //final newsList = news.docs.map((doc) => doc.data()).toList();
+  //   return newsList.map((e) => NewsModel.fromMap(e)).toList();
+  // }
+
+  Future<void> createUserProfile(String name, String lastname, String email) {
+    UsersModel newUser =
+        UsersModel(name: name, lastname: lastname, email: email);
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    return db.collection("user").add(newUser.toJson());
   }
 }

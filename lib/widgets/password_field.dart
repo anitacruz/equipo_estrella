@@ -14,14 +14,14 @@ class PasswordFormField extends StatefulWidget {
 }
 
 class _PasswordFieldState extends State<PasswordFormField> {
-  late TextEditingController _controller;
+  late TextEditingController? _controller;
   bool _obscureText = true; //para ocultar o mostrar la contraseña
 
   @override
   void initState() {
     super.initState();
     // Usa el controlador proporcionado o crea uno nuevo si es null
-    _controller = widget.controller ?? TextEditingController();
+    _controller = widget.controller;
   }
 
   @override
@@ -30,7 +30,7 @@ class _PasswordFieldState extends State<PasswordFormField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
-          controller: _controller,
+          controller: widget.controller,
           decoration: InputDecoration(
             floatingLabelBehavior: widget.alwaysFloatingLabel
                 ? FloatingLabelBehavior.always
@@ -68,7 +68,7 @@ class _PasswordFieldState extends State<PasswordFormField> {
   void dispose() {
     // Solo disponemos el controlador si fue creado internamente
     if (widget.controller == null) {
-      _controller.dispose();
+      _controller?.dispose();
     }
     super.dispose();
   }

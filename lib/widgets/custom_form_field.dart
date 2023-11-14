@@ -21,6 +21,7 @@ class CustomFormField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextField(
+          controller: controller,
           decoration: InputDecoration(
               floatingLabelBehavior: alwaysFloatingLabel
                   ? FloatingLabelBehavior.always

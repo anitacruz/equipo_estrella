@@ -28,7 +28,9 @@ final List<GoRoute> routes = [
         subtitle: id.toString(),
         body: "Cuerpo",
         requirements: "Requisitos",
-        location: "Ubicación", vacancies: 10, availability: '', 
+        location: "Ubicación",
+        vacancies: 10,
+        availability: '',
       );
     },
   ),
@@ -38,7 +40,7 @@ final List<GoRoute> routes = [
   ),
   GoRoute(
     path: "/register",
-    builder: (context, state) => const Register(),
+    builder: (context, state) => Register(),
   ),
   GoRoute(
     path: "/welcome",
