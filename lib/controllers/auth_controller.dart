@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:equipo_estrella/models/users_model.dart';
+import 'package:equipo_estrella/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -18,7 +18,7 @@ class AuthController extends _$AuthController {
   }
 
   // For Authentication related functions you need an instance of FirebaseAuth
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //  This getter will be returning a Stream of User object.
   //  It will be used to check if the user is logged in or not.
@@ -94,7 +94,7 @@ class AuthController extends _$AuthController {
     await _auth.signOut();
   }
 
-  // Future<UsersModel> getUserProfile(email) async {
+  // Future<UserModel> getUserProfile(email) async {
   //   FirebaseFirestore db = FirebaseFirestore.instance;
   //   final user = await db.collection("user").get(email);
   //   final userInfo = user
@@ -103,11 +103,8 @@ class AuthController extends _$AuthController {
   // }
 
   Future<void> createUserProfile(String name, String lastname, String email) {
-    UsersModel newUser = UsersModel(
-        name: name,
-        lastname: lastname,
-        email: email,
-        favoriteVolunteerings: []);
+    UserModel newUser = UserModel(
+        name: name, lastname: lastname, email: email, favVolunteerings: []);
     FirebaseFirestore db = FirebaseFirestore.instance;
     return db.collection("user").add(newUser.toJson());
   }

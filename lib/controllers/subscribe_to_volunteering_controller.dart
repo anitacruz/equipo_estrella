@@ -8,8 +8,7 @@ part 'subscribe_to_volunteering_controller.g.dart';
 var logger = Logger();
 
 @riverpod
-class SubscribeToVolunteeringController
-    extends _$SubscribeToVolunteeringController {
+class SubscribeToVolunteeringController extends _$SubscribeToVolunteeringController {
   Future<void> subscribe(String volId, String userId) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
     final volunteering = db.collection("volunteering").doc(volId);

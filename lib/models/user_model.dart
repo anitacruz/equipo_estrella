@@ -1,17 +1,17 @@
-class UsersModel {
-  final String ?id;
+class UserModel {
+  final String? id;
   final String name;
   final String lastname;
   final String email;
-  final List<String> favoriteVolunteerings;
+  final List<dynamic> favVolunteerings;
 
-  UsersModel({
+  UserModel({
     //optional id
     this.id,
     required this.name,
     required this.lastname,
     required this.email,
-    required this.favoriteVolunteerings,
+    required this.favVolunteerings,
   });
 
   toJson() => {
@@ -19,16 +19,16 @@ class UsersModel {
         'name': name,
         'lastname': lastname,
         'email': email,
-        'favoriteVolunteerings': favoriteVolunteerings,
+        'favVolunteerings': favVolunteerings,
       };
 
-  factory UsersModel.fromMap(Map<String, dynamic> map, String? id) {
-    return UsersModel(
+  factory UserModel.fromMap(Map<String, dynamic> map, String? id) {
+    return UserModel(
       id: id ?? '',
       name: map['name'],
       lastname: map['lastname'],
       email: map['email'],
-      favoriteVolunteerings: map['favoriteVolunteerings'],
+      favVolunteerings: map['favVolunteerings'],
     );
   }
 }
