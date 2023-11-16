@@ -5,6 +5,7 @@ import 'package:equipo_estrella/controllers/get_volunteering_state_controller.da
 import 'package:equipo_estrella/controllers/subscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/unsubscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/volunteering_controller.dart';
+import 'package:equipo_estrella/models/volunteering_model.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -15,30 +16,12 @@ import '../widgets/card_chip.dart';
 import '../widgets/cards/location_card.dart';
 
 class ExpandedVolunteer extends ConsumerStatefulWidget {
-  const ExpandedVolunteer(
-      {Key? key,
-      required this.id,
-      required this.category,
-      required this.title,
-      required this.imageUrl,
-      required this.subtitle,
-      required this.body,
-      required this.requirements,
-      required this.location,
-      required this.vacancies,
-      required this.availability})
-      : super(key: key);
+  const ExpandedVolunteer({
+    Key? key,
+    required this.vModel,
+  }) : super(key: key);
 
-  final String id;
-  final String category;
-  final String title;
-  final String imageUrl;
-  final String subtitle;
-  final String body;
-  final String requirements;
-  final String location;
-  final String availability;
-  final int vacancies;
+  final VolunteeringModel vModel;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -50,18 +33,20 @@ var logger = Logger();
 class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
   VolunteerState? _volunteerState;
 
-  //TODO: fix the reload
   @override
   void initState() {
     super.initState();
     var getVolunteeringStateController =
         ref.read(getVolunteeringStateControllerProvider.notifier);
     getVolunteeringStateController
-        .getVolunteeringState(widget.id, "userId")
+        .getVolunteeringState(widget.vModel.id, "userId")
         .then((value) => {
-              setState(() {
-                _volunteerState = value as VolunteerState?;
-              })
+              if (mounted)
+                {
+                  setState(() {
+                    _volunteerState = value;
+                  })
+                }
             });
   }
 
@@ -69,11 +54,13 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
     final subscribeToVolunteering =
         ref.read(subscribeToVolunteeringControllerProvider.notifier);
 
+    //TODO: if volunteer has no data -> go to profile
     subscribeToVolunteering
         .subscribe(id, "userId")
-        .then((value) => {logger.i("Applied to volunteer")})
+        .then((value) => {logger.i("Applied to volunteering")})
         .whenComplete(() => setState(() {
               _volunteerState = VolunteerState.pendingState;
+              widget.vModel.pending.add("userId");
             }));
   }
 
@@ -81,54 +68,57 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
     final unsubscribeToVolunteering =
         ref.read(unsubscribeToVolunteeringControllerProvider.notifier);
 
-    unsubscribeToVolunteering
-        .unsubscribe(widget.id, "userId")
-        .then((value) => {logger.i("Unsubscribed from volunteer")})
-        .whenComplete(() => setState(() {
-              showModalBottomSheet(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Container(
-                        // width: 218, // Set the fixed width here
-                        alignment: Alignment.topCenter,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 24),
-                        decoration: ManosShadows.shadow2.copyWith(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(4))),
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "¿Estás seguro de que quieres cancelar tu postulación?",
-                                style: ManosFonts.sub1(),
-                              ),
-                              Text(widget.title, style: ManosFonts.h2()),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  SecondaryButton(
-                                    text: "Cancelar",
-                                    onPressedMethod: () =>
-                                        Navigator.of(context).pop(),
-                                    block: false,
-                                  ),
-                                  SecondaryButton(
-                                    text: "Confirmar",
-                                    block: false,
-                                    onPressedMethod: () {
-                                      Navigator.of(context).pop();
-                                      setState(() {
-                                        _volunteerState =
-                                            VolunteerState.outState;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              )
-                            ]));
-                  });
-            }));
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+              // width: 218, // Set the fixed width here
+              alignment: Alignment.topCenter,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+              decoration: ManosShadows.shadow2.copyWith(
+                  borderRadius: const BorderRadius.all(Radius.circular(4))),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "¿Estás seguro de que quieres cancelar tu postulación?",
+                      style: ManosFonts.sub1(),
+                    ),
+                    Text(widget.vModel.title, style: ManosFonts.h2()),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        SecondaryButton(
+                          text: "Cancelar",
+                          onPressedMethod: () => Navigator.of(context).pop(),
+                          block: false,
+                        ),
+                        SecondaryButton(
+                          text: "Confirmar",
+                          block: false,
+                          onPressedMethod: () {
+                            unsubscribeToVolunteering
+                                .unsubscribe(widget.vModel.id, "userId")
+                                .then((value) =>
+                                    {logger.i("Unsubscribed from volunteer")})
+                                .whenComplete(() => {
+                                      if (mounted)
+                                        {
+                                          setState(() {
+                                            _volunteerState =
+                                                VolunteerState.outState;
+                                            widget.vModel.pending
+                                                .remove("userId");
+                                            Navigator.of(context).pop();
+                                          })
+                                        }
+                                    });
+                          },
+                        ),
+                      ],
+                    )
+                  ]));
+        });
 
     //TODO: fix to display in the middle of the screen
   }
@@ -138,7 +128,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
     final volunteeringProvider =
         ref.watch(volunteeringControllerProvider.notifier);
 
-    volunteeringProvider.getVolunteering(widget.id).then((value) => {
+    volunteeringProvider.getVolunteering(widget.vModel.id).then((value) => {
           if (value.pending.contains("userId"))
             {
               setState(() {
@@ -164,7 +154,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: NetworkImage(
-                  widget.imageUrl,
+                  widget.vModel.imageUrl,
                 ),
                 fit: BoxFit.cover,
               ),
@@ -180,17 +170,17 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(widget.category,
+                    Text(widget.vModel.category,
                         style:
                             ManosFonts.overline(color: ManosColors.neutral0)),
                     const SizedBox(height: 16),
                     Text(
-                      widget.title,
+                      widget.vModel.title,
                       style: ManosFonts.h2(),
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      widget.subtitle,
+                      widget.vModel.subtitle,
                       style: ManosFonts.sub1(color: ManosColors.secondary200),
                     ),
                     const SizedBox(height: 16),
@@ -199,32 +189,47 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                       style: ManosFonts.h2(),
                     ),
                     const SizedBox(height: 16),
-                    Text(widget.body,
+                    Text(widget.vModel.body,
                         style: ManosFonts.b1(color: ManosColors.neutral0)),
                     const SizedBox(height: 16),
-                    LocationCard(location: widget.location),
+                    LocationCard(location: widget.vModel.location),
                     const SizedBox(height: 16),
                     Text(
                       "Participar del voluntariado",
                       style: ManosFonts.h2(),
                     ),
                     const SizedBox(height: 16),
-                    Text(widget.requirements,
+                    Text(widget.vModel.requirements,
                         style: ManosFonts.b1(color: ManosColors.neutral0)),
                     const SizedBox(height: 16),
-                    Text(widget.availability,
+                    Text(widget.vModel.availability,
                         style: ManosFonts.b1(color: ManosColors.neutral0)),
                     const SizedBox(height: 16),
                     Row(children: [
-                      CardChip(amount: widget.vacancies, isAvailable: true),
+                      CardChip(
+                          amount: widget.vModel.vacancies -
+                              widget.vModel.pending.length,
+                          isAvailable: true),
                       const SizedBox(width: 119),
                     ]),
                     const SizedBox(height: 16),
-                    if (_volunteerState == VolunteerState.outState)
+                    if (widget.vModel.vacancies == 0)
+                      Column(children: [
+                        Text(
+                          "No hay vacantes disponibles para postularse",
+                          style: ManosFonts.b1(color: ManosColors.neutral0),
+                        ),
+                        const SizedBox(height: 16),
+                        PrimaryButton(
+                            text: "Postularme",
+                            disabled: true,
+                            onPressedMethod: () => {})
+                      ])
+                    else if (_volunteerState == VolunteerState.outState)
                       PrimaryButton(
                           text: "Postularme",
                           onPressedMethod: () => subscribeToVolunteer(
-                              context, ref, widget.id)) //TODO
+                              context, ref, widget.vModel.id)) //TODO
                     else if (_volunteerState == VolunteerState.pendingState)
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,

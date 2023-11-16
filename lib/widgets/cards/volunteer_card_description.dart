@@ -24,7 +24,8 @@ class VolunteerCardDescription extends ConsumerStatefulWidget {
       _VolunteerCardDescriptionState();
 }
 
-class _VolunteerCardDescriptionState extends ConsumerState<VolunteerCardDescription> {
+class _VolunteerCardDescriptionState
+    extends ConsumerState<VolunteerCardDescription> {
   bool _isFav = false;
 
   void fav() {
@@ -32,6 +33,7 @@ class _VolunteerCardDescriptionState extends ConsumerState<VolunteerCardDescript
         ref.watch(favVolunteeringControllerProvider.notifier);
 
     if (_isFav == true) {
+      //TODO: get user id from state
       favVolunteeringProvider.remove("nNu3T0oLg2ir6lpBfKFx", widget.id);
     } else {
       favVolunteeringProvider.add("nNu3T0oLg2ir6lpBfKFx", widget.id);
@@ -42,7 +44,9 @@ class _VolunteerCardDescriptionState extends ConsumerState<VolunteerCardDescript
   }
 
   @override
-  Widget build(BuildContext context, ) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Container(
         // width: 1000,
         padding: const EdgeInsets.only(
@@ -69,7 +73,9 @@ class _VolunteerCardDescriptionState extends ConsumerState<VolunteerCardDescript
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CardChip(amount: widget.vacancies, isAvailable: true),
+                  CardChip(
+                      amount: widget.vacancies,
+                      isAvailable: widget.vacancies > 0),
                   Row(
                     children: [
                       IconButton(

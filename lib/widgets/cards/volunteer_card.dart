@@ -16,6 +16,8 @@ class VolunteerCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    logger.i("${vModel.pending.length}");
+    logger.i("${vModel.vacancies}");
     return Center(
         child: InkWell(
             onTap: () => {
@@ -23,18 +25,8 @@ class VolunteerCard extends ConsumerWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ExpandedVolunteer(
-                              id: vModel.id,
-                              category: vModel.category,
-                              title: vModel.title,
-                              imageUrl: vModel.imageUrl,
-                              subtitle: vModel.subtitle,
-                              body: vModel.body,
-                              requirements: vModel.requirements,
-                              location: vModel.location,
-                              vacancies: (vModel.vacancies -
-                                  vModel.pending
-                                      .length), //TODO: its subscribed not pending
-                              availability: vModel.availability)))
+                                vModel: vModel,
+                              )))
                 },
             child: Container(
                 alignment: Alignment.center,

@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/models/volunteering_model.dart';
 import 'package:equipo_estrella/views/edit_profile.dart';
 import 'package:equipo_estrella/views/expanded_volunteering.dart';
 import 'package:equipo_estrella/views/log_in.dart';
@@ -21,18 +22,22 @@ final List<GoRoute> routes = [
     path: '/volunteerings/:id',
     builder: (context, state) {
       final id = state.pathParameters['id'];
-      return ExpandedVolunteer(
-        id: id!,
-        category: "Categoría",
-        title: "Título",
-        imageUrl: "https://picsum.photos/200/300",
-        subtitle: id.toString(),
-        body: "Cuerpo",
-        requirements: "Requisitos",
-        location: "Ubicación",
-        vacancies: 10,
-        availability: '',
-      );
+      //TODO: "Get volunteering by id";
+      final vModel = VolunteeringModel(
+          id: id!,
+          category: "Categoría",
+          title: "Título",
+          imageUrl: "https://picsum.photos/200/300",
+          subtitle: id.toString(),
+          body: "Cuerpo",
+          requirements: "Requisitos",
+          location: "Ubicación",
+          vacancies: 10,
+          availability: '',
+          subscribed: [],
+          pending: []);
+
+      return ExpandedVolunteer(vModel: vModel);
     },
   ),
   GoRoute(
