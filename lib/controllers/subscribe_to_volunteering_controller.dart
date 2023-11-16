@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equipo_estrella/models/volunteering_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:logger/logger.dart';
 
@@ -9,7 +10,17 @@ var logger = Logger();
 
 @riverpod
 class SubscribeToVolunteeringController extends _$SubscribeToVolunteeringController {
-  Future<void> subscribe(String volId, String userId) async {
+  Future<void> subscribe(String volId) async {
+
+    
+
+    var userId = FirebaseAuth.instance.currentUser?.uid;
+
+    if (userId == null) {
+      logger.e("User not logged in");
+      return;
+    }
+
     FirebaseFirestore db = FirebaseFirestore.instance;
     final volunteering = db.collection("volunteering").doc(volId);
     var volunteeringData = await volunteering.get();

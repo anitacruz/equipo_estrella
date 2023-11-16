@@ -103,9 +103,20 @@ class AuthController extends _$AuthController {
   // }
 
   Future<void> createUserProfile(String name, String lastname, String email) {
+    var userId = _auth.currentUser?.uid;
+
+    if (userId == null) {
+      logger.e("User not logged in");
+      return Future.value();
+    }
+
     UserModel newUser = UserModel(
-        name: name, lastname: lastname, email: email, favVolunteerings: []);
+        name: name,
+        lastname: lastname,
+        email: email,
+        favVolunteerings: [],
+        id: userId);
     FirebaseFirestore db = FirebaseFirestore.instance;
-    return db.collection("user").add(newUser.toJson());
+    return db.collection("users").doc(userId).set(newUser.toJson());
   }
 }

@@ -4,6 +4,7 @@ import 'package:equipo_estrella/commons/shadows.dart';
 import 'package:equipo_estrella/controllers/get_volunteering_state_controller.dart';
 import 'package:equipo_estrella/controllers/subscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/unsubscribe_to_volunteering_controller.dart';
+import 'package:equipo_estrella/controllers/user_controller.dart';
 import 'package:equipo_estrella/controllers/volunteering_controller.dart';
 import 'package:equipo_estrella/models/volunteering_model.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
@@ -55,13 +56,16 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
     final subscribeToVolunteering =
         ref.read(subscribeToVolunteeringControllerProvider.notifier);
 
+    //TODO: CONTROLLER USER -> traeme el user actual (userModel)
+
     //TODO: if volunteer has no data -> go to profile
     subscribeToVolunteering
-        .subscribe(id, "userId")
+        .subscribe(id)
         .then((value) => {logger.i("Applied to volunteering")})
         .whenComplete(() => setState(() {
               _volunteerState = VolunteerState.pendingState;
-              widget.vModel.pending.add("userId");
+              widget.vModel.pending
+                  .add(1); //TODO: check si necesito el id de verdad
             }));
   }
 

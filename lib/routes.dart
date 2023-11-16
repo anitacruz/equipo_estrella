@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 
 import 'main.dart';
 
+//TODO: check if already used the app / is already logged in
 final List<GoRoute> routes = [
   GoRoute(
     path: '/',
