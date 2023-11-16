@@ -50,7 +50,8 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
             });
   }
 
-  void subscribeToVolunteer(BuildContext context, WidgetRef ref, String id) {
+  void subscribeToVolunteer(
+      BuildContext context, WidgetRef ref, String id) async {
     final subscribeToVolunteering =
         ref.read(subscribeToVolunteeringControllerProvider.notifier);
 
@@ -64,7 +65,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
             }));
   }
 
-  void cancelApplication() {
+  void cancelApplication() async {
     final unsubscribeToVolunteering =
         ref.read(unsubscribeToVolunteeringControllerProvider.notifier);
 
@@ -148,7 +149,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             color: ManosColors.neutral100,
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.pop(context),
           ),
           flexibleSpace: Container(
             decoration: BoxDecoration(
