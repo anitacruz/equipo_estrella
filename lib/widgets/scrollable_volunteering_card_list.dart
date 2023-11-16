@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/controllers/volunteering_controller.dart';
 import 'package:equipo_estrella/widgets/cards/volunteer_card.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,9 @@ class ScrollableVolunteeringCardList extends ConsumerWidget {
     final volunteeringList = ref.watch(volunteeringControllerProvider);
 
     return volunteeringList.when(
-      loading: () => const CircularProgressIndicator(),
+      loading: () => const CircularProgressIndicator(
+        color: ManosColors.primary100,
+      ),
       error: (error, stackTrace) => Text('Error: $error'),
       data: (data) {
         return SingleChildScrollView(

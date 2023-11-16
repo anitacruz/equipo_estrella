@@ -1,6 +1,7 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
+import 'package:equipo_estrella/controllers/get_volunteering_state_controller.dart';
 import 'package:equipo_estrella/controllers/subscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/unsubscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/volunteering_controller.dart';
@@ -9,14 +10,9 @@ import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../models/volunteer_state.dart';
 import '../widgets/card_chip.dart';
 import '../widgets/cards/location_card.dart';
-
-enum VolunteerState {
-  inState,
-  outState,
-  pendingState,
-}
 
 class ExpandedVolunteer extends ConsumerStatefulWidget {
   const ExpandedVolunteer(
@@ -52,7 +48,22 @@ class ExpandedVolunteer extends ConsumerStatefulWidget {
 var logger = Logger();
 
 class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
-  VolunteerState _volunteerState = VolunteerState.outState;
+  VolunteerState? _volunteerState;
+
+  //TODO: fix the reload
+  @override
+  void initState() {
+    super.initState();
+    var getVolunteeringStateController =
+        ref.read(getVolunteeringStateControllerProvider.notifier);
+    getVolunteeringStateController
+        .getVolunteeringState(widget.id, "userId")
+        .then((value) => {
+              setState(() {
+                _volunteerState = value as VolunteerState?;
+              })
+            });
+  }
 
   void subscribeToVolunteer(BuildContext context, WidgetRef ref, String id) {
     final subscribeToVolunteering =
@@ -64,17 +75,6 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
         .whenComplete(() => setState(() {
               _volunteerState = VolunteerState.pendingState;
             }));
-
-    // }) .when(data: (volunteering) {
-    //   logger.i("Applied to volunteer");
-    //   setState(() {
-    //     _volunteerState = VolunteerState.pendingState;
-    //   });
-    // }, loading: () {
-    //   logger.i("Loading");
-    // }, error: (error, stackTrace) {
-    //   logger.e("Error");
-    // });
   }
 
   void cancelApplication() {
@@ -131,13 +131,6 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
             }));
 
     //TODO: fix to display in the middle of the screen
-  }
-
-  void acceptApplication() {
-    setState(() {
-      _volunteerState = VolunteerState.inState;
-      //call volunteering controller subscribe method through volunteering provider
-    });
   }
 
   @override

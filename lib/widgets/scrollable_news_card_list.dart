@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/controllers/news_controller.dart';
 import 'package:equipo_estrella/widgets/cards/news_card.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,9 @@ class ScrollableNewsCardList extends ConsumerWidget {
         child: SizedBox(
           width: 24.0, // Adjust the size as needed
           height: 24.0, // Adjust the size as needed
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            color: ManosColors.primary100,
+          ),
         ),
       ),
       error: (error, stackTrace) => Text('Error: $error'),
