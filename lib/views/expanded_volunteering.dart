@@ -81,7 +81,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
   }
 
   void unsubscribeFromCurrentVolunteering(
-      BuildContext context, WidgetRef ref, String volId) async {
+      BuildContext context, WidgetRef ref) async {
     final unsubscribeToVolunteering =
         ref.read(unsubscribeToVolunteeringControllerProvider.notifier);
 
@@ -285,7 +285,9 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                             const SizedBox(height: 8),
                             SecondaryButton(
                                 text: "Cancelar postulación",
-                                onPressedMethod: () => cancelSubscription())
+                                onPressedMethod: () =>
+                                    unsubscribeFromCurrentVolunteering(
+                                        context, ref, widget.vModel.id))
                           ])
                     else if (_volunteerState == VolunteerState.inState)
                       Column(
