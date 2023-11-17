@@ -28,7 +28,7 @@ class Register extends StatelessWidget {
 
     return Scaffold(
       body: Consumer(builder: (context, ref, _) {
-        final _auth = ref.read(authControllerProvider.notifier);
+        final auth = ref.read(authControllerProvider.notifier);
 
         Future<void> onPressedFunction() async {
           logger.i("Name: ${_name.text}, Lastname: ${_lastname.text}");
@@ -68,10 +68,10 @@ class Register extends StatelessWidget {
             );
             return;
           }
-          await _auth.signUpWithEmailAndPassword(
+          await auth.signUpWithEmailAndPassword(
               _email.text, _password.text, context);
 
-          await _auth.createUserProfile(
+          await auth.createUserProfile(
               _name.text, _lastname.text, _email.text);
           router.go('/');
 

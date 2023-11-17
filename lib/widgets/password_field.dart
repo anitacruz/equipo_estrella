@@ -10,10 +10,11 @@ class PasswordFormField extends StatefulWidget {
       {super.key, this.alwaysFloatingLabel = false, this.controller});
 
   @override
-  _PasswordFieldState createState() => _PasswordFieldState();
+  @override
+  PasswordFieldState createState() => PasswordFieldState();
 }
 
-class _PasswordFieldState extends State<PasswordFormField> {
+class PasswordFieldState extends State<PasswordFormField> {
   late TextEditingController? _controller;
   bool _obscureText = true; //para ocultar o mostrar la contraseña
 

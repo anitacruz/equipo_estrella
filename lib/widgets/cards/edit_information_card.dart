@@ -9,10 +9,10 @@ class EditInformationCard extends StatefulWidget {
   const EditInformationCard({Key? key, required this.title}) : super(key: key);
 
   @override
-  _EditInformationCardState createState() => _EditInformationCardState();
+  EditInformationCardState createState() => EditInformationCardState();
 }
 
-class _EditInformationCardState extends State<EditInformationCard> {
+class EditInformationCardState extends State<EditInformationCard> {
   String selectedOption = '';
 
   void selectOption(String option) {
