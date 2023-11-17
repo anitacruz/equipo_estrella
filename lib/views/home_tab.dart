@@ -76,7 +76,7 @@ class _HomeTabState extends ConsumerState<HomeTab> {
                     "Voluntariados",
                     style: TextStyle(fontSize: 24),
                   ))),
-          const ScrollableVolunteeringCardList(),
+          const Expanded(child: ScrollableVolunteeringCardList()),
         ]));
   }
 }
