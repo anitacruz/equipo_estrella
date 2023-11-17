@@ -1,18 +1,18 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/controllers/upload_image_controller.dart';
 import 'package:equipo_estrella/widgets/buttons/short_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart';
 
 import '../commons/colors.dart';
 
-class EditProfilePicture extends StatefulWidget {
+class EditProfilePicture extends ConsumerStatefulWidget {
   final bool hasProfilePic;
 
   const EditProfilePicture({
@@ -21,14 +21,18 @@ class EditProfilePicture extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _EditProfilePictureState createState() => _EditProfilePictureState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      EditProfilePictureState();
 }
 
-class _EditProfilePictureState extends State<EditProfilePicture> {
+class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
   var logger = Logger();
   File? _selectedImage;
 
   Future<void> _pickImage() async {
+    var uploadImageController =
+        ref.watch(uploadImageControllerProvider.notifier);
+
     try {
       final imagePicker = ImagePicker();
       final pickedFile = await imagePicker.pickImage(
@@ -44,7 +48,7 @@ class _EditProfilePictureState extends State<EditProfilePicture> {
       logger.e("Error al seleccionar la imagen: $e");
     }
     // Subir la imagen a Firebase Storage
-    await _uploadImageToFirebase();
+    await uploadImageController.uploadImage(_selectedImage!);
   }
 
   Future<void> _uploadImageToFirebase() async {
@@ -52,15 +56,15 @@ class _EditProfilePictureState extends State<EditProfilePicture> {
       return;
     }
 
-    // final fileName = basename(_selectedImage!.path);
-    // final destination = 'files/$fileName';
-    // logger.i("Upload img from path: ${destination}");
-    // try {
-    //   final ref = FirebaseStorage.instance.ref(destination).child('fileaneta/');
-    //   await ref.putFile(_selectedImage!);
-    // } catch (e) {
-    //   logger.e("Error al subir la imagen a Firebase Storage: $e");
-    // }
+    final fileName = basename(_selectedImage!.path);
+    final destination = 'files/$fileName';
+    logger.i("Upload img from path: $destination");
+    try {
+      final ref = FirebaseStorage.instance.ref().child(destination);
+      await ref.putFile(_selectedImage!);
+    } catch (e) {
+      logger.e("Error al subir la imagen a Firebase Storage: $e");
+    }
 
     //   // Create a storage reference from our app
     //   logger.i("creando el storage ref");
@@ -78,20 +82,22 @@ class _EditProfilePictureState extends State<EditProfilePicture> {
     //   }
     // }
 
-    try {
-      logger.i("Upload img from path: ${_selectedImage!.path}");
-      final userId = FirebaseAuth.instance.currentUser?.uid;
-      logger.i("el userId es: $userId");
-      if (userId != null) {
-        final storageRef =
-            FirebaseStorage.instance.ref().child('profile_pics/$userId.jpg');
-        logger.i("el storageRef es: $storageRef");
-        logger.i("a punto de hacer el put file");
-        await storageRef.putFile(_selectedImage!);
-      }
-    } catch (e) {
-      print('Error al subir la imagen a Firebase Storage: $e');
-    }
+    // try {
+    //   logger.i("Upload img from path: ${_selectedImage!.path}");
+    //   final userId = FirebaseAuth.instance.currentUser?.uid;
+    //   logger.i("el userId es: $userId");
+    //   if (userId != null) {
+    //     final timestamp = DateTime.now().millisecondsSinceEpoch;
+    //     final storageRef = FirebaseStorage.instance
+    //         .ref()
+    //         .child('profile_pics/${userId}_$timestamp.jpg');
+    //     logger.i("el storageRef es: $storageRef");
+    //     logger.i("a punto de hacer el put file");
+    //     await storageRef.putFile(_selectedImage!);
+    //   }
+    // } catch (e) {
+    //   logger.e('Error al subir la imagen a Firebase Storage: $e');
+    // }
   }
 
   @override

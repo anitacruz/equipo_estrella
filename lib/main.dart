@@ -12,7 +12,7 @@ import 'package:go_router/go_router.dart';
 import 'routes.dart';
 
 final _router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/login',
   routes: routes, //Uso las rutas importadas del archivo routes
 );
 

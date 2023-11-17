@@ -64,6 +64,7 @@ class LogIn extends StatelessWidget {
                     if (event == null) {
                       return;
                     }
+                    router.go('/');
                   }));
         }
 
