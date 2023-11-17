@@ -99,8 +99,7 @@ class LogIn extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: PrimaryButton(
-                    text: "Iniciar Sesión",
-                    onPressedMethod: onPressedFunction),
+                    text: "Iniciar Sesión", onPressedMethod: onPressedFunction),
               ),
 
               const SizedBox(height: 16), // Espacio entre los botones
