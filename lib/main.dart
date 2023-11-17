@@ -1,6 +1,7 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/controllers/auth_state_changes.dart';
+import 'package:equipo_estrella/controllers/firebase_remote_config.dart';
 import 'package:equipo_estrella/views/news_tab.dart';
 import 'package:equipo_estrella/views/home_tab.dart';
 import 'package:equipo_estrella/views/profile_tab.dart';
@@ -45,6 +46,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseRemoteConfigService().init();
   runApp(const ProviderScope(child: MyApp())); // ProviderScope for Riverpod
 }
 

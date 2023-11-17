@@ -1,4 +1,5 @@
 import 'package:equipo_estrella/controllers/fav_volunteering_controller.dart';
+import 'package:equipo_estrella/controllers/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
@@ -27,6 +28,7 @@ class VolunteerCardDescription extends ConsumerStatefulWidget {
 class _VolunteerCardDescriptionState
     extends ConsumerState<VolunteerCardDescription> {
   bool _isFav = false;
+  final remoteConfig = FirebaseRemoteConfigService();
 
   void fav() {
     final favVolunteeringProvider =
@@ -76,22 +78,26 @@ class _VolunteerCardDescriptionState
                   CardChip(
                       amount: widget.vacancies,
                       isAvailable: widget.vacancies > 0),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(
-                            _isFav ? Icons.favorite : Icons.favorite_border),
-                        color: ManosColors.primary100,
-                        iconSize: 24,
-                        onPressed: () => setState(() {
-                          fav();
-                        }),
-                      ),
-                      const SizedBox(width: 16),
-                      const Icon(Icons.location_on,
+                  remoteConfig.allowFaving
+                      ? Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(_isFav
+                                  ? Icons.favorite
+                                  : Icons.favorite_border),
+                              color: ManosColors.primary100,
+                              iconSize: 24,
+                              onPressed: () => setState(() {
+                                fav();
+                              }),
+                            ),
+                            const SizedBox(width: 16),
+                            const Icon(Icons.location_on,
+                                color: ManosColors.primary100, size: 24)
+                          ],
+                        )
+                      : const Icon(Icons.location_on,
                           color: ManosColors.primary100, size: 24)
-                    ],
-                  )
                 ],
               ))
         ]));
