@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 
 import 'main.dart';
 
+final List<String> publicRoutes = ["/login", "/welcome", "/register"];
 //TODO: check if already used the app / is already logged in
 final List<GoRoute> routes = [
   GoRoute(
@@ -42,6 +43,7 @@ final List<GoRoute> routes = [
     },
   ),
   GoRoute(
+    name: "login",
     path: "/login",
     builder: (context, state) => const LogIn(),
   ),
