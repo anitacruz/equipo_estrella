@@ -5,6 +5,9 @@ import 'package:equipo_estrella/views/expanded_volunteering.dart';
 import 'package:equipo_estrella/widgets/cards/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 class ScrollableVolunteeringCardList extends ConsumerWidget {
   const ScrollableVolunteeringCardList({
@@ -21,38 +24,37 @@ class ScrollableVolunteeringCardList extends ConsumerWidget {
       ),
       error: (error, stackTrace) => Text('Error: $error'),
       data: (data) {
+        //log the data in a json format
         return SingleChildScrollView(
           child: Column(
-              children:
-                  // data.map((vModel) => VolunteerCard(vModel: vModel)).toList(),
-                  data
-                      .map((vModel) => InkWell(
-                          onTap: () => {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ExpandedVolunteer(
-                                              vModel: vModel,
-                                            )))
-                              },
-                          child: Container(
-                              alignment: Alignment.center,
-                              margin: const EdgeInsets.only(bottom: 24),
-                              decoration: ManosShadows.shadow1,
-                              child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Image.network(vModel.imageUrl,
-                                        height: 138, fit: BoxFit.cover),
-                                    VolunteerCardDescription(
-                                        id: vModel.id,
-                                        category: vModel.category,
-                                        title: vModel.title,
-                                        vacancies: (vModel.vacancies -
-                                            vModel.pending.length))
-                                  ]))))
-                      .toList()
+              children: data
+                  .map((vModel) => InkWell(
+                      onTap: () => {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ExpandedVolunteer(
+                                          vModel: vModel,
+                                        )))
+                          },
+                      child: Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(bottom: 24),
+                          decoration: ManosShadows.shadow1,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                Image.network(vModel.imageUrl,
+                                    height: 138, fit: BoxFit.cover),
+                                VolunteerCardDescription(
+                                    id: vModel.id,
+                                    category: vModel.category,
+                                    title: vModel.title,
+                                    vacancies: (vModel.vacancies -
+                                        vModel.pending
+                                            .length)) //TODO: refactor to subscribed
+                              ]))))
+                  .toList()
               // Add other widgets to display more data as needed.
               ),
         );

@@ -5,7 +5,6 @@ import 'package:equipo_estrella/controllers/get_volunteering_state_controller.da
 import 'package:equipo_estrella/controllers/subscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/unsubscribe_to_volunteering_controller.dart';
 import 'package:equipo_estrella/controllers/user_controller.dart';
-import 'package:equipo_estrella/controllers/volunteering_controller.dart';
 import 'package:equipo_estrella/models/volunteering_model.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
@@ -37,10 +36,19 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
   @override
   void initState() {
     super.initState();
+    initializeState();
+  }
+
+  Future<void> initializeState() async {
     var getVolunteeringStateController =
         ref.read(getVolunteeringStateControllerProvider.notifier);
+
+    var userController = ref.read(userControllerProvider.notifier);
+
+    var currentUser = await userController.getCurrUser();
+
     getVolunteeringStateController
-        .getVolunteeringState(widget.vModel.id, "userId")
+        .getVolunteeringState(widget.vModel.id, currentUser)
         .then((value) => {
               if (mounted)
                 {
@@ -56,23 +64,57 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
     final subscribeToVolunteering =
         ref.read(subscribeToVolunteeringControllerProvider.notifier);
 
-    //TODO: CONTROLLER USER -> traeme el user actual (userModel)
+    // TODO: CONTROLLER USER -> traeme el user actual (userModel)
+    final user = ref.read(userControllerProvider.notifier);
 
+    var currUser = await user.getCurrUser();
     //TODO: if volunteer has no data -> go to profile
+
     subscribeToVolunteering
-        .subscribe(id)
+        .subscribe(id, currUser.id)
         .then((value) => {logger.i("Applied to volunteering")})
         .whenComplete(() => setState(() {
               _volunteerState = VolunteerState.pendingState;
               widget.vModel.pending
-                  .add(1); //TODO: check si necesito el id de verdad
+                  .add(currUser.id); //TODO: check si necesito el id de verdad
             }));
   }
 
-  void cancelApplication() async {
+  void unsubscribeFromCurrentVolunteering(
+      BuildContext context, WidgetRef ref, String volId) async {
     final unsubscribeToVolunteering =
         ref.read(unsubscribeToVolunteeringControllerProvider.notifier);
 
+    final user = ref.read(userControllerProvider.notifier);
+
+    var currUser = await user.getCurrUser();
+
+    var currVol = currUser.currVolunteering;
+    logger.i(currUser.currVolunteering);
+    currUser.currVolunteering = "";
+    logger.i(currUser.currVolunteering);
+    await user.updateUser(currUser);
+    await unsubscribeToVolunteering
+        .unsubscribe(currVol, currUser.id)
+        .whenComplete(() => {
+              if (mounted)
+                setState(() {
+                  _volunteerState = VolunteerState.outState;
+                })
+            });
+  }
+
+  void cancelSubscription() async {
+    final unsubscribeToVolunteering =
+        ref.read(unsubscribeToVolunteeringControllerProvider.notifier);
+
+    final user = ref.read(userControllerProvider.notifier);
+
+    var currUser = await user.getCurrUser();
+
+    //TODO: fix to display in the middle of the screen
+    //TODO: fix
+    // ignore: use_build_context_synchronously
     showModalBottomSheet(
         context: context,
         builder: (BuildContext context) {
@@ -103,7 +145,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                           block: false,
                           onPressedMethod: () {
                             unsubscribeToVolunteering
-                                .unsubscribe(widget.vModel.id, "userId")
+                                .unsubscribe(widget.vModel.id, currUser.id)
                                 .then((value) =>
                                     {logger.i("Unsubscribed from volunteer")})
                                 .whenComplete(() => {
@@ -113,7 +155,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                                             _volunteerState =
                                                 VolunteerState.outState;
                                             widget.vModel.pending
-                                                .remove("userId");
+                                                .remove(currUser.id);
                                             Navigator.of(context).pop();
                                           })
                                         }
@@ -124,30 +166,10 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                     )
                   ]));
         });
-
-    //TODO: fix to display in the middle of the screen
   }
 
   @override
   Widget build(BuildContext context) {
-    final volunteeringProvider =
-        ref.watch(volunteeringControllerProvider.notifier);
-
-    volunteeringProvider.getVolunteering(widget.vModel.id).then((value) => {
-          if (value.pending.contains("userId"))
-            {
-              setState(() {
-                _volunteerState = VolunteerState.pendingState;
-              })
-            }
-          else if (value.subscribed.contains("userId"))
-            {
-              setState(() {
-                _volunteerState = VolunteerState.inState;
-              })
-            }
-        });
-
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -218,7 +240,25 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                       const SizedBox(width: 119),
                     ]),
                     const SizedBox(height: 16),
-                    if (widget.vModel.vacancies == 0)
+                    if (_volunteerState == VolunteerState.alreadyInOneState)
+                      Column(children: [
+                        Text(
+                          "Ya estas participando en otro voluntariado, debes abandonarlo primero para postularte a este.",
+                          style: ManosFonts.b1(color: ManosColors.neutral0),
+                        ),
+                        const SizedBox(height: 16),
+                        SecondaryButton(
+                            text: "Abandonar voluntariado actual",
+                            onPressedMethod: () =>
+                                unsubscribeFromCurrentVolunteering(
+                                    context, ref, widget.vModel.id)),
+                        const SizedBox(height: 16),
+                        PrimaryButton(
+                            text: "Postularme",
+                            disabled: true,
+                            onPressedMethod: () => {})
+                      ])
+                    else if (widget.vModel.vacancies == 0)
                       Column(children: [
                         Text(
                           "No hay vacantes disponibles para postularse",
@@ -230,11 +270,6 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                             disabled: true,
                             onPressedMethod: () => {})
                       ])
-                    else if (_volunteerState == VolunteerState.outState)
-                      PrimaryButton(
-                          text: "Postularme",
-                          onPressedMethod: () => subscribeToVolunteer(
-                              context, ref, widget.vModel.id)) //TODO
                     else if (_volunteerState == VolunteerState.pendingState)
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -250,7 +285,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                             const SizedBox(height: 8),
                             SecondaryButton(
                                 text: "Cancelar postulación",
-                                onPressedMethod: () => cancelApplication())
+                                onPressedMethod: () => cancelSubscription())
                           ])
                     else if (_volunteerState == VolunteerState.inState)
                       Column(
@@ -267,8 +302,13 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                             const SizedBox(height: 8),
                             SecondaryButton(
                                 text: "Abandonar voluntariado",
-                                onPressedMethod: () => cancelApplication())
+                                onPressedMethod: () => cancelSubscription())
                           ])
+                    else if (_volunteerState == VolunteerState.outState)
+                      PrimaryButton(
+                          text: "Postularme",
+                          onPressedMethod: () => subscribeToVolunteer(
+                              context, ref, widget.vModel.id)) //TODO
                   ],
                 ))));
   }

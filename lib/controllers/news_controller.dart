@@ -11,7 +11,7 @@ var logger = Logger();
 class NewsController extends _$NewsController {
   @override
   Future<List<NewsModel>> build() {
-    logger.i("Building NewsController");
+    // logger.i("Building NewsController");
     return getNewsList();
   }
 
