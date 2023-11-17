@@ -100,6 +100,10 @@ class AuthController extends _$AuthController {
         email: email,
         favVolunteerings: [],
         currVolunteering: '',
+        birthDate: Timestamp.fromDate(DateTime.now()),
+        phone: '',
+        sex: '',
+        altEmail: '',
         id: userId);
     FirebaseFirestore db = FirebaseFirestore.instance;
     return db.collection("users").doc(userId).set(newUser.toJson());

@@ -24,13 +24,15 @@ class UserController extends _$UserController {
     final doc = db.collection("users").doc(currUserId);
     final data = await doc.get();
 
+    logger.e(data.data());
     final map = data.data() as Map<String, dynamic>;
     _currUser = UserModel.fromMap(map, currUserId);
   }
 
   @override
-  Future<void> build() async {
+  Future<UserModel> build() async {
     await refresh();
+    return _currUser!;
   }
 
   Future<UserModel> getCurrUser() async {
@@ -61,4 +63,9 @@ class UserController extends _$UserController {
     return user.get().then(
         (value) => UserModel.fromMap(value.data() as Map<String, dynamic>, id));
   }
+
+  void when(
+      {required Null Function(dynamic data) data,
+      required Map loading,
+      required Map error}) {}
 }
