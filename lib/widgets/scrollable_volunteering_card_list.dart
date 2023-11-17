@@ -1,6 +1,5 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/shadows.dart';
-import 'package:equipo_estrella/controllers/volunteering_controller.dart';
 import 'package:equipo_estrella/views/expanded_volunteering.dart';
 import 'package:equipo_estrella/widgets/cards/volunteer_card_description.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
+
+import '../controllers/volunteering_controller.dart';
 
 class ScrollableVolunteeringCardList extends ConsumerWidget {
   const ScrollableVolunteeringCardList({

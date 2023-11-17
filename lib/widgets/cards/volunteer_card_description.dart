@@ -1,9 +1,10 @@
-import 'package:equipo_estrella/controllers/fav_volunteering_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/commons/fonts.dart';
 import 'package:equipo_estrella/widgets/card_chip.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../controllers/fav_volunteering_controller.dart';
 
 class VolunteerCardDescription extends ConsumerStatefulWidget {
   const VolunteerCardDescription(

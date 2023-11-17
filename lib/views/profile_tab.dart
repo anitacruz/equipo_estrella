@@ -73,7 +73,7 @@ class ProfileTab extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SecondaryButton(
             text: "Cerrar sesión",
-            onPressedMethod: () => {},
+            onPressedMethod: () => {router.go('/editProfile')},
             textColor: ManosColors.error,
           ),
         )

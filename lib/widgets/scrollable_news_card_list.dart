@@ -1,8 +1,9 @@
 import 'package:equipo_estrella/commons/colors.dart';
-import 'package:equipo_estrella/controllers/news_controller.dart';
 import 'package:equipo_estrella/widgets/cards/news_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../controllers/news_controller.dart';
 
 class ScrollableNewsCardList extends ConsumerWidget {
   const ScrollableNewsCardList({

@@ -1,4 +1,3 @@
-import 'package:equipo_estrella/controllers/auth_controller.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
@@ -7,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
+
+import '../controllers/auth_controller.dart';
 
 var logger = Logger();
 
@@ -85,9 +86,7 @@ class LogIn extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: CustomFormField(
-                    fieldName: "Email",
-                    hintText: "anacruz@yahoo.com",
-                    controller: email),
+                    fieldName: "Email", hintText: "", controller: email),
               ),
               const SizedBox(height: 24), //Espacio entre email y password
               Container(
