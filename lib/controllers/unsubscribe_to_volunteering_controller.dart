@@ -12,7 +12,7 @@ class UnsubscribeToVolunteeringController
     extends _$UnsubscribeToVolunteeringController {
   Future<void> unsubscribe(String volId, String userId) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final volunteering = db.collection("volunteering").doc(volId);
+    final volunteering = db.collection("volunteerings").doc(volId);
     var volunteeringData = await volunteering.get();
 
     final map = volunteeringData.data() as Map<String, dynamic>;
@@ -24,7 +24,7 @@ class UnsubscribeToVolunteeringController
       volunteeringUpdate.subscribed.remove(userId);
     }
     await db
-        .collection("volunteering")
+        .collection("volunteerings")
         .doc(volId)
         .update(volunteeringUpdate.toJson());
   }

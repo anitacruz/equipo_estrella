@@ -28,17 +28,17 @@ class Register extends StatelessWidget {
 
     return Scaffold(
       body: Consumer(builder: (context, ref, _) {
-        final _auth = ref.read(authControllerProvider.notifier);
+        final auth = ref.read(authControllerProvider.notifier);
 
-        Future<void> _onPressedFunction() async {
+        Future<void> onPressedFunction() async {
           logger.i("Name: ${_name.text}, Lastname: ${_lastname.text}");
-          logger.i("Email: ${_email.text}, Password: ${_password.text}");
+          // logger.i("Email: ${_email.text}, Password: ${_password.text}");
           // Check email and password are not null
           if (_name.text.isEmpty || _lastname.text.isEmpty) {
             await showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: const Text('Error Occured'),
+                title: const Text('Ocurrió un error'),
                 content: const Text("Nombre o apellido vacíos"),
                 actions: [
                   TextButton(
@@ -55,7 +55,7 @@ class Register extends StatelessWidget {
             await showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
-                title: const Text('Error Occured'),
+                title: const Text('Ocurrió un error'),
                 content: const Text("Email o contraseña vacíos"),
                 actions: [
                   TextButton(
@@ -68,11 +68,18 @@ class Register extends StatelessWidget {
             );
             return;
           }
-          await _auth
-              .signUpWithEmailAndPassword(_email.text, _password.text, context)
-              .whenComplete(() async => await _auth
-                  .createUserProfile(_name.text, _lastname.text, _email.text)
-                  .whenComplete(() => router.go('/')));
+          await auth.signUpWithEmailAndPassword(
+              _email.text, _password.text, context);
+
+          await auth.createUserProfile(
+              _name.text, _lastname.text, _email.text);
+          router.go('/');
+
+          // await _auth
+          //     .signUpWithEmailAndPassword(_email.text, _password.text, context)
+          //     .whenComplete(() async => await _auth
+          //         .createUserProfile(_name.text, _lastname.text, _email.text)
+          //         .whenComplete(() => router.go('/home')));
         }
 
         return Center(
@@ -130,7 +137,7 @@ class Register extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: PrimaryButton(
-                    text: "Registrarse", onPressedMethod: _onPressedFunction),
+                    text: "Registrarse", onPressedMethod: onPressedFunction),
               ),
 
               const SizedBox(height: 16), // Espacio entre los botones

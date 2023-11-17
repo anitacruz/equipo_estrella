@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: "Flutter Demo",
+      title: "Ser Manos",
       theme: ThemeData(
           primaryColor: const Color.fromARGB(20, 144, 63, 1),
           useMaterial3: true),

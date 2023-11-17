@@ -1,17 +1,18 @@
 class UserModel {
-  final String? id;
+  final String id;
   final String name;
   final String lastname;
   final String email;
   final List<dynamic> favVolunteerings;
+  String currVolunteering;
 
   UserModel({
-    //optional id
-    this.id,
+    required this.id,
     required this.name,
     required this.lastname,
     required this.email,
     required this.favVolunteerings,
+    required this.currVolunteering,
   });
 
   toJson() => {
@@ -19,6 +20,7 @@ class UserModel {
         'name': name,
         'lastname': lastname,
         'email': email,
+        'currVolunteering': currVolunteering,
         'favVolunteerings': favVolunteerings,
       };
 
@@ -29,6 +31,7 @@ class UserModel {
       lastname: map['lastname'],
       email: map['email'],
       favVolunteerings: map['favVolunteerings'],
+      currVolunteering: map['currVolunteering'],
     );
   }
 }

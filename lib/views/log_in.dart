@@ -15,8 +15,8 @@ class LogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _email = TextEditingController();
-    final _password = TextEditingController();
+    final email = TextEditingController();
+    final password = TextEditingController();
 
     final GoRouter router = GoRouter.of(context);
 
@@ -25,23 +25,23 @@ class LogIn extends StatelessWidget {
         //  Consuming a provider using watch method and storing it in a variable
         //  Now we will use this variable to access all the functions of the
         //  authentication
-        final _auth = ref.watch(authControllerProvider.notifier);
+        final auth = ref.watch(authControllerProvider.notifier);
 
         //  Instead of creating a clutter on the onPressed Function
         //  I have decided to create a seperate function and pass them into the
         //  respective parameters.
         //  if you want you can write the exact code in the onPressed function
         //  it all depends on personal preference and code readability
-        Future<void> _onPressedFunction() async {
+        Future<void> onPressedFunction() async {
           // logger.i(_email.text); // This are your best friend for debugging things
           //  not to mention the debugging tools
           // logger.i(_password.text);
 
           //loading();
-          logger.i("Email: ${_email.text}, Password: ${_password.text}");
+          logger.i("Email: ${email.text}, Password: ${password.text}");
           // Check email and password are not null
 
-          if (_email.text.isEmpty || _password.text.isEmpty) {
+          if (email.text.isEmpty || password.text.isEmpty) {
             await showDialog(
               context: context,
               builder: (ctx) => AlertDialog(
@@ -58,9 +58,9 @@ class LogIn extends StatelessWidget {
             );
             return;
           }
-          await _auth
-              .signInWithEmailAndPassword(_email.text, _password.text, context)
-              .whenComplete(() => _auth.authStateChange.listen((event) async {
+          await auth
+              .signInWithEmailAndPassword(email.text, password.text, context)
+              .whenComplete(() => auth.authStateChange.listen((event) async {
                     if (event == null) {
                       return;
                     }
@@ -87,20 +87,19 @@ class LogIn extends StatelessWidget {
                 child: CustomFormField(
                     fieldName: "Email",
                     hintText: "anacruz@yahoo.com",
-                    controller: _email),
+                    controller: email),
               ),
               const SizedBox(height: 24), //Espacio entre email y password
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
-                child: PasswordFormField(controller: _password),
+                child: PasswordFormField(controller: password),
               ),
 
               const Spacer(), // Espaciador para centrar verticalmente los botones
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: PrimaryButton(
-                    text: "Iniciar Sesión",
-                    onPressedMethod: _onPressedFunction),
+                    text: "Iniciar Sesión", onPressedMethod: onPressedFunction),
               ),
 
               const SizedBox(height: 16), // Espacio entre los botones

@@ -13,7 +13,7 @@ var logger = Logger();
 class AuthController extends _$AuthController {
   @override
   Future<void> build() {
-    logger.i("Building AuthController");
+    // logger.i("Building AuthController");
     return Future.value();
   }
 
@@ -24,24 +24,14 @@ class AuthController extends _$AuthController {
   //  It will be used to check if the user is logged in or not.
   Stream<User?> get authStateChange => _auth.authStateChanges();
 
-  // Now This Class Contains 3 Functions currently
-  // 1. signInWithGoogle
-  // 2. signOut
-  // 3. signInwithEmailAndPassword
-
-  //  All these functions are async because this involves a future.
-  //  if async keyword is not used, it will throw an error.
-  //  to know more about futures, check out the documentation.
-  //  https://dart.dev/codelabs/async-await
-  //  Read this to know more about futures.
-  //  Trust me it will really clear all your concepts about futures
-
   //  SigIn the user using Email and Password
   Future<void> signInWithEmailAndPassword(
       String email, String password, BuildContext context) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
+      //TODO: fix this
+      // ignore: use_build_context_synchronously
       await showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
@@ -94,16 +84,10 @@ class AuthController extends _$AuthController {
     await _auth.signOut();
   }
 
-  // Future<UserModel> getUserProfile(email) async {
-  //   FirebaseFirestore db = FirebaseFirestore.instance;
-  //   final user = await db.collection("user").get(email);
-  //   final userInfo = user
-  //   //final newsList = news.docs.map((doc) => doc.data()).toList();
-  //   return newsList.map((e) => NewsModel.fromMap(e)).toList();
-  // }
-
-  Future<void> createUserProfile(String name, String lastname, String email) {
-    var userId = _auth.currentUser?.uid;
+  Future<void> createUserProfile(
+      String name, String lastname, String email) async {
+    await _auth.authStateChanges().firstWhere((user) => user != null);
+    var userId = FirebaseAuth.instance.currentUser?.uid;
 
     if (userId == null) {
       logger.e("User not logged in");
@@ -115,6 +99,7 @@ class AuthController extends _$AuthController {
         lastname: lastname,
         email: email,
         favVolunteerings: [],
+        currVolunteering: '',
         id: userId);
     FirebaseFirestore db = FirebaseFirestore.instance;
     return db.collection("users").doc(userId).set(newUser.toJson());

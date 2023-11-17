@@ -11,13 +11,13 @@ var logger = Logger();
 class VolunteeringController extends _$VolunteeringController {
   @override
   Future<List<VolunteeringModel>> build() {
-    logger.i("Building VolunteeringController");
+    // logger.i("Building VolunteeringController");
     return getVolunteeringList();
   }
 
   Future<List<VolunteeringModel>> getVolunteeringList() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final volunteerings = await db.collection("volunteering").get();
+    final volunteerings = await db.collection("volunteerings").get();
     final volunteeringsList = volunteerings.docs.map((doc) {
       final id = doc.id;
       final data = doc.data();
@@ -29,7 +29,7 @@ class VolunteeringController extends _$VolunteeringController {
 
   Future<VolunteeringModel> getVolunteering(String id) async {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final volunteering = db.collection("volunteering").doc(id);
+    final volunteering = db.collection("volunteerings").doc(id);
     final data = (await volunteering.get()).data();
     return VolunteeringModel.fromMap(data!, id);
   }
