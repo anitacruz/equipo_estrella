@@ -1,15 +1,104 @@
+import 'dart:io';
+
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/controllers/upload_image_controller.dart';
 import 'package:equipo_estrella/widgets/buttons/short_button.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:logger/logger.dart';
+import 'package:path/path.dart';
 
 import '../commons/colors.dart';
 
-class EditProfilePicture extends StatelessWidget {
+class EditProfilePicture extends ConsumerStatefulWidget {
   final bool hasProfilePic;
+
   const EditProfilePicture({
     Key? key,
     required this.hasProfilePic,
   }) : super(key: key);
+
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      EditProfilePictureState();
+}
+
+class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
+  var logger = Logger();
+  File? _selectedImage;
+
+  Future<void> _pickImage() async {
+    var uploadImageController =
+        ref.watch(uploadImageControllerProvider.notifier);
+
+    try {
+      final imagePicker = ImagePicker();
+      final pickedFile = await imagePicker.pickImage(
+          source: ImageSource.gallery, maxWidth: 1500, maxHeight: 1500);
+      logger.i(
+          "the name of the file is ${pickedFile!.name} and the extension is ${pickedFile.mimeType}. additionally, the path is ${pickedFile.path}");
+
+      final imageTemp = File(pickedFile.path);
+      logger.i("ya tengo el image temp!");
+      setState(() => _selectedImage = imageTemp);
+      logger.i("despues de setear el estado");
+    } catch (e) {
+      logger.e("Error al seleccionar la imagen: $e");
+    }
+    // Subir la imagen a Firebase Storage
+    await uploadImageController.uploadImage(_selectedImage!);
+  }
+
+  Future<void> _uploadImageToFirebase() async {
+    if (_selectedImage == null) {
+      return;
+    }
+
+    final fileName = basename(_selectedImage!.path);
+    final destination = 'files/$fileName';
+    logger.i("Upload img from path: $destination");
+    try {
+      final ref = FirebaseStorage.instance.ref().child(destination);
+      await ref.putFile(_selectedImage!);
+    } catch (e) {
+      logger.e("Error al subir la imagen a Firebase Storage: $e");
+    }
+
+    //   // Create a storage reference from our app
+    //   logger.i("creando el storage ref");
+    //   final storageRef = FirebaseStorage.instance.ref();
+    //   // Create a reference to "mountains.jpg"
+    //   logger.i("creando el mountains ref");
+    //   final mountainsRef = storageRef.child("mountains.jpg");
+
+    //   try {
+    //     logger.i("estamos adentro del try, por mandar el put file...");
+    //     await mountainsRef.putFile(_selectedImage!);
+    //     logger.i("despues del await)");
+    //   } on FirebaseException catch (e) {
+    //     // ...
+    //   }
+    // }
+
+    // try {
+    //   logger.i("Upload img from path: ${_selectedImage!.path}");
+    //   final userId = FirebaseAuth.instance.currentUser?.uid;
+    //   logger.i("el userId es: $userId");
+    //   if (userId != null) {
+    //     final timestamp = DateTime.now().millisecondsSinceEpoch;
+    //     final storageRef = FirebaseStorage.instance
+    //         .ref()
+    //         .child('profile_pics/${userId}_$timestamp.jpg');
+    //     logger.i("el storageRef es: $storageRef");
+    //     logger.i("a punto de hacer el put file");
+    //     await storageRef.putFile(_selectedImage!);
+    //   }
+    // } catch (e) {
+    //   logger.e('Error al subir la imagen a Firebase Storage: $e');
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +121,7 @@ class EditProfilePicture extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(4)),
               color: ManosColors.secondary25,
             ),
-            child: !hasProfilePic
+            child: !widget.hasProfilePic
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -56,7 +145,7 @@ class EditProfilePicture extends StatelessWidget {
                               )),
                           const SizedBox(height: 8),
                           ShortButton(
-                              onPressedMethod: () => {}, text: "Cambiar foto")
+                              onPressedMethod: _pickImage, text: "Cambiar foto")
                         ],
                       ),
                       ClipOval(

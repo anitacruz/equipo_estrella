@@ -2,6 +2,7 @@ import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:equipo_estrella/widgets/cards/information_card.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../commons/colors.dart';
 import '../commons/fonts.dart';
@@ -11,6 +12,8 @@ class ProfileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final router = GoRouter.of(context);
     return Center(
         child: Column(
       children: [
@@ -63,7 +66,7 @@ class ProfileTab extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child:
-              PrimaryButton(text: "Editar perfil", onPressedMethod: () => {}),
+              PrimaryButton(text: "Editar perfil", onPressedMethod: () => {router.go("/editProfile")}),
         ),
         const SizedBox(height: 8),
         Container(

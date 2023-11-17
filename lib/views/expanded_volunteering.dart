@@ -251,7 +251,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                             text: "Abandonar voluntariado actual",
                             onPressedMethod: () =>
                                 unsubscribeFromCurrentVolunteering(
-                                    context, ref, widget.vModel.id)),
+                                    context, ref)),
                         const SizedBox(height: 16),
                         PrimaryButton(
                             text: "Postularme",
@@ -287,7 +287,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                                 text: "Cancelar postulación",
                                 onPressedMethod: () =>
                                     unsubscribeFromCurrentVolunteering(
-                                        context, ref, widget.vModel.id))
+                                        context, ref))
                           ])
                     else if (_volunteerState == VolunteerState.inState)
                       Column(
