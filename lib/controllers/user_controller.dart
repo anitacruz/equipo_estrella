@@ -28,22 +28,6 @@ class UserController extends _$UserController {
     _currUser = UserModel.fromMap(map, currUserId);
   }
 
-  // Future<void> refresh() async {
-  //   var currUserId = FirebaseAuth.instance.currentUser?.uid;
-
-  //   if (currUserId == null) {
-  //     logger.e("User not logged in");
-  //   }
-
-  //   FirebaseFirestore db = FirebaseFirestore.instance;
-  //   final docRef = db.collection("users").doc(currUserId);
-
-  //   docRef.snapshots().listen((event) {
-  //     _currUser =
-  //         UserModel.fromMap(event.data() as Map<String, dynamic>, currUserId);
-  //   });
-  // }
-
   @override
   Future<void> build() async {
     await refresh();

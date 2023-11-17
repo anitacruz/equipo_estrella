@@ -4,9 +4,11 @@ import 'package:equipo_estrella/commons/shadows.dart';
 import 'package:flutter/material.dart';
 
 class ActivityCard extends StatelessWidget {
-  const ActivityCard({Key? key, required this.category, required this.title})
+  const ActivityCard(
+      {Key? key, required this.category, required this.title, required this.id})
       : super(key: key);
 
+  final String id;
   final String category;
   final String title;
 

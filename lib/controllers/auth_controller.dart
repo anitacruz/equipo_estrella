@@ -30,6 +30,8 @@ class AuthController extends _$AuthController {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
+      //TODO: fix this
+      // ignore: use_build_context_synchronously
       await showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
