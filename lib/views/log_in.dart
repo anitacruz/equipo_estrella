@@ -1,4 +1,5 @@
 import 'package:equipo_estrella/controllers/auth_controller.dart';
+import 'package:equipo_estrella/controllers/firebase_remote_config.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
@@ -19,6 +20,8 @@ class LogIn extends StatelessWidget {
     final password = TextEditingController();
 
     final GoRouter router = GoRouter.of(context);
+
+    final remoteConfig = FirebaseRemoteConfigService();
 
     return Scaffold(
       body: Consumer(builder: (context, ref, _) {
@@ -76,7 +79,7 @@ class LogIn extends StatelessWidget {
                 margin: const EdgeInsets.only(
                     top: 229), // Establece el margen superior en 229 píxeles
                 child: Image.asset(
-                  "assets/Ser_manos_logo.png",
+                  "assets/${remoteConfig.logoImage}",
                   width: 150,
                   height: 150,
                 ),
