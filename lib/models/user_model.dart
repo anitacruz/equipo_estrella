@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class UserModel {
   final String id;
   final String name;
@@ -7,19 +5,21 @@ class UserModel {
   final String email;
   final String altEmail;
   final String phone;
-  final String sex;
-  final Timestamp birthDate;
+  final String gender;
+  final String birthDate;
+  final String imageUrl;
   final List<dynamic> favVolunteerings;
   String currVolunteering;
 
   UserModel({
     required this.id,
-    required this.sex,
+    required this.gender,
     required this.name,
     required this.lastname,
     required this.email,
     required this.altEmail,
     required this.phone,
+    required this.imageUrl,
     required this.birthDate,
     required this.favVolunteerings,
     required this.currVolunteering,
@@ -35,7 +35,8 @@ class UserModel {
         'birthDate': birthDate,
         'currVolunteering': currVolunteering,
         'favVolunteerings': favVolunteerings,
-        'sex': sex
+        'gender': gender,
+        'imageUrl': imageUrl
       };
 
   factory UserModel.fromMap(Map<String, dynamic> map, String? id) {
@@ -49,7 +50,29 @@ class UserModel {
       birthDate: map['birthDate'],
       favVolunteerings: map['favVolunteerings'],
       currVolunteering: map['currVolunteering'],
-      sex: map['sex'],
+      gender: map['gender'],
+      imageUrl: map['imageUrl'],
+    );
+  }
+
+  UserModel copyWith(
+      {required String newBirthDate,
+      required String newPhone,
+      required String newAltEmail,
+      required String newImageUrl,
+      required String newGender}) {
+    return UserModel(
+      id: id,
+      name: name,
+      imageUrl: newImageUrl,
+      lastname: lastname,
+      email: email,
+      altEmail: newAltEmail,
+      phone: newPhone,
+      birthDate: newBirthDate,
+      favVolunteerings: favVolunteerings,
+      currVolunteering: currVolunteering,
+      gender: newGender,
     );
   }
 }

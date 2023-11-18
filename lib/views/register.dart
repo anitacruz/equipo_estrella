@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/controllers/firebase_remote_config.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/password_field.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
@@ -22,6 +23,8 @@ class Register extends StatelessWidget {
   Widget build(BuildContext context) {
     final GoRouter router =
         GoRouter.of(context); // Obtiene el router de GoRouter
+
+    final remoteConfig = FirebaseRemoteConfigService();
 
     logger.i("Name: ${_name.text}, Lastname: ${_lastname.text}");
     logger.i("Email: ${_email.text}, Password: ${_password.text}");
@@ -71,8 +74,7 @@ class Register extends StatelessWidget {
           await auth.signUpWithEmailAndPassword(
               _email.text, _password.text, context);
 
-          await auth.createUserProfile(
-              _name.text, _lastname.text, _email.text);
+          await auth.createUserProfile(_name.text, _lastname.text, _email.text);
           router.go('/');
 
           // await _auth
@@ -90,7 +92,7 @@ class Register extends StatelessWidget {
                 margin: const EdgeInsets.only(
                     top: 83), // Establece el margen superior en 83 píxeles
                 child: Image.asset(
-                  "assets/Ser_manos_logo.png",
+                  "assets/${remoteConfig.logoImage}",
                   width: 150,
                   height: 150,
                 ),

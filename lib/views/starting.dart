@@ -1,4 +1,5 @@
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/controllers/firebase_remote_config.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,9 @@ class StartingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final GoRouter router =
         GoRouter.of(context); // Obtiene el router de GoRouter
+
+    final remoteConfig = FirebaseRemoteConfigService();
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -29,7 +33,7 @@ class StartingPage extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
-                '“El esfuerzo desinteresado para llevar alegría a los demás será el comienzo de una vida más feliz para nosotros”',
+                remoteConfig.welcomeText,
                 style: ManosFonts.sub1(),
                 textAlign: TextAlign.center,
               ),
