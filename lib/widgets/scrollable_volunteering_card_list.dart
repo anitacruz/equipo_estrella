@@ -72,8 +72,10 @@ class ScrollableVolunteeringCardList extends ConsumerWidget {
 
     final volunteeringMethods =
         ref.read(volunteeringControllerProvider.notifier);
+    //if searchQuery is not null, we need to return a ""
+    final validSearchQuery = searchQuery ?? "";
     final voluteeringFilteredList =
-        volunteeringMethods.getVolunteeringList(searchQuery: searchQuery);
+        volunteeringMethods.getVolunteeringList(searchQuery: validSearchQuery);
     return FutureBuilder<List<VolunteeringModel>>(
         future: voluteeringFilteredList,
         builder: (context, snapshot) {
