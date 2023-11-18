@@ -1,5 +1,4 @@
 import 'package:equipo_estrella/commons/fonts.dart';
-import 'package:equipo_estrella/controllers/auth_controller.dart';
 import 'package:equipo_estrella/controllers/user_controller.dart';
 import 'package:equipo_estrella/models/user_model.dart';
 import 'package:equipo_estrella/views/edit_profile.dart';
@@ -10,6 +9,7 @@ import 'package:equipo_estrella/widgets/cards/information_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../commons/colors.dart';
 
@@ -20,6 +20,8 @@ class CompleteUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final router = GoRouter.of(context);
+
     return Column(children: [
       //image
       Container(
@@ -84,9 +86,8 @@ class CompleteUser extends StatelessWidget {
           child: SecondaryButton(
             text: "Cerrar sesión",
             onPressedMethod: () async {
-              await FirebaseAuth.instance.signOut();
-              final GoRouter router =
-                  GoRouter.of(context); // Obtiene el router de GoRouter
+              await FirebaseAuth.instance
+                  .signOut(); // Obtiene el router de GoRouter
               router.go('/login');
             },
             textColor: ManosColors.error,

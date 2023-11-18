@@ -310,7 +310,7 @@ class _ExpandedVolunteerState extends ConsumerState<ExpandedVolunteer> {
                       PrimaryButton(
                           text: "Postularme",
                           onPressedMethod: () => subscribeToVolunteer(
-                              context, ref, widget.vModel.id)) //TODO
+                              context, ref, widget.vModel.id))
                   ],
                 ))));
   }

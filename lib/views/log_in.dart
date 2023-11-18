@@ -24,6 +24,7 @@ class LogIn extends StatelessWidget {
     final remoteConfig = FirebaseRemoteConfigService();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Consumer(builder: (context, ref, _) {
         //  Consuming a provider using watch method and storing it in a variable
         //  Now we will use this variable to access all the functions of the

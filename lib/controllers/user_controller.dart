@@ -38,7 +38,7 @@ class UserController extends _$UserController {
     if (_currUser == null) {
       await refresh();
     }
-    return _currUser!; //TODO: check if null
+    return _currUser!; 
   }
 
   Future<void> updateUser(UserModel user) async {
