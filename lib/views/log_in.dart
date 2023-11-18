@@ -89,9 +89,7 @@ class LogIn extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 child: CustomFormField(
-                    fieldName: "Email",
-                    hintText: "anacruz@yahoo.com",
-                    controller: email),
+                    fieldName: "Email", hintText: "", controller: email),
               ),
               const SizedBox(height: 24), //Espacio entre email y password
               Container(
