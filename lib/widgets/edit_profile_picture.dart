@@ -28,6 +28,7 @@ class EditProfilePicture extends ConsumerStatefulWidget {
 class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
   var logger = Logger();
   File? _selectedImage;
+  bool? has_profile;
 
   Future<void> _pickImage() async {
     var uploadImageController =
@@ -69,6 +70,12 @@ class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    has_profile = widget.hasProfilePic;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 1000,
@@ -89,7 +96,7 @@ class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
               borderRadius: BorderRadius.all(Radius.circular(4)),
               color: ManosColors.secondary25,
             ),
-            child: !widget.hasProfilePic
+            child: !has_profile!
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -98,7 +105,12 @@ class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
                         style: ManosFonts.sub1(),
                       ),
                       ShortButton(
-                          onPressedMethod: () => {_pickImage()},
+                          onPressedMethod: () => () {
+                                _pickImage();
+                                setState(() {
+                                  has_profile = true;
+                                });
+                              },
                           text: "Subir foto")
                     ],
                   )
@@ -119,8 +131,8 @@ class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
                         ],
                       ),
                       ClipOval(
-                        child: Image.asset(
-                          "assets/profile_pic.jpg",
+                        child: Image.network(
+                          widget.imageController.text,
                           width: 84,
                           height: 84,
                           fit: BoxFit.cover,

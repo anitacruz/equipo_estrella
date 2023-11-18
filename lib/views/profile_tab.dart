@@ -23,8 +23,8 @@ class CompleteUser extends StatelessWidget {
       Container(
           margin: const EdgeInsets.only(top: 32),
           child: ClipOval(
-            child: Image.asset(
-              "assets/profile_pic.jpg",
+            child: Image.network(
+              userModel.imageUrl,
               width: 110,
               height: 110,
               fit: BoxFit.cover,

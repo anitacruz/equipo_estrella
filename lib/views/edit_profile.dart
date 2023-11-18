@@ -1,7 +1,6 @@
 import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/controllers/user_controller.dart';
 import 'package:equipo_estrella/models/user_model.dart';
-import 'package:equipo_estrella/widgets/cards/edit_information_card.dart';
 import 'package:equipo_estrella/widgets/custom_form_field.dart';
 import 'package:equipo_estrella/widgets/edit_profile_picture.dart';
 import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
