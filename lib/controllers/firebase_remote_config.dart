@@ -1,3 +1,4 @@
+import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/controllers/firebase_remote_config_keys.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
@@ -27,6 +28,8 @@ class FirebaseRemoteConfigService {
   Future<void> _setDefaults() async => _remoteConfig.setDefaults(
         const {
           FirebaseRemoteConfigKeys.allowFaving: true,
+          FirebaseRemoteConfigKeys.welcomeText:
+              "“El esfuerzo desinteresado para llevar alegría a los demás será el comienzo de una vida más feliz para nosotros”",
         },
       );
 
@@ -41,8 +44,10 @@ class FirebaseRemoteConfigService {
   }
 
   bool get allowFaving {
-    logger.i("estoy entrando al metodo del firebase remote config!!");
-    logger.i("allowFaving: ${getBool(FirebaseRemoteConfigKeys.allowFaving)}");
     return getBool(FirebaseRemoteConfigKeys.allowFaving);
+  }
+
+  String get welcomeText {
+    return getString(FirebaseRemoteConfigKeys.welcomeText);
   }
 }
