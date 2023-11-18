@@ -1,7 +1,7 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:logger/logger.dart';
-import 'package:path/path.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'upload_image_controller.g.dart';
@@ -13,16 +13,20 @@ class UploadImageController extends _$UploadImageController {
   @override
   Future<void> build() async {}
 
-  Future<void> uploadImage(File image) async {
-    final fileName = basename(image.path);
-    final destination = 'images/$fileName';
+  Future<String?> uploadImage(File image) async {
+    final userId = FirebaseAuth.instance.currentUser?.uid;
+    //final fileName = basename(image.path);
+    final destination = 'profilePictures/$userId';
     logger.i("Upload img from path: $destination");
     final storageRef = FirebaseStorage.instance.ref();
     final ref = storageRef.child(destination);
     try {
       await ref.putFile(image);
+      final downloadUrl = await ref.getDownloadURL();
+      return downloadUrl;
     } catch (e) {
       logger.e("Error al subir la imagen a Firebase Storage: $e");
+      return null;
     }
   }
 }

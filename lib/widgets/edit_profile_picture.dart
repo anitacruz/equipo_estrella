@@ -14,11 +14,11 @@ import '../commons/colors.dart';
 
 class EditProfilePicture extends ConsumerStatefulWidget {
   final bool hasProfilePic;
+  final TextEditingController imageController;
 
-  const EditProfilePicture({
-    Key? key,
-    required this.hasProfilePic,
-  }) : super(key: key);
+  const EditProfilePicture(
+      {Key? key, required this.hasProfilePic, required this.imageController})
+      : super(key: key);
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() =>
@@ -48,7 +48,8 @@ class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
       logger.e("Error al seleccionar la imagen: $e");
     }
     // Subir la imagen a Firebase Storage
-    await uploadImageController.uploadImage(_selectedImage!);
+    widget.imageController.text =
+        (await uploadImageController.uploadImage(_selectedImage!))!;
   }
 
   Future<void> _uploadImageToFirebase() async {
@@ -65,39 +66,6 @@ class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
     } catch (e) {
       logger.e("Error al subir la imagen a Firebase Storage: $e");
     }
-
-    //   // Create a storage reference from our app
-    //   logger.i("creando el storage ref");
-    //   final storageRef = FirebaseStorage.instance.ref();
-    //   // Create a reference to "mountains.jpg"
-    //   logger.i("creando el mountains ref");
-    //   final mountainsRef = storageRef.child("mountains.jpg");
-
-    //   try {
-    //     logger.i("estamos adentro del try, por mandar el put file...");
-    //     await mountainsRef.putFile(_selectedImage!);
-    //     logger.i("despues del await)");
-    //   } on FirebaseException catch (e) {
-    //     // ...
-    //   }
-    // }
-
-    // try {
-    //   logger.i("Upload img from path: ${_selectedImage!.path}");
-    //   final userId = FirebaseAuth.instance.currentUser?.uid;
-    //   logger.i("el userId es: $userId");
-    //   if (userId != null) {
-    //     final timestamp = DateTime.now().millisecondsSinceEpoch;
-    //     final storageRef = FirebaseStorage.instance
-    //         .ref()
-    //         .child('profile_pics/${userId}_$timestamp.jpg');
-    //     logger.i("el storageRef es: $storageRef");
-    //     logger.i("a punto de hacer el put file");
-    //     await storageRef.putFile(_selectedImage!);
-    //   }
-    // } catch (e) {
-    //   logger.e('Error al subir la imagen a Firebase Storage: $e');
-    // }
   }
 
   @override
@@ -129,7 +97,9 @@ class EditProfilePictureState extends ConsumerState<EditProfilePicture> {
                         "Foto de perfil",
                         style: ManosFonts.sub1(),
                       ),
-                      ShortButton(onPressedMethod: () => {}, text: "Subir foto")
+                      ShortButton(
+                          onPressedMethod: () => {_pickImage()},
+                          text: "Subir foto")
                     ],
                   )
                 : Row(
