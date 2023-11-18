@@ -1,4 +1,5 @@
 import 'package:equipo_estrella/commons/fonts.dart';
+import 'package:equipo_estrella/controllers/auth_controller.dart';
 import 'package:equipo_estrella/controllers/user_controller.dart';
 import 'package:equipo_estrella/models/user_model.dart';
 import 'package:equipo_estrella/views/edit_profile.dart';
@@ -6,6 +7,7 @@ import 'package:equipo_estrella/widgets/buttons/primary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/secondary_button.dart';
 import 'package:equipo_estrella/widgets/buttons/short_button_with_plus_sign.dart';
 import 'package:equipo_estrella/widgets/cards/information_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -82,7 +84,12 @@ class CompleteUser extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SecondaryButton(
             text: "Cerrar sesión",
-            onPressedMethod: () => {},
+            onPressedMethod: () async {
+              await FirebaseAuth.instance.signOut();
+              final GoRouter router =
+                  GoRouter.of(context); // Obtiene el router de GoRouter
+              router.go('/login');
+            },
             textColor: ManosColors.error,
           ))
     ]);
