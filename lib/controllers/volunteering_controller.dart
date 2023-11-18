@@ -15,7 +15,9 @@ class VolunteeringController extends _$VolunteeringController {
     return getVolunteeringList();
   }
 
-  Future<List<VolunteeringModel>> getVolunteeringList() async {
+  Future<List<VolunteeringModel>> getVolunteeringList(
+      {String? searchQuery}) async {
+    logger.i("Getting volunteering list with SEARCH QUERY===${searchQuery}");
     FirebaseFirestore db = FirebaseFirestore.instance;
     final volunteerings = await db.collection("volunteerings").get();
     final volunteeringsList = volunteerings.docs.map((doc) {
@@ -23,6 +25,14 @@ class VolunteeringController extends _$VolunteeringController {
       final data = doc.data();
       return VolunteeringModel.fromMap(data, id);
     }).toList();
+    if (searchQuery != null && searchQuery.isNotEmpty) {
+      return volunteeringsList
+          .where((element) => element.title
+              .toLowerCase()
+              .trim()
+              .contains(searchQuery.toLowerCase().trim()))
+          .toList();
+    }
 
     return volunteeringsList;
   }
