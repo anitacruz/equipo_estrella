@@ -24,7 +24,6 @@ class UserController extends _$UserController {
     final doc = db.collection("users").doc(currUserId);
     final data = await doc.get();
 
-    logger.e(data.data());
     final map = data.data() as Map<String, dynamic>;
     _currUser = UserModel.fromMap(map, currUserId);
   }
