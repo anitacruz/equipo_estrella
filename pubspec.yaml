@@ -47,6 +47,7 @@ dependencies:
     firebase_storage: ^11.5.1
     path: ^1.8.3
     intl: ^0.17.0
+    firebase_remote_config: ^4.3.4
 
 dev_dependencies:
     flutter_test:
