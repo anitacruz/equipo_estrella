@@ -1,6 +1,4 @@
-import 'package:equipo_estrella/commons/colors.dart';
 import 'package:equipo_estrella/controllers/firebase_remote_config_keys.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:logger/logger.dart';
 
@@ -49,5 +47,9 @@ class FirebaseRemoteConfigService {
 
   String get welcomeText {
     return getString(FirebaseRemoteConfigKeys.welcomeText);
+  }
+
+  String get logoImage {
+    return getString(FirebaseRemoteConfigKeys.logoImage);
   }
 }
