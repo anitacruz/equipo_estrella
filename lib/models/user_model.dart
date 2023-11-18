@@ -69,7 +69,7 @@ class UserModel {
       email: email,
       altEmail: newAltEmail,
       phone: newPhone,
-      birthDate: newPhone,
+      birthDate: newBirthDate,
       favVolunteerings: favVolunteerings,
       currVolunteering: currVolunteering,
       gender: newGender,

@@ -24,7 +24,7 @@ class EditProfileState extends ConsumerState<EditProfile> {
   UserModel? currUser;
 
   bool isValid = false;
-
+  DateTime? selectedDate;
   String genderOption = '';
   TextEditingController birthDateController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -36,6 +36,7 @@ class EditProfileState extends ConsumerState<EditProfile> {
     super.initState();
     // Set initial values in controllers
     genderOption = widget.userModel.gender;
+    selectedDate = DateFormat("dd/MM/yyyy").parse(widget.userModel.birthDate);
     birthDateController.text = widget.userModel.birthDate;
     phoneController.text = widget.userModel.phone;
     altEmailController.text = widget.userModel.altEmail;
@@ -55,8 +56,6 @@ class EditProfileState extends ConsumerState<EditProfile> {
           currModel.gender != '';
     });
   }
-
-  DateTime? selectedDate;
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -241,36 +240,37 @@ class EditProfileState extends ConsumerState<EditProfile> {
                     logger.e("SELECTED DATE IS NULL");
                     return;
                   }
+
+                  // Check if fields are not empty
+                  if (birthDateController.text.isEmpty ||
+                      phoneController.text.isEmpty ||
+                      altEmailController.text.isEmpty) {
+                    logger.e("FIELDS ARE EMPTY");
+                  }
+                  if (currUser == null) {
+                    return;
+                  }
+
+                  logger.w(DateFormat("dd/MM/yyyy").format(selectedDate!));
                   String birthDate =
                       DateFormat("dd/MM/yyyy").format(selectedDate!);
                   String phone = phoneController.text;
                   String altEmail = altEmailController.text;
                   String imageUrl = imageUrlController.text;
+                  String gender = genderOption;
 
-                  logger.w(imageUrl);
-                  String gender = 'Masculino';
+                  // Create a new UserModel with updated values
+                  UserModel updatedUser = currUser!.copyWith(
+                      newBirthDate: birthDate,
+                      newPhone: phone,
+                      newAltEmail: altEmail,
+                      newImageUrl: imageUrl,
+                      newGender: gender);
 
-                  // Check if fields are not empty
-                  if (birthDate.isNotEmpty &&
-                      phone.isNotEmpty &&
-                      altEmail.isNotEmpty) {
-                    if (currUser == null) {
-                      return;
-                    }
-
-                    // Create a new UserModel with updated values
-                    UserModel updatedUser = currUser!.copyWith(
-                        newBirthDate: birthDate,
-                        newPhone: phone,
-                        newAltEmail: altEmail,
-                        newImageUrl: imageUrl,
-                        newGender: gender);
-
-                    // Call _updateUser with the updated UserModel
-                    _updateUser(context, ref, updatedUser).whenComplete(() {
-                      Navigator.pop(context);
-                    });
-                  }
+                  // Call _updateUser with the updated UserModel
+                  _updateUser(context, ref, updatedUser).whenComplete(() {
+                    Navigator.pop(context);
+                  });
                 },
               ),
               const SizedBox(height: 24),
