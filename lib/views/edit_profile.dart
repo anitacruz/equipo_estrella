@@ -35,7 +35,12 @@ class EditProfileState extends ConsumerState<EditProfile> {
     super.initState();
     // Set initial values in controllers
     genderOption = widget.userModel.gender;
-    selectedDate = DateFormat("dd/MM/yyyy").parse(widget.userModel.birthDate);
+    if (widget.userModel.birthDate.isNotEmpty) {
+      selectedDate = DateFormat("dd/MM/yyyy").parse(widget.userModel.birthDate);
+    } else {
+      selectedDate = null;
+    }
+
     birthDateController.text = widget.userModel.birthDate;
     phoneController.text = widget.userModel.phone;
     altEmailController.text = widget.userModel.altEmail;
